@@ -1,0 +1,49 @@
+{
+  "games": 2000,
+  "standardWins": 932,
+  "firstBlock": 810000,
+  "blocks": 100,
+  "byFaction": {
+    "ant": {
+      "games": 400,
+      "standardWins": 147,
+      "specialWins": 253,
+      "hitPlays": 2174,
+      "supplyPlays": 1326,
+      "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+    },
+    "bee": {
+      "games": 400,
+      "standardWins": 185,
+      "specialWins": 215,
+      "hitPlays": 1226,
+      "supplyPlays": 453,
+      "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+    },
+    "beetle": {
+      "games": 400,
+      "standardWins": 210,
+      "specialWins": 190,
+      "hitPlays": 1503,
+      "supplyPlays": 322,
+      "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+    },
+    "spider": {
+      "games": 400,
+      "standardWins": 203,
+      "specialWins": 197,
+      "hitPlays": 2638,
+      "supplyPlays": 1534,
+      "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+    },
+    "butterfly": {
+      "games": 400,
+      "standardWins": 187,
+      "specialWins": 213,
+      "hitPlays": 2548,
+      "supplyPlays": 1118,
+      "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+    }
+  },
+  "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+}

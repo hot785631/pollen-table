@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>微境：花粉擂台 · 游戏企划</title>
+<style>
+:root{color-scheme:light;--ink:#203e33;--mute:#52665a;--paper:#fbf5e6;--rule:#cdcbb1;--ochre:#98601e;--green:#154738;--gilt:#e6c47e}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#e6e6d6;color:var(--ink);font:16px/1.8 "Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif}main{margin:0 auto;max-width:1060px;background:var(--paper);box-shadow:0 0 45px #153e2c14}header{position:relative;overflow:hidden;background:#194d3c;color:#fff5d8;padding:8% 8% 7%;border-bottom:8px solid #e4ad53}.mast{font-size:.8rem;letter-spacing:.22em;color:var(--gilt);font-weight:800}.over{margin:2.2em 0 .3em;font-family:serif;color:#cfdfb9;letter-spacing:.25em}h1,h2,h3{line-height:1.32}h1{font-family:"STZhongsong","Songti SC","SimSun",serif;font-size:clamp(49px,7.8vw,89px);letter-spacing:.06em;margin:0 0 .2em}header p{max-width:65%;margin:1em 0 0;font-size:clamp(15px,1.8vw,20px)}.seal{position:absolute;right:6%;bottom:12%;width:24%;height:auto;background:#dce2b8;border:6px double #6f9776;border-radius:48% 45% 49% 39%;transform:rotate(-6deg);box-shadow:7px 8px 0 #103e31}.seal svg{width:100%;display:block}
+nav{padding:13px 8%;border-bottom:1px solid var(--rule);display:flex;gap:15px 26px;flex-wrap:wrap}a{color:#306047;text-underline-offset:4px}nav a{font-size:.86rem;font-weight:bold}section,footer{padding:35px 8% 30px;border-bottom:1px solid var(--rule)}section>p{margin:.8em 0}.n{font-size:.76rem;letter-spacing:.18em;color:var(--ochre);font-weight:800}h2{font:700 clamp(25px,3.4vw,38px)/1.42 "STZhongsong","Songti SC","SimSun",serif;margin:.23em 0 .65em}h3{font-size:1.1rem;margin:1.1em 0 .35em}p{margin:.5em 0}.lead{font-size:1.1rem}.hint,figcaption{color:var(--mute);font-size:.89rem}.stripe{padding:13px 20px;background:#e9edd8;border-left:5px solid #799e76;border-radius:0 12px 12px 0;margin:18px 0}.rulegrid,.teams,.duo{display:grid;gap:12px}.rulegrid{grid-template-columns:repeat(4,minmax(0,1fr));margin:1.1em 0}.rulegrid div{border-top:3px solid #b9bb9a;padding:8px 2px}.rulegrid b{display:block;font-size:1.65rem;line-height:1.3;color:var(--green)}.rulegrid span{font-size:.86rem;color:var(--mute)}.teams{grid-template-columns:repeat(3,minmax(0,1fr));margin:1.3em 0}.team{border:1px solid var(--rule);border-radius:16px;padding:16px;background:#f6eedc}.team:nth-child(2){background:#eaf0dc}.team:nth-child(3){background:#faeacb}.team>svg{height:85px;display:block;margin:auto}.team h3{margin:.5em 0}.team .tag{border-radius:12px;background:#fff8eb;display:inline-block;padding:1px 9px;font-size:.8rem}.team p{font-size:.94rem}.duo{grid-template-columns:1fr 1fr}.tile{padding:14px 17px;border-radius:15px;background:#f0ecd9}.tile h3{margin-top:0}table{width:100%;border-collapse:collapse;font-size:.95rem;margin:.9em 0;text-align:left}th,td{padding:10px 9px;border-bottom:1px solid #cfd2b8;vertical-align:top}th{background:#e5ead6}td:first-child{font-weight:bold}.sym{display:inline-flex;align-items:center;gap:2px}.glyph{width:1.35em;height:1.35em;vertical-align:-.3em}figure{margin:16px 0}figure>svg{display:block;width:100%;height:auto;border-radius:16px}figcaption{margin:7px 0}.case{background:#254e40;padding:18px;border-radius:16px;color:#fff5d7}.case table{color:#fff5d7;text-align:center}.case td,.case th{border-color:#648474;padding:4px 8px}.case th{background:transparent;color:#c9d9b9}.case table svg{height:38px;width:48px;vertical-align:middle}.case button{border:1px solid #d3cf9b;border-radius:99px;background:transparent;color:#fff8da;padding:8px 14px;cursor:pointer;font:inherit;margin:5px 6px 0 0}.case button[aria-pressed=true]{background:#fee2a1;color:#303e2c}.case button:focus-visible{outline:3px solid #fff}.case output{display:block;margin-top:12px;color:#ffe19e;min-height:3.5em}.fine{font-size:.82rem;color:var(--mute)}footer{font-size:.9rem}footer a{overflow-wrap:anywhere}
+@media(max-width:650px){header{padding:27px 6%}header p{max-width:73%}.over{margin-top:1.2em}.seal{width:23%;right:4%;bottom:16%}section,footer{padding:24px 5%}.rulegrid,.duo{grid-template-columns:repeat(2,minmax(0,1fr))}.teams{grid-template-columns:1fr}.team>svg{float:right;width:80px}.team p{clear:both}.duo{grid-template-columns:1fr}nav{gap:6px 14px;padding:8px 5%}th,td{padding:7px 4px}table{font-size:.87rem}}
+@media print{body,main{background:#fff;box-shadow:none}nav,.case .options{display:none}section,footer{padding:14px 3%;break-inside:auto}header{padding:26px 4%;print-color-adjust:exact}h2,h3{break-after:avoid}figure,table,.team,.tile,.case{break-inside:avoid}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}header .over{margin-top:8px}header h1{font-size:48px}}
+.flower-example{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.flower-example b{background:#edf0db;border:1px solid #c2caaa;border-radius:13px;padding:10px 0;text-align:center;color:#4b5031}.case td{overflow-wrap:anywhere}.matchgrid{font-variant-numeric:tabular-nums}.matchgrid :is(th,td){text-align:center;padding:7px 2px}@media(max-width:500px){.matchgrid{font-size:12px}}
+</style></head><body><main>
+<header><div class="mast">微境　／　儿童策略卡牌</div><h1>花粉擂台</h1><p>五朵花，六张手牌。花一轮阳光把虫子铺开，还是把那张顶撞留到对手站好？</p><span class="seal" aria-hidden="true"><svg class="bug-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 98" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="#3e4035" stroke-width="4">
+      <path d="m51 51-16-15-8 1M62 48l-8-16 4-7M73 47l6-14 9-2"/>
+      <path d="m49 64-14 9-12 2-2 5m40-16-4 12-13 9m31-24 8 12 12 2"/>
+    </g>
+    <path d="M18 45Q27 32 45 33Q64 33 67 49Q71 66 52 73Q32 81 17 67Q10 56 18 45Z" fill="#995238" stroke="#3f3c30" stroke-width="3"/>
+    <path d="M17 60Q13 46 28 39Q44 31 56 41Q41 36 31 45Q24 51 22 61Z" fill="#d38a55"/>
+    <path d="M17 64Q37 47 60 44" fill="none" stroke="#684733" stroke-width="2.5"/>
+    <g fill="none" stroke="#ca8150" stroke-width="1.8"><path d="M22 65q9-8 20-11m-13 13q8-6 16-9m-8 10 9-5"/></g>
+    <path d="M56 40Q67 31 78 38Q87 44 80 57Q73 67 60 65Q54 61 58 54Q61 47 56 40Z" fill="#554c39" stroke="#3d3d31" stroke-width="2.8"/>
+    <path d="M62 40Q70 37 76 41" fill="none" stroke="#c29967" stroke-width="3"/>
+    <path d="M76 48Q79 41 88 43Q98 44 98 52Q98 59 89 62Q78 64 74 58Z" fill="#564334" stroke="#343a31" stroke-width="2.6"/>
+    <path d="M88 47Q93 39 101 33Q109 26 108 15L113 21 118 15Q121 29 108 39L96 53Z" fill="#524738" stroke="#343a31" stroke-width="2.2"/>
+    <path d="M74 40q13-7 16-16l3 6q-1 9-12 16Z" fill="#5a513e" stroke="#343a31" stroke-width="1.8"/>
+    <circle cx="91" cy="52" r="3.2" fill="#262f28"/><circle cx="92" cy="51" r="1" fill="#fff4ca"/></svg></span></header>
+<nav aria-label="目录"><a href="./">▷ 打开新版离线牌桌</a><a href="#rules">对战规则</a><a href="#decks">手牌与组牌</a><a href="#teams">五族打法</a><a href="#table">画面</a><a href="#try">试一次搭把手</a><a href="#balance">平衡与试玩</a></nav>
+<section id="rules"><h2>在五朵花上争 30 分</h2><p class="lead">打开主界面，可以选择一个人挑战电脑，也可以把平板平放在桌上，两个人坐在两边对战。轮到谁，就从自己这边揭开手牌。确认出牌后手牌盖回，下一位在自己的座位操作。双方始终看着同一条实物方向的花道。</p><p>每条叶道上有一朵花，双方各能派一只昆虫争它。伙伴脚印旁的数字表示力量。孩子可以先抢几条空路，再根据对手的落点，决定把下一张牌和剩下的阳光花在哪里。</p>
+<div class="rulegrid"><div><b>5 条道</b><span>一边一个虫位</span></div><div><b>6 张</b><span>轮初补足手牌</span></div><div><b>3 → 10</b><span>每轮可花的太阳</span></div><div><b>30 分</b><span>轮末统一计分</span></div></div>
+<ol><li><b>开花。</b>开花时五条道各自独立抽取：70% 是 1 枚、15% 是 2 枚、10% 是空道、5% 是 3 枚。各道互不影响，整轮不规定总数；即使一条道已有 3 枚，下一条仍有 5% 的机会开出 3 枚。首轮双方各有 3 个太阳，每轮上限增加 1，并按新上限补满。第 8 轮起每轮可花 10 个。首轮随机先手，之后每轮交换；桌面的“先”标记随轮次换边。</li><li><b>出牌。</b>双方轮流各做一个动作。打伙伴占自己的空位，打撞击削弱一只敌虫，或用种族专属。点牌、点目标，预览后确认。每轮能换一张牌，换牌或打 0 费牌都算一次行动。没有“先等等，等会儿再出”的跳过：选择收手，自己便退出本轮，不能再行动。尚未收手的一方可以继续出牌，直到也收手，然后结算。</li><li><b>收粉。</b>双方都收手才比较力量。每道较强的一边收走该道全部花粉，每枚 1 分。空位算 0，双方一样大时该道无人得分；被网住的叶位本轮不参与采粉。结算从第一道开始依次展示归属，再将花粉计入两边比分。随后清空棋盘、补阳光，手里留下的牌带入下一轮。</li><li><b>决胜。</b>整轮的五条道一起算分。只要有一方达到 30 分，领先者获胜。如果同轮都到 30 分以上且同分，继续打到一次结算后分出高低。比分达到 31∶30 即可获胜。最后一轮先分完花粉，再为赢家庆祝。</li></ol></section>
+<section id="decks"><h2>留在手里的，下一轮还能打</h2>
+<p>牌盒正好装 16 张。每族预组都有 12 张伙伴、1 张撞击、2 张本族专属和 1 张补给。默认牌里只有 4 张非伙伴牌，因此每次补满 6 张，都至少有 2 张伙伴。想多带一张专属，就先挑一张牌拿出来。伙伴、撞击、补给都可以让出位置；至少留一张伙伴，才能派虫守花。双人模式下，两位玩家各自打开面前的半屏牌盒；即使同选一个种族，也能各配一套。保存后，换队再回来也沿用自己的牌盒。“恢复预组”只改当前草稿，保存才替换原配方；取消即可保留原牌组。</p>
+<p>开局各洗各的 16 张，再各发 6 张，余下 10 张留在自己的抽牌堆。每一张牌被发到起手里的机会都是 6/16。带 2 张专属，起手见到至少一张的机会为 62.5%；换成 4 张，同样抽 6 张，机会就升到约 88.5%。</p>
+<div class="stripe"><strong>一次补牌的例子</strong>　如果这轮打了 3 张，另 3 张仍握在手里，下轮只抽 3 张。如果 6 张一张都没用，下轮便沿用这 6 张。打过或换出的牌进弃堆，抽牌堆见底才把弃堆重新洗入。</div>
+<p>每轮能免费换一次牌。选中一张并确认后，先把它放到一旁，从自己的牌堆抽一张，再让旧牌进入弃牌堆。因此刚换出去的那一张不会立刻回到手里，但可能摸到另一张同名牌。</p>
+<p>换牌只换一张，手牌总数不变。「补给」要花 1 点阳光和一次行动：打出后，从自己的牌堆把手牌补满至 6 张。原有 3 张、其中一张是补给，打出后剩 2 张，就摸 4 张；只剩补给时可以摸 6 张。若本来满手，打出后只有一个空位，只摸 1 张。确认前牌角会显示这次能摸几张；刚打出的这张补给要在抽完后才进弃牌堆。</p>
+<table><thead><tr><th>普通牌</th><th>0 费</th><th>1 费</th><th>2 费</th><th>3 费</th><th>4 费</th></tr></thead><tbody><tr><td><svg class="glyph" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round"><path d="M4 25Q1 5 27 5Q28 29 8 27Z" fill="#8dc5a7" stroke="#3e715b" stroke-width="2"/><path d="m5 28 17-17m-9 9 1-7m3 4 5-1" fill="none" stroke="#3e715b" stroke-width="1.7"/></svg> 伙伴</td><td>—</td><td>1 力</td><td>3 力</td><td>5 力</td><td>7 力</td></tr><tr><td><svg class="glyph" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round"><path d="m19 3-5 10 10-3-5 8 8 2-18 10 5-10-10 1 7-9-5-1Z" fill="#ef9661" stroke="#874632" stroke-width="1.8"/></svg> 撞击</td><td>−1 力</td><td>−2 力</td><td>−3 力</td><td>—</td><td>—</td></tr><tr><td><svg class="glyph" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round"><g stroke="#365f6b" stroke-width="1.7"><path d="m3 8 11-4 6 16-11 4Z" fill="#c6e8df"/><rect x="13" y="4" width="12" height="17" rx="2" fill="#edf8e8"/></g><path d="M21 13v14m-6-6 6 6 7-7" fill="none" stroke="#296879" stroke-width="3.3"/></svg> 补给</td><td>—</td><td>补满到 6 张</td><td>—</td><td>—</td><td>—</td></tr></tbody></table><p>0 费牌不花阳光，仍占用 16 个牌位之一、消耗一张手牌，也用掉这次行动。最后一点阳光可以留给伙伴；小撞击则可以在阳光见底后用来打破平手。</p>
+<p>同类伙伴和撞击只变费用与效果数字。被撞到 0 力的虫仍占格。组牌时能看到专属出现在首手的概率，也能选同费的哪类牌来替换。例如从预组取出一张伙伴和一张撞击，换入两张专属，就成了 11 伙伴、4 专属、1 补给，总数仍是 16。</p>
+<table><thead><tr><th>虫队</th><th>伙伴张数<br><small>1 / 2 / 3 / 4 费</small></th><th>撞击张数<br><small>0 / 1 / 2 费</small></th><th>专属</th><th>补给</th></tr></thead><tbody><tr><td>蚂蚁</td><td>7 / 4 / 1 / 0</td><td>1 / 0 / 0</td><td>2 张</td><td>1 张</td></tr><tr><td>蜜蜂</td><td>5 / 3 / 3 / 1</td><td>0 / 0 / 1</td><td>2 张</td><td>1 张</td></tr><tr><td>甲虫</td><td>3 / 4 / 3 / 2</td><td>0 / 1 / 0</td><td>2 张</td><td>1 张</td></tr><tr><td>蜘蛛</td><td>8 / 2 / 1 / 1</td><td>1 / 0 / 0</td><td>2 张</td><td>1 张</td></tr><tr><td>蝴蝶</td><td>4 / 4 / 3 / 1</td><td>0 / 1 / 0</td><td>2 张</td><td>1 张</td></tr></tbody></table></section>
+<section id="teams"><h2>五种专属，五种抢花的方法</h2><p>所有专属从第一轮到最后一轮都是同一个费用。初花、盛花和晚花只标记本轮有多少阳光。五副牌的伙伴费用分布不同，所以一局里出力的时机也不同。</p>
+<div class="teams">
+<article class="team"><svg class="bug-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 98" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="#573c32" stroke-width="4.4">
+      <path d="M59 53 44 41 29 43M65 56 55 36 51 30M71 58 78 40 91 35"/>
+      <path d="M59 58 41 68 35 82 28 83M65 59 58 74 60 87 54 89M72 57 81 72 95 74"/>
+    </g>
+    <path d="M49 52Q59 49 66 54L65 60Q56 56 47 61Z" fill="#693c30"/>
+    <path d="M19 48Q23 35 38 35Q51 35 53 46Q55 59 43 65Q27 72 16 65Q11 59 19 48Z" fill="#ad4f36" stroke="#57382f" stroke-width="2.7"/>
+    <path d="M17 59Q19 47 28 43Q37 38 45 42Q33 43 25 51Z" fill="#e79460"/>
+    <path d="M37 62Q48 58 49 50" fill="none" stroke="#83442f" stroke-width="2"/>
+    <path d="M54 48Q59 41 68 45Q81 49 76 58Q70 65 60 60Q52 57 54 48Z" fill="#be613d" stroke="#57382f" stroke-width="2.7"/>
+    <path d="m68 48 9-3 4 7-8 4" fill="#83432f"/>
+    <path d="M81 39 77 27 81 17M88 38 95 23 108 21" fill="none" stroke="#54392f" stroke-width="3.3"/>
+    <path d="M74 45Q74 34 85 33Q98 31 103 40Q106 50 98 58Q88 65 81 58Q74 54 74 45Z" fill="#ca6d46" stroke="#57382f" stroke-width="2.7"/>
+    <path d="M95 55Q101 57 107 51Q106 58 100 60" fill="#653b2d"/>
+    <path d="M79 42Q82 35 88 36" fill="none" stroke="#efac78" stroke-width="3"/>
+    <circle cx="96" cy="45" r="4.4" fill="#2e3530"/><circle cx="97.4" cy="43.5" r="1.4" fill="#fff3d9"/></svg><h3>蚂蚁 · 搭把手</h3><b>1 费</b><p>把出力蚂蚁的全部当前力量加给相邻的己方蚂蚁。出力者保持原力，两边都没有力量上限。先铺相邻小虫，后面就有更多搭档可选。</p></article>
+<article class="team"><svg class="bug-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 98" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="#524536" stroke-width="3.6">
+      <path d="m56 57-12 11-9 1m29-11-6 11-8 6m20-15 7 10 10 2"/>
+      <path d="m51 63-6 13-10 5m25-18 3 14-7 6m17-20 10 13 8 1"/>
+    </g>
+    <path d="M58 46Q42 33 39 20Q39 10 48 12Q63 16 70 42Z" fill="#bfdad1" stroke="#5f827b" stroke-width="2.5"/>
+    <path d="M19 49Q28 40 43 41Q63 42 69 54Q71 66 52 73Q33 78 20 67L12 60 18 57Z" fill="#e8ae46" stroke="#4d4635" stroke-width="2.7"/>
+    <g fill="#5f513a"><path d="M29 44q-6 14 0 28l-7-4q-5-10 0-20Z"/><path d="M43 42q-5 15 2 31l-8 1q-7-14-2-31Z"/><path d="M56 46q-2 13 5 23l-6 3q-9-14-6-28Z"/></g>
+    <path d="M57 48Q37 43 24 32Q17 24 24 19Q35 12 50 27Q56 33 64 45Z" fill="#e0ede0" stroke="#658a7c" stroke-width="2.7"/>
+    <path d="m26 23 32 21m-18-14-1-7" fill="none" stroke="#a0c1af" stroke-width="2"/>
+    <path d="M60 46q6-8 12-4l4-3 2 5 5 2-2 4q5 11-5 17l-2-1-4 4-2-4q-12 0-13-9l-3-1 4-4Z" fill="#d5a14b" stroke="#6c573b" stroke-width="2.2"/>
+    <path d="m82 45-2-10 5-6m5 15 7-12 7-1" fill="none" stroke="#4e4736" stroke-width="3.2"/>
+    <path d="M77 48Q80 39 90 41Q102 41 105 53Q105 64 95 66Q83 69 78 61Q73 55 77 48Z" fill="#e8b64e" stroke="#554b36" stroke-width="2.8"/>
+    <ellipse cx="97" cy="53" rx="4.1" ry="5.1" fill="#303a32"/><circle cx="98" cy="51.3" r="1.3" fill="#fff5de"/></svg><h3>蜜蜂 · 搬花粉</h3><b>2 费</b><p>从一道花搬走全部花粉，送到相邻且有己方蜜蜂的花上。例如 3 枚搬到已有 1 枚的花上，原道剩 0，新道有 4 枚。已经堆好的 4 枚也能再全部搬走。搬运不直接得分，最后赢下新道的队伍才拿走这堆花粉。</p></article>
+<article class="team"><svg class="bug-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 98" stroke-linecap="round" stroke-linejoin="round"><g fill="none" stroke="#3e4035" stroke-width="4">
+      <path d="m51 51-16-15-8 1M62 48l-8-16 4-7M73 47l6-14 9-2"/>
+      <path d="m49 64-14 9-12 2-2 5m40-16-4 12-13 9m31-24 8 12 12 2"/>
+    </g>
+    <path d="M18 45Q27 32 45 33Q64 33 67 49Q71 66 52 73Q32 81 17 67Q10 56 18 45Z" fill="#995238" stroke="#3f3c30" stroke-width="3"/>
+    <path d="M17 60Q13 46 28 39Q44 31 56 41Q41 36 31 45Q24 51 22 61Z" fill="#d38a55"/>
+    <path d="M17 64Q37 47 60 44" fill="none" stroke="#684733" stroke-width="2.5"/>
+    <g fill="none" stroke="#ca8150" stroke-width="1.8"><path d="M22 65q9-8 20-11m-13 13q8-6 16-9m-8 10 9-5"/></g>
+    <path d="M56 40Q67 31 78 38Q87 44 80 57Q73 67 60 65Q54 61 58 54Q61 47 56 40Z" fill="#554c39" stroke="#3d3d31" stroke-width="2.8"/>
+    <path d="M62 40Q70 37 76 41" fill="none" stroke="#c29967" stroke-width="3"/>
+    <path d="M76 48Q79 41 88 43Q98 44 98 52Q98 59 89 62Q78 64 74 58Z" fill="#564334" stroke="#343a31" stroke-width="2.6"/>
+    <path d="M88 47Q93 39 101 33Q109 26 108 15L113 21 118 15Q121 29 108 39L96 53Z" fill="#524738" stroke="#343a31" stroke-width="2.2"/>
+    <path d="M74 40q13-7 16-16l3 6q-1 9-12 16Z" fill="#5a513e" stroke="#343a31" stroke-width="1.8"/>
+    <circle cx="91" cy="52" r="3.2" fill="#262f28"/><circle cx="92" cy="51" r="1" fill="#fff4ca"/></svg><h3>甲虫 · 顶一顶</h3><b>2 费</b><p>把正对己方甲虫的敌虫顶到敌方邻位；那里有虫就交换。被顶的虫减 2 力，最低为 0。如果出招的甲虫脚下有网，这次顶撞也会把网扯破，恢复采粉。晚花能负担大甲虫时，可以争夺花粉较多的一道。</p></article>
+<article class="team"><svg class="bug-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 98" stroke-linecap="round" stroke-linejoin="round"><g class="spider-legs" fill="none" stroke="#355254" stroke-width="4.7">
+      <path d="M58 53 45 38 38 19 27 13"/>
+      <path d="M56 56 35 44 19 48 8 44"/>
+      <path d="M55 59 31 57 19 69 8 69"/>
+      <path d="M57 63 36 68 27 83 18 87"/>
+      <path d="M70 53 83 38 90 19 101 13"/>
+      <path d="M72 56 93 44 109 48 120 44"/>
+      <path d="M73 59 97 57 109 69 120 69"/>
+      <path d="M71 63 92 68 101 83 110 87"/>
+    </g>
+    <g fill="none" stroke="#c99862" stroke-width="3.1">
+      <path d="m40 26 2 5m-19 16 5-1m-7 21 5-5m3 17 4-6m55-47-2 5m19 16-5-1m7 21-5-5m-3 17-4-6"/>
+    </g>
+    <path d="M65 56Q53 55 47 47Q38 35 45 23Q50 15 63 15Q78 14 84 26Q90 38 80 49Q73 56 65 56Z" fill="#567c79" stroke="#354f52" stroke-width="3"/>
+    <path d="M47 28q6-10 18-9l-9 7-4 10Z" fill="#97b0a0"/>
+    <path d="m64 22 5 6 8 1-5 5-8-2-8 2-5-5 8-1Z" fill="#edbf78"/>
+    <path d="m56 39 8-3 8 3-8 3Z" fill="#d7b77c"/>
+    <path d="M50 54Q53 48 64 47Q76 47 80 56Q83 66 74 73Q64 78 54 72Q46 66 50 54Z" fill="#658986" stroke="#345153" stroke-width="2.8"/>
+    <g fill="#354953"><circle cx="58" cy="64" r="4.1"/><circle cx="70" cy="64" r="4.1"/><circle cx="52.7" cy="60.5" r="1.8"/><circle cx="75.3" cy="60.5" r="1.8"/></g>
+    <g fill="#f1edce"><circle cx="57" cy="62.7" r="1.3"/><circle cx="69" cy="62.7" r="1.3"/></g>
+    <path d="M61 72q0 4 3 5 3-1 3-5" fill="#526c69" stroke="#3f5956" stroke-width="1.6"/></svg><h3>蜘蛛 · 织网</h3><b>3 费</b><p>直接点对面任一未结网的叶位，可以先织网再上虫。空位本轮不能放伙伴；已有虫保留力量，也能使用技能，但本轮不能采粉。网本身不拿分：即使网住了对面的 7 力甲虫，自己这条道如果还是空的，两边仍都拿 0 分。结算后蛛网消失。数数蜘蛛的八条腿：它是昆虫的蛛形邻居。</p></article>
+<article class="team"><svg class="bug-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 98" stroke-linecap="round" stroke-linejoin="round"><g stroke="#444568" stroke-width="2.8">
+      <path d="M60 49Q42 29 18 15Q8 8 10 22L15 42Q19 53 44 60Q28 54 21 63Q16 71 25 78L30 80Q32 87 39 84Q48 92 59 76L65 58Z" fill="#7774b6"/>
+      <path d="M68 49Q85 29 110 15Q121 8 118 22L113 42Q109 53 84 60Q101 54 107 63Q112 71 103 78L98 80Q96 87 89 84Q80 92 69 76L63 58Z" fill="#7774b6"/>
+    </g>
+    <g fill="#94c9d3"><path d="M17 23Q30 27 49 42L56 51Q34 45 23 36Z"/><path d="M21 41q18 6 35 14-9 1-18-2Z"/><path d="M111 23Q98 27 79 42L72 51q22-6 33-15Z"/><path d="M107 41q-18 6-35 14 9 1 18-2Z"/></g>
+    <g fill="#b5a8ce"><path d="M29 62q11-5 28 0-6 13-16 18l1-7q-10 2-15-3Z"/><path d="M99 62q-11-5-28 0 6 13 16 18l-1-7q10 2 15-3Z"/></g>
+    <g fill="#e5bb7a" stroke="#554d73" stroke-width="1.7"><ellipse cx="38" cy="66" rx="5.3" ry="4"/><ellipse cx="90" cy="66" rx="5.3" ry="4"/></g>
+    <g fill="#ede6c9"><circle cx="16" cy="20" r="2.1"/><circle cx="18" cy="31" r="1.7"/><circle cx="112" cy="20" r="2.1"/><circle cx="110" cy="31" r="1.7"/></g>
+    <g fill="none" stroke="#504765" stroke-width="2.1"><path d="M62 44 56 35m6 13-8-1m8 6-6 6m10-15 6-9m-6 13 8-1m-8 6 6 6"/><path d="M62 35Q58 24 53 22m13 13q4-11 9-13"/></g>
+    <g fill="#4e475e"><circle cx="52" cy="21" r="2.3"/><circle cx="76" cy="21" r="2.3"/></g>
+    <path d="M61 48Q59 65 64 79Q69 65 67 48Z" fill="#61567a" stroke="#46465e" stroke-width="2"/>
+    <ellipse cx="64" cy="46" rx="5.9" ry="10" fill="#5a536d" stroke="#43465d" stroke-width="2.1"/>
+    <circle cx="64" cy="36" r="5.2" fill="#635c73" stroke="#43465d" stroke-width="1.8"/>
+    <path d="m63 42-1 7" fill="none" stroke="#b4a9bf" stroke-width="2.2"/></svg><h3>蝴蝶 · 守蛹</h3><b>3 费</b><p>在一只己方蝴蝶所在的花道留蛹，喂它吃掉该道当时的全部花粉。被吃掉的花粉双方都不得分，原有蝴蝶不加力。下一轮清场后，蛹在原道孵化，力量是 4 加上吃掉的花粉数，不用再花手牌或阳光。空花也能留蛹，只能得到基础力量。同一道每位玩家一轮最多留一枚蛹。</p></article>
+</div><div class="stripe"><strong>这轮，还是下轮？</strong> 己方 1 力蝴蝶面对 3 力甲虫，两者正在争 2 枚花粉。此时打「守蛹」，这 2 枚都会喂给蛹，甲虫赢了力量也拿不到它们。下一轮你从一只 4＋2 力蝴蝶开始。如果原本是自己的蝴蝶领先，那就是主动放弃眼前能拿的 2 分。守蛹之后蜜蜂新搬来的花粉仍可正常争夺。</div></section>
+<section id="table"><h2>五片叶子，各自开花</h2><p>下面只是五次独立抽取的一种结果。从左到右，花粉是 1、0、2、1、1。中间那条道值得抢 2 分，左边的空花暂时值 0 分。下一轮重新分布；这一轮蜜蜂搬粉也只会改变花粉的位置。</p>
+<div class="flower-example" aria-label="五条花道分别有一、零、二、一、一枚花粉"><b><svg class="glyph" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round"><g stroke="#8e6628" stroke-width="1.6"><circle cx="16" cy="11" r="7" fill="#ffdb7b"/><circle cx="10.8" cy="19.2" r="6.8" fill="#eeb850"/><circle cx="21.1" cy="19.2" r="6.8" fill="#f9cc66"/></g><path d="m14.4 8 2-1m3 10.3 2-1" fill="none" stroke="#fff4c5" stroke-width="2"/></svg> 1</b><b>○ 0</b><b><svg class="glyph" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round"><g stroke="#8e6628" stroke-width="1.6"><circle cx="16" cy="11" r="7" fill="#ffdb7b"/><circle cx="10.8" cy="19.2" r="6.8" fill="#eeb850"/><circle cx="21.1" cy="19.2" r="6.8" fill="#f9cc66"/></g><path d="m14.4 8 2-1m3 10.3 2-1" fill="none" stroke="#fff4c5" stroke-width="2"/></svg> 2</b><b><svg class="glyph" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round"><g stroke="#8e6628" stroke-width="1.6"><circle cx="16" cy="11" r="7" fill="#ffdb7b"/><circle cx="10.8" cy="19.2" r="6.8" fill="#eeb850"/><circle cx="21.1" cy="19.2" r="6.8" fill="#f9cc66"/></g><path d="m14.4 8 2-1m3 10.3 2-1" fill="none" stroke="#fff4c5" stroke-width="2"/></svg> 1</b><b><svg class="glyph" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" stroke-linecap="round" stroke-linejoin="round"><g stroke="#8e6628" stroke-width="1.6"><circle cx="16" cy="11" r="7" fill="#ffdb7b"/><circle cx="10.8" cy="19.2" r="6.8" fill="#eeb850"/><circle cx="21.1" cy="19.2" r="6.8" fill="#f9cc66"/></g><path d="m14.4 8 2-1m3 10.3 2-1" fill="none" stroke="#fff4c5" stroke-width="2"/></svg> 1</b></div>
+<p>金色太阳表示费用，脚印表示力量。伙伴是叶形，撞击有切角，补给是蓝色折角，专属是紫色花瓣。点牌、选目标后，先看盘面的力量和花粉去向，再确认。</p></section>
+<section id="try"><h2>7 力帮 5 力，会变成多少？</h2><p>点下面的按钮试着让两只蚂蚁轮流帮忙。只加给邻居，帮手自己不会变弱。这里演示数字；对战中每帮一次都要打出一张专属，并支付 1 费。</p>
+<div class="case"><table><thead><tr><th>左边蚂蚁</th><th>右边蚂蚁</th></tr></thead><tbody><tr><td id="leftPower">7</td><td id="rightPower">5</td></tr></tbody></table>
+<div class="options"><button data-source="0">左边帮右边 →</button><button data-source="1">← 右边帮左边</button><button data-source="reset">重新试</button></div><output id="verdict" aria-live="polite">左边 7 力，右边 5 力。</output></div></section>
+<section id="balance"><h2>平衡与试玩</h2><div id="balance-detail"><p>用最终默认牌组打了 6,400 局电脑对战，十组异族对阵各 640 局。每组均分四种座位与首轮先手组合，每局单独洗牌。平均打了 15.0 轮，范围是 9–26 轮。此批随机种子未用于前面的调参。</p><table class="matchgrid"><caption>行上的队伍，对列上队伍的胜率。最后一列为四个对手的合计胜率。</caption><thead><tr><th>队伍</th><th>蚂蚁</th><th>蜜蜂</th><th>甲虫</th><th>蜘蛛</th><th>蝴蝶</th><th>总体</th></tr></thead><tbody><tr><th>蚂蚁</th><td>—</td><td title="399 胜 / 640 局">62.3%</td><td title="298 胜 / 640 局">46.6%</td><td title="382 胜 / 640 局">59.7%</td><td title="225 胜 / 640 局">35.2%</td><td><b>50.9%</b></td></tr><tr><th>蜜蜂</th><td title="241 胜 / 640 局">37.7%</td><td>—</td><td title="343 胜 / 640 局">53.6%</td><td title="299 胜 / 640 局">46.7%</td><td title="346 胜 / 640 局">54.1%</td><td><b>48.0%</b></td></tr><tr><th>甲虫</th><td title="342 胜 / 640 局">53.4%</td><td title="297 胜 / 640 局">46.4%</td><td>—</td><td title="398 胜 / 640 局">62.2%</td><td title="265 胜 / 640 局">41.4%</td><td><b>50.9%</b></td></tr><tr><th>蜘蛛</th><td title="258 胜 / 640 局">40.3%</td><td title="341 胜 / 640 局">53.3%</td><td title="242 胜 / 640 局">37.8%</td><td>—</td><td title="332 胜 / 640 局">51.9%</td><td><b>45.8%</b></td></tr><tr><th>蝴蝶</th><td title="415 胜 / 640 局">64.8%</td><td title="294 胜 / 640 局">45.9%</td><td title="375 胜 / 640 局">58.6%</td><td title="308 胜 / 640 局">48.1%</td><td>—</td><td><b>54.4%</b></td></tr></tbody></table><h3>先手与后手</h3><p>以每一轮的先后顺序计算，先手平均收 1.57 枚，后手平均收 2.23 枚（共 95,705 轮）。以整局计算，第一轮先手的玩家赢了 3117 局（48.7%），第一轮后手的玩家赢了 3283 局（51.3%）。每轮交换先手，所以这两种比较回答的是不同问题。</p><div class="stripe"><strong>蜘蛛后手能不能出网？</strong> 蜘蛛后手的 1280 局中，第一手就抽到织网的有 790 局；其中 790 局在蜘蛛的第一次行动就能织网。电脑实际选择在首轮用网 93 局，其余有牌时也可以留到更值的花道。蜘蛛后手胜率为 47.6%。</div><table><caption>每轮净得分（本方得分减去对手得分）</caption><thead><tr><th>队伍</th><th>初花</th><th>盛花</th><th>晚花</th></tr></thead><tbody><tr><td>蚂蚁</td><td>+0.09</td><td>+0.53</td><td>−0.19</td></tr><tr><td>蜜蜂</td><td>−0.09</td><td>−0.10</td><td>+0.02</td></tr><tr><td>甲虫</td><td>−0.01</td><td>−0.27</td><td>+0.10</td></tr><tr><td>蜘蛛</td><td>+0.14</td><td>+0.20</td><td>−0.15</td></tr><tr><td>蝴蝶</td><td>−0.13</td><td>−0.36</td><td>+0.17</td></tr></tbody></table><p class="hint">双方都用游戏内的电脑策略，只能看到自己的手牌。复测批次为 760000–760159。每对只看这一批发牌时，接近五五开的结果有数个百分点的抽样波动。总体胜率接近也不表示每一对都五五开；玩家的打法和自配牌组会改变结果。</p><h3>两张普通功能牌值得留吗？</h3><p>同一种族对打，两边的 12 张伙伴完全相同。一边用原预组的 2 张专属、1 张撞击、1 张补给，另一边把普通功能牌全部换成专属（共 4 张）。交换先后手和座位，共打了 2,000 局；保留普通功能牌的一边赢了 932 局，胜率 46.6%。</p><table><caption>默认牌组对「4 张专属」的同族胜率</caption><thead><tr><th>蚂蚁</th><th>蜜蜂</th><th>甲虫</th><th>蜘蛛</th><th>蝴蝶</th></tr></thead><tbody><tr><td>36.8%</td><td>46.3%</td><td>52.5%</td><td>50.8%</td><td>46.8%</td></tr></tbody></table><p class="hint">这项对照只检验「两张都换掉」这个选择，不等同于测过所有自配组合。</p></div>
+<p>五条道让便宜伙伴有更多落点，六张留牌也让孩子有理由提前一轮想组合。30 分对局需要经历更多次补牌和结算。第一次陪玩时，可以只给孩子看两条有争夺的道，请他先指哪一枚花粉会换边，再放手让他打完整局。</p>
+<p>真人试玩准备分别观察 5–6 岁和 7–8 岁的孩子。记录能否认出上轮留下的牌，能否在空位与占满两种局面看出甲虫的顶撞目标，以及打到 10 费后是否愿意继续争到 30 分。对局轮数可以从模拟统计，决策时间和愿意重玩的比例要由孩子试玩测量。</p></section>
+<footer><p>《微境·虫巢远征》的叉角独角仙和先点选、再下令的操作沿用至本作。职业选取与按费用组牌的参考见<a href="https://hearthstone.blizzard.com/zh-tw/deckbuilder/">暴雪官方的《炉石传说》套牌小帮手</a>。</p></footer>
+</main><script>
+let power=[7n,5n];
+for(const button of document.querySelectorAll('[data-source]'))button.addEventListener('click',()=>{
+  const key=button.dataset.source;let note;
+  if(key==="reset"){power=[7n,5n];note="左边 7 力，右边 5 力。";}
+  else {const from=Number(key),to=1-from,old=power[to];power[to]+=power[from];note=old+" ＋ "+power[from]+" ＝ "+power[to]+"。帮手自己仍是 "+power[from]+" 力。";}
+  document.getElementById('leftPower').textContent=power[0];
+  document.getElementById('rightPower').textContent=power[1];
+  document.getElementById('verdict').textContent=note;
+});
+</script></body></html>

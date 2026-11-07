@@ -1,0 +1,5 @@
+/src/*.html
+!/src/index.html
+!/src/brief.template.html
+/src/*.zip
+__pycache__/

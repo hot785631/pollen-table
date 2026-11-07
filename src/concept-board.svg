@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1240" height="820" viewBox="0 0 1240 820" role="img" aria-labelledby="title desc">
+  <title id="title">微境：花粉擂台 · 蚂蚁和甲虫的花粉对局</title>
+  <desc id="desc">第一轮，蚂蚁先手。五条花道上还没有昆虫，每条花道各有一颗花粉。双方各有零分，目标三十分。蚂蚁有三点太阳。统一牌堆发出六张手牌，依次是两费三力伙伴、一费减一撞击、一费一力伙伴、一费搭把手、三费五力伙伴、两费减二撞击。左边的循环箭头可换一张牌。</desc>
+  <defs>
+    <pattern id="paper" width="41" height="36" patternUnits="userSpaceOnUse">
+      <path d="M3 6h1m16 11h1m13 13h1M12 31h1" stroke="#4c493b" stroke-width="1.2" opacity=".24"/>
+      <path d="M17 2h3m9 15h2M6 22h3" stroke="#fff9db" stroke-width="1.2" opacity=".60"/>
+    </pattern>
+    <pattern id="grain" width="13" height="13" patternUnits="userSpaceOnUse">
+      <path d="M2 3h1m6 5h1" stroke="#123f3b" stroke-width="1.4" opacity=".13"/>
+    </pattern>
+    <g id="sun">
+      <path d="m0-23 5 7 9-3 1 9 9 3-7 7 4 8-9 2-2 9-10-4-8 4-3-9-9-2 4-8-6-7 8-3 1-9 9 3Z" fill="#ffdc5b" stroke="#865d2a" stroke-width="2.4" stroke-linejoin="round"/>
+      <circle r="12" fill="#ffeb8b"/>
+    </g>
+    <g id="pollen">
+      <path d="m-11-13 14-3 12 9 1 14-11 9-15-3-6-13Z" fill="#f1aa36" stroke="#956333" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="m-10-11 11-3 9 5-3 3-11 1-6 6-3-2Z" fill="#ffe680"/>
+      <circle cx="4" cy="3" r="2.1" fill="#ab6c32"/><circle cx="8" cy="-2" r="1.5" fill="#ab6c32"/><circle cx="-2" cy="7" r="1.5" fill="#ab6c32"/>
+    </g>
+    <g id="foot">
+      <path d="M-9 10q-4-4 2-12 5-7 9-5 4 1 4 7 1 8-6 13-4 2-9-3Z" fill="currentColor"/>
+      <ellipse cx="-8" cy="-10" rx="3" ry="4.8" fill="currentColor" transform="rotate(-20 -8 -10)"/>
+      <ellipse cx="0" cy="-14" rx="3.3" ry="5" fill="currentColor"/>
+      <ellipse cx="8" cy="-12" rx="3" ry="4.5" fill="currentColor" transform="rotate(24 8 -12)"/>
+    </g>
+    <g id="daisy">
+      <g fill="#fff7dd" stroke="#bb9561" stroke-width="1.6">
+        <ellipse cx="0" cy="-14" rx="8" ry="11"/><ellipse cx="0" cy="-14" rx="8" ry="11" transform="rotate(60)"/>
+        <ellipse cx="0" cy="-14" rx="8" ry="11" transform="rotate(120)"/><ellipse cx="0" cy="-14" rx="8" ry="11" transform="rotate(180)"/>
+        <ellipse cx="0" cy="-14" rx="8" ry="11" transform="rotate(240)"/><ellipse cx="0" cy="-14" rx="8" ry="11" transform="rotate(300)"/>
+      </g><use xlink:href="#pollen" transform="scale(.78)"/>
+    </g>
+    <g id="ant">
+      <g fill="none" stroke="#50382c" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round">
+        <path d="m-5 9-10 6-9 9-6 .2m24-16 1 11-4 8-4 1m13-23 9 9 12 1 4-4" opacity=".72"/>
+        <path d="m-5 9-11 2-9 13-8 1m32-17 6 11-2 10-6 1m6-23 12 4 6 10 7 1"/>
+        <path d="m18-10 1-14 9-9m-1 22 8-12 11-1"/>
+      </g>
+      <ellipse cx="-29" cy="2" rx="22" ry="14" transform="rotate(9 -29 2)" fill="#a84d30" stroke="#5d3931" stroke-width="2.5"/>
+      <path d="M-47 2q5-14 22-11 8 0 13 6-9-4-20-3t-15 8Z" fill="#ed9462"/>
+      <path d="m-40 7 3-4m1 6 4-5m0 7 4-5" fill="none" stroke="#824528" stroke-width="2"/>
+      <ellipse cx="-10" cy="6" rx="5.2" ry="5" fill="#653b2a"/>
+      <ellipse cx="0" cy="4" rx="11" ry="9" transform="rotate(-16)" fill="#c3683b" stroke="#5d3931" stroke-width="2.5"/>
+      <path d="M11-10q4-16 20-14 18 1 20 16 3 16-11 21-12 5-24-2-11-5-5-21Z" fill="#d77d4e" stroke="#5d3931" stroke-width="2.5"/>
+      <path d="M14-11q3-10 14-10 10 0 16 6-11-4-16-2-11 1-14 6Z" fill="#f2a575"/>
+      <ellipse cx="38" cy="-6" rx="6.4" ry="7.5" fill="#fff6d9"/><ellipse cx="41" cy="-6" rx="3.3" ry="5" fill="#2a3834"/>
+      <path d="M41 5q5 3 10-1" fill="none" stroke="#5d3931" stroke-width="2.3" stroke-linecap="round"/>
+      <circle cx="27" cy="5" r="2.5" fill="#f0a475"/>
+    </g>
+    <g id="beetle">
+      <g fill="none" stroke="#263c45" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <path d="m-5 6-12 10-10-2m26-6-1 15 4 3m13-19 12 10 11-1" opacity=".66"/>
+        <path d="m-8 9-14 13-12-1m35-11-2 16 5 4m11-19 15 11 12-3"/>
+      </g>
+      <path d="M-19 9q-4-11 5-25 11-17 33-13 27 5 31 28 3 12-4 15-39 8-65-5Z" fill="#49748c" stroke="#263c45" stroke-width="2.8"/>
+      <path d="M-11-7Q9-31 34-15 14-20 0-9l-9 12Z" fill="#8db8b9"/>
+      <path d="M-8 2q24-18 52-3" fill="none" stroke="#31546d" stroke-width="2.6"/>
+      <path d="m24 4 4-4m1 6 4-5m1 5 4-4" stroke="#b1d0c6" stroke-width="2"/>
+      <path d="M-33-13q12-7 21 1 10 11 4 21-10 11-21 5-11-4-9-15Z" fill="#3b5a6e" stroke="#263c45" stroke-width="2.5"/>
+      <path d="M-33 2q-16-8-17-25-9-3-12-15 6 5 13 5l2-2q1-7 7-14-1 12-4 19 1 15 16 20Z" fill="#53768a" stroke="#263c45" stroke-width="2.6" stroke-linejoin="round"/>
+      <ellipse cx="-27" cy="-1" rx="6.3" ry="7" fill="#fff8dd"/><ellipse cx="-29.5" cy="-.5" rx="3.3" ry="4.5" fill="#263c45"/>
+      <path d="m-34 8 5 1" stroke="#263c45" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <g id="boardLeaf">
+      <path d="M-97 390q-14-52-12-154l2-135Q-102 18-63 6q32-10 80-5l79 10q8 56 8 136l-1 138q-4 100-45 115-49 18-155-10Z" fill="#9c9f66"/>
+      <path d="M-97 383q-14-52-12-154l2-135Q-101 12-62 1q32-10 80-5l79 9q8 56 8 136l-1 138q-4 100-45 115-49 18-156-11Z" fill="#dce7b2" stroke="#97a473" stroke-width="2.3"/>
+      <path d="M-97 383q-14-52-12-154l2-135Q-101 12-62 1q32-10 80-5l79 9q8 56 8 136l-1 138q-4 100-45 115-49 18-156-11Z" fill="url(#grain)"/>
+      <g fill="none" stroke="#a9bd8c" stroke-width="2" stroke-linecap="round" opacity=".8">
+        <path d="M-71 385Q5 242 77 15M24 174q28-7 63-43m-88 104q41-14 70-43m-101 98q31-6 60-26m2-106q-17-15-37-56M-18 241q-20-17-39-67"/>
+      </g>
+      <path d="M-98 198q83 15 195-1" fill="none" stroke="#a4b984" stroke-width="2" stroke-dasharray="3 8" stroke-linecap="round"/>
+      <ellipse cy="99" rx="70" ry="49" fill="#f0f0d1" fill-opacity=".48" stroke="#b1bb8b" stroke-width="2.5" stroke-dasharray="5 7"/>
+      <ellipse cy="301" rx="70" ry="49" fill="#f0f0d1" fill-opacity=".48" stroke="#b1bb8b" stroke-width="2.5" stroke-dasharray="5 7"/>
+    </g>
+    <g id="strength">
+      <rect x="-29" y="-16" width="58" height="31" rx="15.5" fill="#23463f" stroke="#fbf4d9" stroke-width="2"/>
+      <use xlink:href="#foot" color="#f5eaba" transform="translate(-11 1) scale(.55)"/>
+    </g>
+    <g id="scoreboard">
+      <rect x="-56" y="-18" width="112" height="36" rx="18" fill="#254943"/>
+      <use xlink:href="#pollen" transform="translate(-34 0) scale(.60)"/>
+      <text class="num white" x="11" y="8.5" font-size="26">0/30</text>
+    </g>
+    <g id="flowerLane">
+      <use xlink:href="#boardLeaf" transform="translate(0 67) scale(.71 1)"/>
+      <use xlink:href="#daisy" transform="translate(0 264) scale(1.12)"/>
+    </g>
+    <g id="sprig">
+      <path d="M0 0Q8-48-4-115" stroke="#59886a" stroke-width="3" fill="none"/>
+      <path d="M2-22Q-19-24-25-47q26 2 27 25Zm0-17q25-1 31-28Q8-61 2-39ZM1-62q-26-6-31-29Q-2-88 1-62Zm-3-19q23-3 26-30Q3-104-2-81Zm-3-17q-18-15-11-36 15 17 11 36Z" fill="#76a380"/>
+    </g>
+    <g id="impact">
+      <path d="m-5-38 10 20 18-9-3 20 19 4-17 13 8 18-23-4-10 16-9-18-20 4 7-19-16-10 20-4-3-19 16 10Z" fill="#fff0a6" stroke="#9d562e" stroke-width="3.3" stroke-linejoin="round"/>
+      <path d="m-13 0 24-1" fill="none" stroke="#b56532" stroke-width="7" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <style>
+    text { font-family: 'Microsoft YaHei','Noto Sans CJK SC',sans-serif; fill:#234239; }
+    .num { font-family: 'Trebuchet MS','Arial',sans-serif; font-weight:700; text-anchor:middle; }
+    .white { fill:#fff6d3; }
+  </style>
+  <!-- The play mat and the quiet botanical border. -->
+  <rect width="1240" height="820" fill="#244e46"/>
+  <path d="M0 17q156 39 291 6Q461-2 624 12q226 25 361 0 135-24 255 11v514q-95-20-172 3-109 36-243 5-174-23-344 0-132 17-279-1Q81 529 0 551Z" fill="#3b6754"/>
+  <g transform="translate(25 300) rotate(-35) scale(1.0)"><use xlink:href="#sprig"/></g>
+  <g transform="translate(25 406) rotate(7) scale(.94)"><use xlink:href="#sprig"/></g>
+  <g transform="translate(1213 390) rotate(21) scale(1.02)"><use xlink:href="#sprig"/></g>
+  <g transform="translate(1178 259) rotate(-8) scale(1.18)"><use xlink:href="#sprig"/></g>
+  <g transform="translate(1220 501) rotate(36)"><use xlink:href="#sprig"/></g>
+  <path d="M110 82q37-33 121-38 188-9 380-5 224 4 402-5 76-4 113 37 35 43 30 113l-3 182q-2 111-60 136-27 13-99 15-171 5-341-1-207-3-378 4-114 5-161-39-38-36-34-99l-4-180q-2-81 34-120Z" fill="#1a4239" opacity=".6"/>
+  <path d="M110 74q37-33 121-38 188-9 380-5 224 4 402-5 76-4 113 37 35 43 30 113l-3 182q-2 111-60 136-27 13-99 15-171 5-341-1-207-3-378 4-114 5-161-39-38-36-34-99l-4-180q-2-81 34-120Z" fill="#f4e8cb" stroke="#ecdcb7" stroke-width="3"/>
+  <path d="M110 74q37-33 121-38 188-9 380-5 224 4 402-5 76-4 113 37 35 43 30 113l-3 182q-2 111-60 136-27 13-99 15-171 5-341-1-207-3-378 4-114 5-161-39-38-36-34-99l-4-180q-2-81 34-120Z" fill="url(#paper)" opacity=".65"/>
+  <path d="M285 273q-39 24-92 3m835-2q45-9 86 6" fill="none" stroke="#cbbd98" stroke-width="2.2" stroke-dasharray="3 8" stroke-linecap="round"/>
+  <!-- Opponent and player pollen totals. -->
+  <g transform="translate(153 130)">
+    <circle r="40" fill="#dfd9b4"/><path d="M-31 18 1-33l35 52Z" fill="#bed0bd" stroke="#91a99c" stroke-width="2"/>
+    <use xlink:href="#beetle" transform="translate(1 1) scale(.65)"/>
+    <use xlink:href="#scoreboard" transform="translate(0 63)"/>
+  </g>
+  <g transform="translate(153 350)">
+    <circle r="40" fill="#e6d8ad"/><path d="m-35 10 9-33 39-5 25 25-15 32-40-2Z" fill="#f2bf8d" stroke="#cb9d73" stroke-width="2"/>
+    <use xlink:href="#ant" transform="translate(0 2) scale(.64)"/>
+    <use xlink:href="#scoreboard" transform="translate(0 63)"/>
+  </g>
+  <!-- The first deal begins with five empty flower lanes. -->
+  <use xlink:href="#flowerLane" transform="translate(309 0)"/>
+  <use xlink:href="#flowerLane" transform="translate(487 0)"/>
+  <use xlink:href="#flowerLane" transform="translate(665 0)"/>
+  <use xlink:href="#flowerLane" transform="translate(843 0)"/>
+  <use xlink:href="#flowerLane" transform="translate(1021 0)"/>
+  <!-- A few native print marks on the cream cloth, away from play targets. -->
+  <g fill="#c8bb92"><circle cx="1089" cy="164" r="2"/><circle cx="1100" cy="158" r="1.5"/><circle cx="1079" cy="152" r="1.3"/><circle cx="299" cy="433" r="2"/><circle cx="291" cy="441" r="1.5"/><circle cx="1091" cy="404" r="2"/></g>
+  <!-- The lower hand shelf. -->
+  <path d="M0 547q120-24 234-2 135 18 259 0 157-25 320-6 150 24 270-1 85-22 157 0v282H0Z" fill="#e6d5ad"/>
+  <path d="M0 554q120-24 234-2 135 18 259 0 157-25 320-6 150 24 270-1 85-22 157 0v275H0Z" fill="#f4e9ce"/>
+  <path d="M0 554q120-24 234-2 135 18 259 0 157-25 320-6 150 24 270-1 85-22 157 0v275H0Z" fill="url(#paper)" opacity=".7"/>
+  <g transform="translate(77 630) scale(.78)">
+    <rect x="-58" y="-38" width="117" height="77" rx="36" fill="#bba778"/>
+    <rect x="-58" y="-42" width="117" height="77" rx="36" fill="#fff5d6" stroke="#ceb98b" stroke-width="2"/>
+    <use xlink:href="#sun" transform="translate(-17 -3) scale(.88)"/><text class="num" x="23" y="12" font-size="41">3</text>
+  </g>
+  <!-- The exchange button shows a single card inside a circular arrow. -->
+  <g transform="translate(77 721)">
+    <rect x="-38" y="-31" width="76" height="62" rx="22" fill="#d9c7a2" stroke="#b8a683" stroke-width="2"/>
+    <rect x="-7" y="-12" width="15" height="22" rx="2" transform="rotate(-12)" fill="#fbefcc" stroke="#4f7761" stroke-width="2.3"/>
+    <path d="M-18 2q-2-18 16-20 8-1 13 5m7 9q2 17-14 20-8 2-15-5m-4 5 2-9 10 2m4-24 10 3 2-9" fill="none" stroke="#476c59" stroke-width="3.3" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+  <!-- Repeatable card frames share all graphics, while their numbers vary. -->
+  <defs>
+  <g id="partnerFace">
+    <path d="M1 217 0 57Q0 6 54 1l129 3q15 3 15 16l-2 132q-5 60-55 66l-123 3Z" fill="#9c9474" transform="translate(2 6)"/>
+    <path d="M1 217 0 57Q0 6 54 1l129 3q15 3 15 16l-2 132q-5 60-55 66l-123 3Z" fill="#a7d5b5" stroke="#477c68" stroke-width="3.5"/>
+    <path d="M9 187 156 22q-18 50-68 94t-79 71Z" fill="#c7e4b7"/>
+    <path d="M17 189Q104 111 158 29m-52 83 38-9M79 139l4-35" fill="none" stroke="#70a287" stroke-width="2.5" opacity=".7"/>
+    <path d="M1 217 0 57Q0 6 54 1l129 3q15 3 15 16l-2 132q-5 60-55 66l-123 3Z" fill="url(#grain)"/>
+    <ellipse cx="105" cy="135" rx="55" ry="8" fill="#76a48d" opacity=".5"/>
+    <use xlink:href="#ant" transform="translate(105 106) scale(1.14)"/>
+    <use xlink:href="#sun" transform="translate(34 34)"/>
+    <use xlink:href="#strength" transform="translate(95 176) scale(1.21)"/>
+  </g>
+  <g id="impactFace">
+    <path d="m0 25 22-22 153 0 20 19v173l-20 22H18L0 199Z" fill="#a39776" transform="translate(2 7)"/>
+    <path d="m0 25 22-22 153 0 20 19v173l-20 22H18L0 199Z" fill="#f3ac6c" stroke="#a96941" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="m1 84 0 81 129-46Zm187-51-96 60 101-24V39Z" fill="#f8c589"/>
+    <path d="m0 25 22-22 153 0 20 19v173l-20 22H18L0 199Z" fill="url(#grain)"/>
+    <use xlink:href="#ant" transform="translate(78 111) rotate(-8) scale(.8)"/>
+    <g stroke="#9e643e" stroke-width="3.2" fill="none" stroke-linecap="round"><path d="m22 95 16-2m-20 11 14-2m-9 10 8-1"/></g>
+    <use xlink:href="#impact" transform="translate(145 97) scale(.53)"/>
+    <use xlink:href="#sun" transform="translate(34 34)"/>
+    <rect x="57" y="157" width="83" height="39" rx="19.5" fill="#714732" stroke="#fff5cd" stroke-width="2"/>
+    <use xlink:href="#foot" color="#fff0bd" transform="translate(79 176) scale(.67)"/>
+  </g>
+  </defs>
+  <!-- All six hand cards come from one shuffled deck. -->
+  <g transform="translate(152 589) scale(.75) rotate(-3 95 111)">
+    <use xlink:href="#partnerFace"/><text class="num" x="34" y="42" font-size="26">2</text><text class="num white" x="107" y="187" font-size="31">3</text>
+  </g>
+  <g transform="translate(317 589) scale(.75) rotate(-1.5 95 111)" opacity=".78">
+    <use xlink:href="#impactFace"/><text class="num" x="34" y="42" font-size="26">1</text><text class="num white" x="112" y="187" font-size="30">−1</text>
+  </g>
+  <g transform="translate(482 589) scale(.75)">
+    <use xlink:href="#partnerFace"/><text class="num" x="34" y="42" font-size="26">1</text><text class="num white" x="107" y="187" font-size="31">1</text>
+  </g>
+  <g transform="translate(812 589) scale(.75) rotate(2 95 111)">
+    <use xlink:href="#partnerFace"/><text class="num" x="34" y="42" font-size="26">3</text><text class="num white" x="107" y="187" font-size="31">5</text>
+  </g>
+  <g transform="translate(977 589) scale(.75) rotate(3 95 111)" opacity=".78">
+    <use xlink:href="#impactFace"/><text class="num" x="34" y="42" font-size="26">2</text><text class="num white" x="112" y="187" font-size="30">−2</text>
+  </g>
+  <!-- Fourth card in this particular hand. -->
+  <g transform="translate(647 589) scale(.75) rotate(1 98 109)">
+    <path id="purpleCard" d="M0 37Q0 14 22 15 29-4 48 3q13-13 28 1Q96-7 113 4q14-12 29 1 17-7 27 9 24-2 26 23l-1 142q3 23-19 23-7 20-27 15-15 12-32 1-18 12-36 0-15 11-32-1-18 7-28-11-21 0-21-24Z" fill="#ab97bd" transform="translate(2 7)"/>
+    <use xlink:href="#purpleCard" transform="translate(-2 -7)" fill="#c7addb"/>
+    <path d="M0 37Q0 14 22 15 29-4 48 3q13-13 28 1Q96-7 113 4q14-12 29 1 17-7 27 9 24-2 26 23l-1 142q3 23-19 23-7 20-27 15-15 12-32 1-18 12-36 0-15 11-32-1-18 7-28-11-21 0-21-24Z" fill="#ccc1d1" stroke="#95889b" stroke-width="3.5"/>
+    <path d="M22 148q30-32 57-22 25 5 45-6 28-13 53-7-21 19-55 24t-58 2q-20 0-42 9Z" fill="#b199c6"/>
+    <path d="M56 88q10-46 68-29" fill="none" stroke="#fff5d7" stroke-width="7" stroke-linecap="round"/>
+    <path d="m114 48 14 13-17 6" fill="none" stroke="#fff5d7" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <use xlink:href="#ant" transform="translate(56 112) scale(.68)"/>
+    <use xlink:href="#ant" transform="translate(140 106) scale(-.49 .49)"/>
+    <use xlink:href="#sun" transform="translate(34 34)"/><text class="num" x="34" y="42" font-size="24">1</text>
+    <text x="98" y="185" text-anchor="middle" font-size="27" font-weight="700" fill="#47374e">搭把手</text>
+    <g transform="translate(164 38)">
+      <circle r="17" fill="#625d67" stroke="#f3eadb" stroke-width="2"/>
+      <path d="M-5-1v-4a5 5 0 0 1 10 0v4" fill="none" stroke="#fff4dc" stroke-width="3" stroke-linecap="round"/>
+      <rect x="-8" y="-2" width="16" height="12" rx="3" fill="#fff4dc"/><path d="M0 2.5v3" stroke="#625d67" stroke-width="2.5"/>
+    </g>
+  </g>
+  <g transform="translate(1188 675) scale(.73)">
+    <rect x="-50" y="-40" width="100" height="80" rx="39" fill="#38574b"/>
+    <rect x="-50" y="-45" width="100" height="80" rx="39" fill="#4d7862" stroke="#2a5648" stroke-width="2.5"/>
+    <path d="m-13-20 20 15-20 15m26-30v30" fill="none" stroke="#fff2c8" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+</svg>
