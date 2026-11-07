@@ -1,5 +1,5 @@
 'use strict';
-const cacheName = 'pollen-table-e70211407205a3eb';
+const cacheName = 'pollen-table-e930963c423add79';
 const root = new URL('./', self.registration.scope);
 const paths = ['./', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png',
   './icon-512.png', './guide.html', './pollen-table-v5.zip'];

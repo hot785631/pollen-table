@@ -225,7 +225,7 @@
       case "ant": return c.own[from]?.power > 0 && Boolean(c.own[to]);
       case "beetle": return Boolean(c.own[from] && c.enemy[from]);
       case "bee": return c.pollen[from] > 0 && Boolean(c.own[to]);
-      case "spider": return !c.enemyWeb[to];
+      case "spider": return !c.enemyWeb[to] || c.enemyBrood[to] > 0;
       case "butterfly": return Boolean(c.own[from]) && !c.ownBrood[from];
     }
   }
@@ -289,6 +289,7 @@
         c.pollen[act.to] += amount;
       } else if (c.faction === "spider") {
         c.enemyWeb[act.from] = true;
+        c.enemyBrood[act.from] = 0;
       } else if (c.faction === "butterfly") {
         const meal = c.pollen[act.from];
         c.ownBrood[act.from] = rules.hatchPower + meal;
@@ -399,7 +400,10 @@
   function after(c, action) {
     const next = { ...c, hand: [...c.hand], own: [...c.own],
       enemy: [...c.enemy], pollen: [...c.pollen] };
-    if (action.type === "special" && c.faction === "spider") next.enemyWeb = [...c.enemyWeb];
+    if (action.type === "special" && c.faction === "spider") {
+      next.enemyWeb = [...c.enemyWeb];
+      next.enemyBrood = [...c.enemyBrood];
+    }
     if (action.type === "special" && c.faction === "beetle") next.ownWeb = [...c.ownWeb];
     if (action.type === "special" && c.faction === "butterfly") {
       next.ownBrood = [...c.ownBrood];
@@ -494,7 +498,7 @@
       if (board.own.some(unit => projectedPower(unit) > 0)) return true;
       if (specialCost(opponent.faction) !== 0) return false;
       const reverse = { faction: opponent.faction, own: board.enemy, enemy: board.own, pollen: board.pollen,
-        enemyWeb: board.ownWeb, ownBrood: board.enemyBrood };
+        enemyWeb: board.ownWeb, ownBrood: board.enemyBrood, enemyBrood: board.ownBrood };
       return lanes.some(from => destinations(opponent.faction, from).some(to =>
         specialFits(reverse, from, to)));
     };
@@ -509,6 +513,7 @@
     for (const move of moves(c)) {
       if (move.type === "pass" || move.type === "supply") continue;
       if (noWebThreat && move.type === "special" &&
+          !c.enemyBrood[move.from] &&
           !(projectedPower(c.enemy[move.from]) > 0 && c.pollen[move.from] > 0)) continue;
       const now = after(c, move);
       const value = rate(now);

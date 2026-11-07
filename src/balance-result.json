@@ -1,257 +1,257 @@
 {
   "summary": {
-    "startSeed": 760000,
-    "lastSeed": 760159,
-    "games": 6400,
-    "firstWins": 3117,
-    "secondWins": 3283,
-    "meanRounds": 14.954,
-    "minRounds": 9,
-    "maxRounds": 26
+    "startSeed": 820000,
+    "lastSeed": 820399,
+    "games": 16000,
+    "firstWins": 7697,
+    "secondWins": 8303,
+    "meanRounds": 14.926,
+    "minRounds": 8,
+    "maxRounds": 29
   },
   "matchups": {
     "ant/bee": {
-      "games": 640,
-      "ant": 399,
-      "bee": 241
+      "games": 1600,
+      "ant": 1010,
+      "bee": 590
     },
     "ant/beetle": {
-      "games": 640,
-      "ant": 298,
-      "beetle": 342
+      "games": 1600,
+      "ant": 744,
+      "beetle": 856
     },
     "ant/butterfly": {
-      "games": 640,
-      "ant": 225,
-      "butterfly": 415
+      "games": 1600,
+      "ant": 577,
+      "butterfly": 1023
     },
     "ant/spider": {
-      "games": 640,
-      "ant": 382,
-      "spider": 258
+      "games": 1600,
+      "ant": 966,
+      "spider": 634
     },
     "bee/beetle": {
-      "games": 640,
-      "bee": 343,
-      "beetle": 297
+      "games": 1600,
+      "bee": 894,
+      "beetle": 706
     },
     "bee/butterfly": {
-      "games": 640,
-      "bee": 346,
-      "butterfly": 294
+      "games": 1600,
+      "bee": 915,
+      "butterfly": 685
     },
     "bee/spider": {
-      "games": 640,
-      "bee": 299,
-      "spider": 341
+      "games": 1600,
+      "bee": 698,
+      "spider": 902
     },
     "beetle/butterfly": {
-      "games": 640,
-      "beetle": 265,
-      "butterfly": 375
+      "games": 1600,
+      "beetle": 712,
+      "butterfly": 888
     },
     "beetle/spider": {
-      "games": 640,
-      "beetle": 398,
-      "spider": 242
+      "games": 1600,
+      "beetle": 968,
+      "spider": 632
     },
     "spider/butterfly": {
-      "games": 640,
-      "spider": 332,
-      "butterfly": 308
+      "games": 1600,
+      "spider": 797,
+      "butterfly": 803
     }
   },
   "overall": {
     "ant": {
-      "wins": 1304,
-      "games": 2560
+      "wins": 3297,
+      "games": 6400
     },
     "bee": {
-      "wins": 1229,
-      "games": 2560
+      "wins": 3097,
+      "games": 6400
     },
     "beetle": {
-      "wins": 1302,
-      "games": 2560
+      "wins": 3242,
+      "games": 6400
     },
     "spider": {
-      "wins": 1173,
-      "games": 2560
+      "wins": 2965,
+      "games": 6400
     },
     "butterfly": {
-      "wins": 1392,
-      "games": 2560
+      "wins": 3399,
+      "games": 6400
     }
   },
   "stageTotals": {
     "ant": {
       "3–4": {
-        "rounds": 5120,
-        "points": 7464,
-        "net": 456,
-        "specials": 638,
-        "pointsPerRound": 1.458,
-        "netPerRound": 0.089,
-        "specialsPerRound": 0.125
+        "rounds": 12800,
+        "points": 18846,
+        "net": 1409,
+        "specials": 1502,
+        "pointsPerRound": 1.472,
+        "netPerRound": 0.11,
+        "specialsPerRound": 0.117
       },
       "5–7": {
-        "rounds": 7680,
-        "points": 18109,
-        "net": 4045,
-        "specials": 4123,
-        "pointsPerRound": 2.358,
-        "netPerRound": 0.527,
-        "specialsPerRound": 0.537
+        "rounds": 19200,
+        "points": 45435,
+        "net": 10695,
+        "specials": 10502,
+        "pointsPerRound": 2.366,
+        "netPerRound": 0.557,
+        "specialsPerRound": 0.547
       },
       "8–10": {
-        "rounds": 22559,
-        "points": 47281,
-        "net": -4224,
-        "specials": 18538,
-        "pointsPerRound": 2.096,
-        "netPerRound": -0.187,
-        "specialsPerRound": 0.822
+        "rounds": 56215,
+        "points": 118228,
+        "net": -10797,
+        "specials": 46285,
+        "pointsPerRound": 2.103,
+        "netPerRound": -0.192,
+        "specialsPerRound": 0.823
       }
     },
     "bee": {
       "3–4": {
-        "rounds": 5120,
-        "points": 6838,
-        "net": -466,
-        "specials": 319,
-        "pointsPerRound": 1.336,
-        "netPerRound": -0.091,
-        "specialsPerRound": 0.062
+        "rounds": 12800,
+        "points": 16861,
+        "net": -1183,
+        "specials": 823,
+        "pointsPerRound": 1.317,
+        "netPerRound": -0.092,
+        "specialsPerRound": 0.064
       },
       "5–7": {
-        "rounds": 7680,
-        "points": 13189,
-        "net": -794,
-        "specials": 3076,
-        "pointsPerRound": 1.717,
-        "netPerRound": -0.103,
+        "rounds": 19200,
+        "points": 32753,
+        "net": -2528,
+        "specials": 7697,
+        "pointsPerRound": 1.706,
+        "netPerRound": -0.132,
         "specialsPerRound": 0.401
       },
       "8–10": {
-        "rounds": 25739,
-        "points": 51906,
-        "net": 404,
-        "specials": 16503,
-        "pointsPerRound": 2.017,
-        "netPerRound": 0.016,
-        "specialsPerRound": 0.641
+        "rounds": 63980,
+        "points": 130157,
+        "net": 1750,
+        "specials": 40864,
+        "pointsPerRound": 2.034,
+        "netPerRound": 0.027,
+        "specialsPerRound": 0.639
       }
     },
     "beetle": {
       "3–4": {
-        "rounds": 5120,
-        "points": 6885,
-        "net": -59,
-        "specials": 693,
-        "pointsPerRound": 1.345,
-        "netPerRound": -0.012,
-        "specialsPerRound": 0.135
+        "rounds": 12800,
+        "points": 17258,
+        "net": -135,
+        "specials": 1652,
+        "pointsPerRound": 1.348,
+        "netPerRound": -0.011,
+        "specialsPerRound": 0.129
       },
       "5–7": {
-        "rounds": 7680,
-        "points": 12922,
-        "net": -2040,
-        "specials": 2545,
-        "pointsPerRound": 1.683,
-        "netPerRound": -0.266,
-        "specialsPerRound": 0.331
+        "rounds": 19200,
+        "points": 31759,
+        "net": -5848,
+        "specials": 6344,
+        "pointsPerRound": 1.654,
+        "netPerRound": -0.305,
+        "specialsPerRound": 0.33
       },
       "8–10": {
-        "rounds": 25030,
-        "points": 53477,
-        "net": 2636,
-        "specials": 12659,
-        "pointsPerRound": 2.137,
-        "netPerRound": 0.105,
-        "specialsPerRound": 0.506
+        "rounds": 62486,
+        "points": 134306,
+        "net": 6707,
+        "specials": 31521,
+        "pointsPerRound": 2.149,
+        "netPerRound": 0.107,
+        "specialsPerRound": 0.504
       }
     },
     "spider": {
       "3–4": {
-        "rounds": 5120,
-        "points": 7521,
-        "net": 707,
-        "specials": 606,
-        "pointsPerRound": 1.469,
-        "netPerRound": 0.138,
-        "specialsPerRound": 0.118
+        "rounds": 12800,
+        "points": 18683,
+        "net": 1519,
+        "specials": 1576,
+        "pointsPerRound": 1.46,
+        "netPerRound": 0.119,
+        "specialsPerRound": 0.123
       },
       "5–7": {
-        "rounds": 7680,
-        "points": 14901,
-        "net": 1537,
-        "specials": 3443,
-        "pointsPerRound": 1.94,
-        "netPerRound": 0.2,
-        "specialsPerRound": 0.448
+        "rounds": 19200,
+        "points": 37487,
+        "net": 4518,
+        "specials": 8447,
+        "pointsPerRound": 1.952,
+        "netPerRound": 0.235,
+        "specialsPerRound": 0.44
       },
       "8–10": {
-        "rounds": 24722,
-        "points": 49617,
-        "net": -3779,
-        "specials": 17124,
-        "pointsPerRound": 2.007,
-        "netPerRound": -0.153,
-        "specialsPerRound": 0.693
+        "rounds": 61817,
+        "points": 124134,
+        "net": -9693,
+        "specials": 42696,
+        "pointsPerRound": 2.008,
+        "netPerRound": -0.157,
+        "specialsPerRound": 0.691
       }
     },
     "butterfly": {
       "3–4": {
-        "rounds": 5120,
-        "points": 6293,
-        "net": -638,
-        "specials": 18,
-        "pointsPerRound": 1.229,
-        "netPerRound": -0.125,
+        "rounds": 12800,
+        "points": 15646,
+        "net": -1610,
+        "specials": 55,
+        "pointsPerRound": 1.222,
+        "netPerRound": -0.126,
         "specialsPerRound": 0.004
       },
       "5–7": {
-        "rounds": 7680,
-        "points": 11146,
-        "net": -2748,
-        "specials": 2554,
-        "pointsPerRound": 1.451,
-        "netPerRound": -0.358,
-        "specialsPerRound": 0.333
+        "rounds": 19200,
+        "points": 27898,
+        "net": -6837,
+        "specials": 6444,
+        "pointsPerRound": 1.453,
+        "netPerRound": -0.356,
+        "specialsPerRound": 0.336
       },
       "8–10": {
-        "rounds": 29360,
-        "points": 56024,
-        "net": 4963,
-        "specials": 14252,
-        "pointsPerRound": 1.908,
-        "netPerRound": 0.169,
-        "specialsPerRound": 0.485
+        "rounds": 73140,
+        "points": 139874,
+        "net": 12033,
+        "specials": 35400,
+        "pointsPerRound": 1.912,
+        "netPerRound": 0.165,
+        "specialsPerRound": 0.484
       }
     }
   },
   "webOpening": {
     "first": {
-      "games": 1280,
-      "wins": 564,
-      "withWeb": 806,
-      "legalWeb": 806,
+      "games": 3200,
+      "wins": 1412,
+      "withWeb": 2005,
+      "legalWeb": 2005,
       "webOnFirstAction": 0,
       "webInFirstRound": 0
     },
     "second": {
-      "games": 1280,
-      "wins": 609,
-      "withWeb": 790,
-      "legalWeb": 790,
-      "webOnFirstAction": 93,
-      "webInFirstRound": 93
+      "games": 3200,
+      "wins": 1553,
+      "withWeb": 2025,
+      "legalWeb": 2025,
+      "webOnFirstAction": 256,
+      "webInFirstRound": 256
     }
   },
   "roundOrder": {
-    "rounds": 95705,
-    "firstPoints": 150318,
-    "secondPoints": 213255
+    "rounds": 238819,
+    "firstPoints": 375080,
+    "secondPoints": 534245
   },
-  "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+  "rulesDigest": "dc77ca37b1e5c5cfd882de39abf5923c45e292f0e8e73f40d0836aeec1780e2c"
 }

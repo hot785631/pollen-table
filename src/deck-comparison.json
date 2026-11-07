@@ -1,49 +1,49 @@
 {
   "games": 2000,
-  "standardWins": 932,
-  "firstBlock": 810000,
+  "standardWins": 931,
+  "firstBlock": 850000,
   "blocks": 100,
   "byFaction": {
     "ant": {
       "games": 400,
-      "standardWins": 147,
-      "specialWins": 253,
-      "hitPlays": 2174,
-      "supplyPlays": 1326,
-      "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+      "standardWins": 164,
+      "specialWins": 236,
+      "hitPlays": 2236,
+      "supplyPlays": 1379,
+      "rulesDigest": "dc77ca37b1e5c5cfd882de39abf5923c45e292f0e8e73f40d0836aeec1780e2c"
     },
     "bee": {
       "games": 400,
-      "standardWins": 185,
-      "specialWins": 215,
-      "hitPlays": 1226,
-      "supplyPlays": 453,
-      "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+      "standardWins": 179,
+      "specialWins": 221,
+      "hitPlays": 1227,
+      "supplyPlays": 445,
+      "rulesDigest": "dc77ca37b1e5c5cfd882de39abf5923c45e292f0e8e73f40d0836aeec1780e2c"
     },
     "beetle": {
       "games": 400,
-      "standardWins": 210,
-      "specialWins": 190,
-      "hitPlays": 1503,
-      "supplyPlays": 322,
-      "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+      "standardWins": 203,
+      "specialWins": 197,
+      "hitPlays": 1525,
+      "supplyPlays": 360,
+      "rulesDigest": "dc77ca37b1e5c5cfd882de39abf5923c45e292f0e8e73f40d0836aeec1780e2c"
     },
     "spider": {
       "games": 400,
-      "standardWins": 203,
-      "specialWins": 197,
-      "hitPlays": 2638,
-      "supplyPlays": 1534,
-      "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+      "standardWins": 220,
+      "specialWins": 180,
+      "hitPlays": 2648,
+      "supplyPlays": 1517,
+      "rulesDigest": "dc77ca37b1e5c5cfd882de39abf5923c45e292f0e8e73f40d0836aeec1780e2c"
     },
     "butterfly": {
       "games": 400,
-      "standardWins": 187,
-      "specialWins": 213,
-      "hitPlays": 2548,
-      "supplyPlays": 1118,
-      "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+      "standardWins": 165,
+      "specialWins": 235,
+      "hitPlays": 2514,
+      "supplyPlays": 1127,
+      "rulesDigest": "dc77ca37b1e5c5cfd882de39abf5923c45e292f0e8e73f40d0836aeec1780e2c"
     }
   },
-  "rulesDigest": "66a7fee1375c98ef32fe64d9964cf66014d686627c751bdd3e4eb9faedc04a78"
+  "rulesDigest": "dc77ca37b1e5c5cfd882de39abf5923c45e292f0e8e73f40d0836aeec1780e2c"
 }

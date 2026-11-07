@@ -696,6 +696,63 @@ test("a fully webbed player can still exchange, pass, and play normally in the n
   assert.ok(P.actions(s).some(a => a.type === "partner"));
 });
 
+test("weaving destroys only the targeted enemy brood and it cannot hatch next round", () => {
+  for (const spider of [0, 1]) {
+    const butterfly = 1 - spider;
+    let s = fresh(...(spider === 0 ? ["spider", "butterfly"] : ["butterfly", "spider"]));
+    s.turn = butterfly;
+    s.players.forEach(p => { p.sun = 10; deal(p, ["special"]); });
+    s.board[butterfly][2] = unit(3);
+    s.pollen[2] = 3;
+    s = P.play(s, skill(s, 2, 2));
+    s.broods[butterfly][4] = 5;
+    const original = structuredClone(s);
+    const chosen = skill(s, 2, 2);
+    P.chooseAI(s);
+    assert.deepEqual(s, original, "AI previews must not destroy live broods");
+    const netted = P.play(s, chosen);
+    assert.deepEqual(s, original, "a cancelled UI preview must leave its source intact");
+    assert.equal(netted.broods[butterfly][2], 0);
+    assert.equal(netted.broods[butterfly][4], 5);
+    assert.equal(netted.pollen[2], 0, "eaten pollen is not refunded");
+    assert.equal(netted.eaten[2], 3);
+    assert.equal(netted.board[butterfly][2].power, 3);
+    assert.equal(netted.players[spider].sun, 10 - P.specialCost("spider"));
+    assert.ok(netted.webs[butterfly][2]);
+    const next = P.nextRound(close(netted));
+    assert.equal(next.board[butterfly][2], null);
+    assert.equal(next.board[butterfly][4].power, 5);
+    assert.deepEqual(next.lastEvent.hatched[butterfly], [4]);
+  }
+});
+
+test("a new brood in an existing web can be destroyed by a second weaving", () => {
+  let s = fresh("spider", "butterfly");
+  s.players.forEach(p => { p.sun = 10; deal(p, ["special", "special"]); });
+  s.board[1][1] = unit(2);
+  s = P.play(s, skill(s, 1, 1));
+  s = P.play(s, skill(s, 1, 1));
+  assert.ok(s.broods[1][1] > 0, "weaving destroys broods present when the card is played");
+  s = P.play(s, skill(s, 1, 1));
+  assert.equal(s.broods[1][1], 0);
+  assert.ok(s.webs[1][1]);
+  assert.equal(P.nextRound(close(s)).board[1][1], null);
+});
+
+test("AI can destroy a brood on an empty flower after the butterfly has passed", () => {
+  const s = fresh("spider", "butterfly");
+  s.players[1].passed = true;
+  s.players[0].sun = P.specialCost("spider");
+  deal(s.players[0], ["special"]);
+  s.pollen.fill(0);
+  s.broods[1][3] = 7;
+  const original = structuredClone(s);
+  assert.deepEqual(P.chooseAI(s), skill(s, 3, 3));
+  assert.deepEqual(s, original);
+  const ended = P.play(P.play(s, skill(s, 3, 3)), pass);
+  assert.equal(P.nextRound(ended).board[1][3], null);
+});
+
 test("both sides may guard the same lane, with separate meals and newborns at the beginning of the next round", () => {
   let s = fresh("butterfly", "butterfly");
   s.players.forEach(p => { p.sun = 10; deal(p, ["special", "special"]); });

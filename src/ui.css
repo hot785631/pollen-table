@@ -393,30 +393,13 @@ dialog::backdrop {background:#223d347a}
 .tabletop .roles .score b,.tabletop .roles .token {font-size:19px}
 .tabletop .hand-section {border:0;padding:2px 0}
 .tabletop .hand {width:100%;max-width:950px;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(4px,.8vw,11px)}
-.tabletop .hand> :is(.card,.card-empty,.covered-card) {
+.tabletop .hand> :is(.card,.card-empty) {
   min-width:0;height:var(--seat-card-h);min-height:44px;
 }
 .tabletop .card .cost {left:5px;top:4px;font-size:clamp(14px,1.8vw,20px);padding:2px 4px}
 .tabletop .card .card-stat {right:5px;bottom:4px;font-size:clamp(17px,2vw,24px);padding:2px 5px}
-.tabletop .covered-card {
-  position:relative;display:grid;place-items:center;overflow:hidden;isolation:isolate;
-  border:2px solid #67816b;border-radius:12px;
-  color:#ebf0d7;background-color:#75927a;
-  background-image:repeating-linear-gradient(33deg,transparent 0 7px,#e3eed51a 7px 9px,transparent 9px 16px);
-  box-shadow:inset 0 0 0 3px #a9bca0,0 2px 0 #bbc3a6;
-}
-.tabletop .covered-card::after {
-  content:"";display:block;width:clamp(18px,3.3vw,38px);aspect-ratio:1.65;
-  border:2px solid #dae8c7;border-radius:100% 0 100% 0;transform:rotate(-15deg);
-}
-.tabletop .covered-card>* {display:none}
 .tabletop .toolbar {min-height:44px;margin:3px 0 0;gap:6px}
-.tabletop .toolbar :is(.pill,.plain,.cancel,.confirm,.reveal-hand) {min-width:44px;min-height:44px}
-.tabletop .reveal-hand {
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  padding:4px 16px;border:2px solid #376247;border-radius:22px;
-  background:#355f49;color:#fffbed;font-size:15px;font-weight:800;
-}
+.tabletop .toolbar :is(.pill,.plain,.cancel,.confirm) {min-width:44px;min-height:44px}
 .tabletop .toolbar .prompt {font-size:14px}
 dialog[data-seat="1"] {transform:rotate(180deg)}
 
@@ -437,7 +420,7 @@ dialog[data-seat="1"] {transform:rotate(180deg)}
   .tabletop .role-id {width:24px;height:23px}
   .tabletop .score b,.tabletop .roles .token {font-size:16px}
   .tabletop .toolbar {gap:4px;margin-top:2px}
-  .tabletop .toolbar :is(.pill,.plain,.cancel,.confirm,.reveal-hand) {padding:4px 8px;font-size:13px}
+  .tabletop .toolbar :is(.pill,.plain,.cancel,.confirm) {padding:4px 8px;font-size:13px}
 }
 @media(max-width:600px) and (max-height:635px) {
   .tabletop .hand {grid-template-columns:repeat(6,minmax(0,1fr));gap:2px}
@@ -460,11 +443,10 @@ dialog[data-seat="1"] {transform:rotate(180deg)}
   .tabletop .hand {grid-area:hand;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px}
   .tabletop .toolbar {grid-area:tools;min-width:0;margin:0;gap:2px;align-content:center}
   .tabletop .toolbar .prompt,.tabletop .toolbar .turn-badge {flex-basis:100%;min-height:16px;font-size:11px;padding:1px 4px}
-  .tabletop .toolbar :is(.pill,.plain,.cancel,.confirm,.reveal-hand) {
+  .tabletop .toolbar :is(.pill,.plain,.cancel,.confirm) {
     flex:0 0 45px;min-width:45px;width:45px;min-height:44px;height:44px;padding:1px;
     display:inline-flex;flex-direction:column;gap:0;line-height:1.2;font-size:12px;
   }
-  .tabletop .toolbar .reveal-hand {flex-basis:88px;flex-direction:row;gap:3px}
   .tabletop .toolbar .icon {width:15px;height:15px}
   .tabletop .card .cost {top:2px;left:2px;padding:1px 3px;font-size:13px}
   .tabletop .card .card-stat {right:2px;bottom:2px;padding:1px 3px;font-size:16px}
@@ -672,6 +654,7 @@ dialog[data-seat="1"] {transform:rotate(180deg)}
 .brood-marker>.icon,.brood-marker svg {width:15px;height:18px;display:block;flex:none}
 .brood-marker small {font-size:10px;font-weight:700}
 .brood-marker b {font-size:14px}
+.slot .brood-destroyed {background:#fbe8df;color:#873c37;border-color:#ae6d61}
 .tabletop .slot[data-side="1"]>.brood-marker {top:auto;left:auto;right:1px;bottom:1px;transform:rotate(180deg)}
 .card .special-label .hatch-caption {display:block;font-size:clamp(9px,1.2vw,12px);font-weight:650;line-height:1.1}
 .card .hatch-caption .icon {width:12px;height:12px;display:inline-flex;vertical-align:-2px}
@@ -759,3 +742,6 @@ dialog[data-seat="1"] {transform:rotate(180deg)}
  .duo-setup .mini-roster:has([data-team="butterfly"]) .pick-team .bug {height:25px}
  .duo-setup .mini-roster:has([data-team="butterfly"]) .pick-team strong {font-size:12px;line-height:1.12}
 }
+
+.tabletop .waiting-seat .card,.tabletop .finished-seat .card {filter:grayscale(1);opacity:.58;cursor:default}
+.tabletop .active-seat .card:not(.off) {filter:drop-shadow(0 0 3px #b0bb68)}
