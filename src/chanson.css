@@ -1,0 +1,9 @@
+.chanson-tools { display:inline-flex; align-items:center; gap:6px }
+.chanson-toggle.round-btn { flex:0 0 auto; padding:0; inline-size:44px; block-size:44px; display:inline-grid; place-items:center }
+.chanson-toggle svg { display:block; width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
+.chanson-toggle .quiet-mark { display:none }
+.chanson-toggle[aria-pressed="false"] .quiet-mark { display:block }
+.chanson-toggle[aria-pressed="false"] .sound-waves { display:none }
+@media (orientation:landscape) and (max-height:345px) {
+  .tabletop .tt-head>.chanson-tools { grid-area:2/3; place-self:center; flex-direction:column; gap:2px }
+}

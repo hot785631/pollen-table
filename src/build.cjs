@@ -6,10 +6,19 @@ const art = require('./art.js');
 const read = name => fs.readFileSync(path.join(__dirname, name), 'utf8');
 const save = (name, body) => fs.writeFileSync(path.join(__dirname, name), body, 'utf8');
 const mode = process.argv[2];
+
+function inlineStylesheet(name) {
+  const css = read(name).replace(/url\(\s*(["']?)(?:\.\/)?([\w.-]+\.webp)\1\s*\)/gi, (_, quote, file) => {
+    const image = fs.readFileSync(path.join(__dirname, file)).toString('base64');
+    return 'url("data:image/webp;base64,' + image + '")';
+  });
+  return '<style>\n' + css.replace(/<\/style\s*>/gi, '<\\/style>') + '\n</style>';
+}
+
 if (mode !== 'plan') {
   const game = read('index.html').replace(/<script\b[^>]*\bsrc=["'](?:\.\/)?([\w.-]+\.js)["'][^>]*>\s*<\/script>/gi,
     (_, name) => '<script>\n' + read(name).replace(/<\/script\s*>/gi, '<\\/script>') + '\n</script>')
-    .replace(/<link\b[^>]*\bhref=["'](?:\.\/)?([\w.-]+\.css)["'][^>]*>/gi, (_,name) => '<style>\n' + read(name)+'\n</style>');
+    .replace(/<link\b[^>]*\bhref=["'](?:\.\/)?([\w.-]+\.css)["'][^>]*>/gi, (_, name) => inlineStylesheet(name));
   save('花粉擂台·离线试玩.html',game);
   save('花粉擂台-v5.0-五族花道离线版.html',game);
 }
@@ -66,8 +75,8 @@ if (mode !== 'game') {
     '<p class="hint">双方都用游戏内的电脑策略，只能看到自己的手牌。复测批次为 ' + summary.startSeed + '–' +
     summary.lastSeed + '。每对只看这一批发牌时，接近五五开的结果有数个百分点的抽样波动。总体胜率接近也不表示每一对都五五开；玩家的打法和自配牌组会改变结果。</p>';
   const plan = read('brief.template.html').replaceAll('{{CONCEPT}}', () => read('concept-board.svg').replace(/<\?xml[^>]*\?>/,''))
-    .replace('{{DECK_ROWS}}', rows)
-    .replace('{{BALANCE}}', balance+commonReport)
+    .replace('{{DECK_ROWS}}', () => rows)
+    .replace('{{BALANCE}}', () => balance+commonReport)
     .replace(/\{\{rule:(\w+)\.(\w+)\}\}/g, (_,f,k)=>specialRules(f)[k])
     .replace(/\{\{bug:(\w+)\}\}/g, (_,t)=>art.bug(t)).replace(/\{\{icon:(\w+)\}\}/g, (_,k)=>art.icon(k));
   save('花粉擂台·游戏企划.html',plan);

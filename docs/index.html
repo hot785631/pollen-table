@@ -1,9 +1,9 @@
 <!doctype html>
-<html data-pollen-cache="pollen-table-770cf54188614698" lang="zh-CN">
+<html data-pollen-cache="pollen-table-de983718ab0f0555" lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f8f2dc">
+  <meta name="theme-color" content="#20382c">
   <meta name="description" content="在五条花道上派出昆虫伙伴。可以独自挑战电脑，也能两个人在平板两边同桌对战。">
   <title>微境：花粉擂台</title>
   <style>
@@ -851,6 +851,283 @@ dialog[data-seat="1"] {transform:rotate(180deg)}
 }
 
 </style>
+  <style>
+/* Morning light at grass level. The same two plates also travel in the offline edition. */
+:root {
+  --meadow-cinema: url("./meadow-cinema.webp");
+  --cine-cast: url("./cine-cast.webp");
+  --ink: #29382b;
+  --moss: #33543a;
+  --paper: #fff9e5;
+  --cream: #f3ead2;
+  --line: #b9ac83;
+  --amber: #f9c85b;
+  --display-face: "Songti SC", "STZhongsong", "Noto Serif CJK SC", "SimSun", serif;
+  background: #20382c;
+}
+body {background:#20382c}
+#app {position:relative;isolation:isolate;min-height:100vh;min-height:100dvh}
+#app::before {
+  position:fixed;inset:0;z-index:-1;content:"";pointer-events:none;
+  background-color:#344830;
+  background-image:linear-gradient(125deg,rgba(12,31,22,.72),rgba(41,52,27,.43) 52%,rgba(14,32,23,.64)),var(--meadow-cinema);
+  background-position:center;background-size:cover;
+}
+.mast .mast-mark {color:#fff8db;letter-spacing:.12em}
+.mast-mark .icon {
+  width:38px;height:38px;padding:6px;border:1px solid #f1d8989c;border-radius:47% 53% 46% 50%;
+  background:linear-gradient(145deg,#f4f1bb,#adc697);box-shadow:0 2px 8px #1523174a;
+}
+.mast .round-btn {
+  color:#344132;background:linear-gradient(150deg,#fff9e4,#e5dec2);
+  border-color:#a4a481;box-shadow:0 2px 8px #10211445;
+}
+.plain,.pill,.edit-btn,.cancel {
+  color:#344331;border-color:#b5aa84;background:linear-gradient(145deg,#fffae9,#ece6cb);
+}
+.solid,.confirm {
+  color:#fff9e5;border-color:#36492c;background:linear-gradient(150deg,#536d3e,#304c35);
+  box-shadow:inset 0 1px #e6ebc368,0 3px 0 #263b28;
+}
+button:focus-visible {outline:3px solid #0077bb;outline-offset:3px}
+
+/* Opening shot. Keep the right of the frame open for the beetle. */
+.mode-home.wrap {
+  width:100%;max-width:none;min-height:100vh;min-height:100svh;
+  display:flex;flex-direction:column;padding:clamp(14px,3.6vh,40px) clamp(22px,7.3vw,150px);
+  background-color:#435438;
+  background-image:linear-gradient(90deg,rgba(12,29,22,.84),rgba(15,32,23,.66) 25%,rgba(19,32,20,.16) 63%,transparent 80%),
+    linear-gradient(0deg,rgba(13,30,21,.57),transparent 34%,transparent 79%,rgba(16,28,18,.15)),var(--meadow-cinema);
+  background-size:cover;background-position:center;
+}
+.mode-home .mast {min-height:46px;margin:0}
+.mode-home .mast-mark {gap:12px}
+.mode-home .mast .word-mark {font-size:clamp(17px,1.75vw,23px)}
+.mode-home .mast-actions .round-btn {
+  color:#fff8dc;background:#24382ad9;border-color:#fff1bd8c;box-shadow:0 3px 12px #12221842;
+}
+.mode-home .home {
+  flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  padding:clamp(52px,13vh,130px) 0 clamp(42px,10vh,105px);
+}
+.mode-home .home-hero {margin:0;text-align:left;max-width:none}
+.home-hero::before,.home-hero::after {display:none}
+.mode-home .home-hero h1 {
+  margin:0 0 .17em -.045em;color:#fffae5;font-family:var(--display-face);
+  font-size:clamp(68px,8.8vw,146px);font-weight:900;line-height:1.12;letter-spacing:.025em;
+  white-space:nowrap;text-shadow:0 3px 2px #332c1980,0 6px 30px #16251766;
+}
+.mode-home .home-hero h1 span {color:#ffe292}
+.mode-home .home-hero p {margin:0;color:#fff8e3;font-size:clamp(16px,1.6vw,23px);font-weight:650;letter-spacing:.035em;text-shadow:0 2px 6px #152317}
+.mode-home .home-hero p strong {color:#ffe292;font-variant-numeric:tabular-nums}
+.mode-home .mode-menu {
+  width:min(100%,595px);max-width:none;margin:clamp(25px,5.5vh,70px) 0 0;
+  grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.2vw,18px);
+}
+.mode-menu .mode-choice {
+  --button-light:#fff9dd;--button-shadow:#eadcb8;
+  position:relative;gap:clamp(7px,1vw,16px);min-height:clamp(80px,10vh,108px);
+  padding:11px clamp(9px,1.15vw,17px);border:1px solid #f3daa1;
+  border-radius:18px;color:#304334;
+  background:linear-gradient(140deg,var(--button-light),var(--button-shadow));
+  box-shadow:inset 0 1px #fff7,0 3px 0 #1a2b20b3,0 7px 20px #101c1770;
+}
+.mode-menu .mode-choice.duo {
+  --button-light:#3d5948;--button-shadow:#263f31;color:#fff6d5;border-color:#b9cd94;
+}
+.mode-choice::after {
+  content:"";width:8px;height:8px;flex:0 0 auto;margin-left:auto;margin-right:3px;
+  border-right:2px solid currentColor;border-top:2px solid currentColor;transform:rotate(45deg);opacity:.8;
+}
+.mode-choice .mode-copy {gap:3px}
+.mode-choice .mode-copy strong {font-size:clamp(19px,2.0vw,29px);letter-spacing:.025em}
+.mode-choice .mode-copy small {color:#4b5849;font-size:clamp(12px,1.05vw,15px);font-weight:600}
+.mode-choice.duo .mode-copy small {color:#e4e9d5}
+.mode-choice .mode-symbol {
+  width:clamp(48px,4.8vw,76px);height:auto;border-radius:50%;
+  background:radial-gradient(circle at 34% 25%,#f9ecc3,#dfc88b 64%,#bba46b);
+  box-shadow:inset 0 0 0 1px #a48b59,0 1px #fff9;
+}
+.mode-choice.duo .mode-symbol {background:radial-gradient(circle at 34% 25%,#e5e7bb,#bdca91 65%,#82986a);box-shadow:inset 0 0 0 1px #94a77d,0 1px #f5f1b75a}
+.mode-home .home-note {margin:16px 0 0;color:#fff6d8}
+@media (hover:hover) {
+  .mode-choice:hover,.tribe:hover,.pick-team:hover {box-shadow:inset 0 0 0 2px #e7c877,0 4px 12px #15231950}
+}
+
+/* Each insect keeps its silhouette in the little diagrams. In larger portraits
+   a single preloaded atlas supplies all five species without more requests. */
+.bug[data-species="ant"] {--cast-x:0%;--cast-y:0%}
+.bug[data-species="bee"] {--cast-x:50%;--cast-y:0%}
+.bug[data-species="beetle"] {--cast-x:100%;--cast-y:0%}
+.bug[data-species="spider"] {--cast-x:0%;--cast-y:100%}
+.bug[data-species="butterfly"] {--cast-x:50%;--cast-y:100%}
+:where(.cast-ready) :where(.bug[data-species]) {position:relative}
+.cast-ready .bug[data-species] {container-type:size}
+.cast-ready .bug[data-species]>.bug-svg {visibility:hidden}
+.cast-ready .bug[data-species]::after {
+  content:"";position:absolute;pointer-events:none;top:50%;left:50%;translate:-50% -50%;
+  width:min(100cqw,100cqh);height:min(100cqw,100cqh);
+  background-image:var(--cine-cast);background-repeat:no-repeat;
+  background-size:300% 200%;background-position:var(--cast-x) var(--cast-y);
+}
+.cast-ready .slot.hatched .bug::after {animation:pollen-open-wings .55s ease-out}
+
+/* Each faction sits in a softly lit patch of its own habitat. */
+.solo-lobby {max-width:1130px}
+.solo-lobby .solo-setup {padding-top:clamp(20px,8vh,85px)}
+.solo-setup .home-hero h1 {
+  color:#fff6d8;font-family:var(--display-face);font-weight:900;letter-spacing:.09em;
+  text-shadow:0 2px 16px #14281d;margin:0 0 clamp(18px,3.7vh,42px);
+}
+.tribe.ant,.pick-team.ant {--habitat:#d59c6c;--habitat-light:#ffedcb}
+.tribe.beetle,.pick-team.beetle {--habitat:#91a473;--habitat-light:#e1eaba}
+.tribe.bee,.pick-team.bee {--habitat:#e0ba67;--habitat-light:#fff1bb}
+.tribe.spider,.pick-team.spider {--habitat:#81b2a2;--habitat-light:#d6efe0}
+.tribe.butterfly,.pick-team.butterfly {--habitat:#afa2c7;--habitat-light:#eee1f2}
+.roster .tribe,.mini-roster .pick-team {
+  color:#303f30;border-color:#b3ae88;
+  background:linear-gradient(158deg,var(--habitat-light),#fff7df 55%,#e6dcc1);
+  box-shadow:inset 0 1px #fffdf1,0 3px 0 #24362565,0 5px 13px #22341f38;
+}
+.roster .tribe {border-radius:17px}
+.portrait {
+  border-radius:14px;background:radial-gradient(ellipse at 30% 20%,#fff7d690,transparent 56%),
+    linear-gradient(140deg,var(--habitat-light),var(--habitat));
+  box-shadow:inset 0 0 0 1px #735f382a;
+}
+.portrait::before {
+  left:9%;bottom:10%;width:24%;height:12%;background:var(--habitat);
+  box-shadow:10px -10px 0 -2px var(--habitat);opacity:.55;
+}
+.portrait::after {
+  left:24%;right:auto;bottom:13%;width:51%;height:13%;border-radius:50%;transform:none;
+  background:radial-gradient(ellipse at center,#493b2260,transparent 72%);opacity:.82;
+}
+.roster .tribe.chosen,.mini-roster .pick-team.chosen {
+  border-color:#506337;outline:2px solid #fbd67b;outline-offset:1px;
+  box-shadow:inset 0 0 0 1px #647648,0 4px 0 #293f2b82;
+}
+.solo-setup .team-ability,.duo-setup .team-ability {
+  background:#fff7e1;color:#344232;border-color:#c9b889;
+}
+.solo-setup .team-ability {box-shadow:0 3px 15px #1d2c2042}
+.solo-setup .home-actions {gap:clamp(7px,1.1vw,15px)}
+.solo-setup .home-actions .solid,.duo-setup .setup-start .solid {border-color:#d9d69d}
+.duo-setup .pick-seat,.duo-setup .pick-seat.seat-1,.deck.builder,#sheet {
+  color:#2d3d2e;border-color:#9f9e73;
+  background-color:#efe9d0;
+  background-image:linear-gradient(150deg,#f9f4dfef,#e6e7ccd9),var(--meadow-cinema);
+  background-size:cover;background-position:center;
+  box-shadow:inset 0 1px #fff5cc,0 4px 16px #15261e55;
+}
+.duo-setup .pick-seat.seat-1 {background-position:center 35%}
+.duo-setup .setup-caption {color:#fff4cf;text-shadow:0 1px 6px #132519}
+.duo-setup .setup-caption small {color:#eee9ca}
+.deck.builder .deck-group,.deck.builder .draw-odds {background:#fff8e6;border-color:#c6b991}
+.deck.builder .build-row+.build-row {border-color:#dcd4b8}
+.builder .deck-heading h2 {font-family:var(--display-face);font-weight:900}
+.deck.builder .deck-foot {border-color:#c7bc9a}
+#sheet::backdrop {background:#13251bc4}
+
+/* A dark, moss-lined playmat frames five light leaves. Numbers and action
+   previews remain on solid backgrounds, including during pollen settlement. */
+.battle:not(.tabletop) {
+  background:linear-gradient(155deg,#f9f4ddf5,#e6e9d1ed);
+  box-shadow:0 0 42px #15291c77;min-height:100vh;min-height:100dvh;
+}
+.battle.tabletop .tt-head .word-mark {color:#fff6d9;text-shadow:0 1px 4px #17271b}
+.battle .table {
+  border-color:#435332;background-color:#4e643c;
+  background-image:linear-gradient(135deg,#4d6032a6,#35472f9e),var(--meadow-cinema);
+  background-size:cover;background-position:center 74%;
+  box-shadow:inset 0 0 0 2px #b9bc7e,0 3px 1px #2c412cc2,0 6px 17px #20331c40;
+}
+.battle .table::before,.battle .table::after {display:none}
+.lane {
+  border-radius:53% 43% 50% 47% / 10% 9% 11% 10%;
+  background-color:#d3dba1;
+  background-image:
+    linear-gradient(90deg,transparent 49.35%,#92a56980 49.6% 50.4%,transparent 50.65%),
+    repeating-linear-gradient(31deg,transparent 0 22px,#80945836 23px,transparent 25px 46px),
+    repeating-linear-gradient(-31deg,transparent 0 22px,#80945836 23px,transparent 25px 46px),
+    linear-gradient(100deg,#b8c989,#e3e9aa 48%,#d3df9e 55%,#aabf80);
+  background-size:100% 100%,50% 100%,50% 100%,100% 100%;
+  background-repeat:no-repeat;background-position:center,left top,right top,center;
+  box-shadow:inset 0 0 0 1px #f2edaa, inset 1px -3px 6px #657e494f,0 2px 4px #24321f73;
+}
+.lane[data-tally="active"] {
+  background-image:linear-gradient(125deg,#fff2a5,#e5dc91 55%,#f6e49b);
+  box-shadow:inset 0 0 0 3px #97712c,0 0 0 2px #ffdf91;
+}
+.slot .vacant {border-color:#667e48}
+.slot .unit-power,.pollen-count {box-shadow:0 1px 3px #49532e30}
+.pollen-node>.icon {filter:drop-shadow(0 1px 2px #6d693e55)}
+.slot.legal,.pollen-node.legal {background-color:#ffed9a85;outline-color:#435b30}
+.tabletop .seat {
+  border-color:#adae87;background:linear-gradient(140deg,#dddcc5,#c9ceb7);
+  box-shadow:inset 0 1px #f8f3d9,0 2px 6px #17281d47;
+}
+.tabletop .active-seat,.tabletop .seat-top.active-seat {
+  border-color:#c5a359;background:linear-gradient(145deg,#fff6d7,#e9edd1);
+  box-shadow:inset 0 0 0 2px #ebca77,0 2px 9px #16271b50;
+}
+.tabletop .waiting-seat .card,.tabletop .finished-seat .card {filter:grayscale(1);opacity:.56}
+.tabletop .active-seat .card:not(.off) {filter:drop-shadow(0 1px 2px #41513b85)}
+.hand .card.picked {outline-color:#28643f}
+.card .cost,.card .card-stat,.card .special-label {box-shadow:0 1px 3px #293e292b}
+.hand .card-empty {border-color:#8f9d7e}
+
+@media(max-width:650px) and (orientation:portrait) {
+  .mode-home.wrap {
+    padding:14px max(19px,env(safe-area-inset-right)) max(25px,env(safe-area-inset-bottom)) max(19px,env(safe-area-inset-left));
+    background-image:linear-gradient(0deg,#172a20 0%,#182c21bf 12%,transparent 39%),
+      linear-gradient(180deg,#13291c75,#182e2269 28%,transparent 56%),var(--meadow-cinema);
+    background-position:center,center,90% center;
+  }
+  .mode-home .home {justify-content:space-between;padding:clamp(37px,11svh,115px) 0 0}
+  .mode-home .home-hero h1 {font-size:clamp(53px,13vw,81px)}
+  .mode-home .mode-menu {width:100%;margin:20px 0 0;gap:8px}
+  .mode-menu .mode-choice {min-height:76px;padding:9px;gap:6px;border-radius:13px}
+  .mode-choice .mode-symbol {width:clamp(30px,9.5vw,56px)}
+  .mode-choice .mode-copy strong {font-size:clamp(17px,4.6vw,23px)}
+  .mode-choice .mode-copy small {font-size:clamp(11px,2.8vw,14px)}
+  .mode-choice::after {display:none}
+  .solo-lobby .solo-setup {padding-top:14px}
+  .solo-setup .home-hero h1 {margin-bottom:14px}
+}
+@media(max-height:590px) and (orientation:landscape) {
+  .mode-home.wrap {padding:9px clamp(18px,5.5vw,65px)}
+  .mode-home .home {padding:15px 0;justify-content:center}
+  .mode-home .home-hero h1 {font-size:clamp(42px,14vh,77px);margin-bottom:.1em}
+  .mode-home .home-hero p {font-size:15px}
+  .mode-home .mode-menu {width:min(100%,465px);margin-top:clamp(10px,3.5vh,20px)}
+  .mode-menu .mode-choice {min-height:61px;padding:5px 9px;border-radius:14px}
+  .mode-choice .mode-symbol {width:43px}
+  .mode-choice .mode-copy strong {font-size:19px}
+  .solo-lobby .solo-setup {padding-top:3px}
+  .solo-lobby.wrap {padding-block:5px}
+  .solo-lobby .mast {margin-bottom:4px}
+  .solo-setup .home-actions {margin:8px 0}
+  .solo-setup .team-ability {margin-top:9px}
+  .solo-setup .home-hero h1 {margin-bottom:6px}
+}
+@media(prefers-reduced-motion:reduce) {
+  .cast-ready .slot.hatched .bug::after {animation:none}
+}
+
+</style>
+  <style>
+.chanson-tools { display:inline-flex; align-items:center; gap:6px }
+.chanson-toggle.round-btn { flex:0 0 auto; padding:0; inline-size:44px; block-size:44px; display:inline-grid; place-items:center }
+.chanson-toggle svg { display:block; width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
+.chanson-toggle .quiet-mark { display:none }
+.chanson-toggle[aria-pressed="false"] .quiet-mark { display:block }
+.chanson-toggle[aria-pressed="false"] .sound-waves { display:none }
+@media (orientation:landscape) and (max-height:345px) {
+  .tabletop .tt-head>.chanson-tools { grid-area:2/3; place-self:center; flex-direction:column; gap:2px }
+}
+
+</style>
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -858,9 +1135,10 @@ dialog[data-seat="1"] {transform:rotate(180deg)}
 <link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png">
 <link rel="icon" href="./icon.svg" type="image/svg+xml">
 <style>
-.transfer{display:none;text-align:center;font:600 14px/1.5 system-ui,sans-serif;color:#345842;margin:0 auto;padding:0 14px 16px}
+.transfer{display:none;text-align:center;font:600 14px/1.5 system-ui,sans-serif;color:#fff6da;background:#253c30;border-top:1px solid #61735d;margin:0 auto;padding:10px 14px max(14px,env(safe-area-inset-bottom))}
 body:has(.mode-home) .transfer{display:block}
-.transfer :is(a,button){font:inherit;display:inline-flex;min-height:44px;align-items:center;padding:0 12px;border:1px solid #91a48c;border-radius:16px;margin:3px;color:#294f38;background:#fff8e6;text-decoration:none}
+.transfer :is(a,button){font:inherit;display:inline-flex;min-height:44px;align-items:center;padding:0 12px;border:1px solid #e1cf9f;border-radius:16px;margin:3px;color:#263d2e;background:#fff3d4;text-decoration:none}
+.transfer :is(a,button):focus-visible{outline:3px solid #ffd35e;outline-offset:2px}
 .transfer [hidden]{display:none}.transfer output{display:block}
 </style></head>
 <body>
@@ -1776,7 +2054,7 @@ body:has(.mode-home) .transfer{display:block}
   }
   const cycleGlyph='<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a11 11 0 0 1 19-5l3 3M27 4v7h-7M27 19a11 11 0 0 1-19 5l-3-3M5 28v-7h7"/></svg>';
   const icon = (name,cls="") => '<span aria-hidden="true" class="icon '+cls+'">'+(name==="cycle"?cycleGlyph:art.icon(name))+'</span>';
-  const bug = t => '<span aria-hidden="true" class="bug">'+art.bug(t)+'</span>';
+  const bug = t => '<span aria-hidden="true" class="bug" data-species="'+t+'">'+art.bug(t)+'</span>';
   const mark = () => '<div class="mast-mark">'+icon("leaf")+'<span class="word-mark">微境</span></div>';
   const say = str => {live.textContent=str;};
   const copy = x => JSON.parse(JSON.stringify(x));
@@ -1799,12 +2077,12 @@ body:has(.mode-home) .transfer{display:block}
     const notice=migrationNotice?'<p class="home-note" role="status">旧牌盒已按原比例整理为'+deckLimit+'张，可继续调整。</p>':"";
     migrationNotice=false;
     const choice=(id,title,note,images)=>'<button class="mode-choice '+id+'" data-do="mode-'+id+'" data-focus="mode-'+id+'"><span class="mode-symbol" aria-hidden="true">'+images+'</span><span class="mode-copy"><strong>'+title+'</strong><small>'+note+'</small></span></button>';
-    return '<div class="wrap mode-home">'+head()+'<section class="home"><div class="home-hero"><h1>花粉擂台</h1><p>五条花道，先带回 30 枚花粉。</p></div><div class="mode-menu">'+choice("solo","单人挑战","和电脑对战",bug("ant")+icon("play"))+choice("duo","双人同桌","坐在平板两边，一人一队",bug("bee")+bug("beetle"))+'</div>'+notice+'</section></div>';
+    return '<div class="wrap mode-home">'+head()+'<section class="home"><div class="home-hero"><h1>花粉<span>擂台</span></h1><p>五条花道，先带回 <strong>30</strong> 枚花粉。</p></div><div class="mode-menu">'+choice("solo","单人挑战","和电脑对战",bug("ant")+icon("play"))+choice("duo","双人同桌","面对面，一人一队",bug("bee")+bug("beetle"))+'</div>'+notice+'</section></div>';
   }
   function soloSetup() {
     const cards=TEAMS.map(t=>'<button type="button" data-do="team" data-team="'+t+'" data-focus="tribe-'+t+'" aria-pressed="'+(t===team)+'" aria-label="选择'+names[t]+'队" class="tribe '+t+(t===team?' chosen':'')+'"><span class="portrait">'+bug(t)+'</span><strong>'+names[t]+'队</strong></button>').join("");
     const choices=decks[team]?'<div class="deck-options solo-deck-options" aria-label="选择牌盒">'+[["preset","预组牌"],["box","我的牌盒"]].map(([v,label])=>'<button class="pill" data-do="solo-deck" data-source="'+v+'" aria-pressed="'+(activeSource(null,team)===v)+'">'+label+'</button>').join("")+'</div>':'';
-    return '<div class="wrap">'+head()+'<section class="home solo-setup"><div class="home-hero"><h1>选队</h1></div><div class="roster" aria-label="选择队伍">'+cards+'</div>'+abilityPanel(team)+choices+'<div class="home-actions">'+actionButton("modes","选模式","plain","back")+actionButton("build","配牌","edit-btn","leaf")+actionButton("start","开始对战","solid","play")+'</div></section></div>';
+    return '<div class="wrap solo-lobby">'+head()+'<section class="home solo-setup"><div class="home-hero"><h1>选队</h1></div><div class="roster" aria-label="选择队伍">'+cards+'</div>'+abilityPanel(team)+choices+'<div class="home-actions">'+actionButton("modes","选模式","plain","back")+actionButton("build","配牌","edit-btn","leaf")+actionButton("start","开始对战","solid","play")+'</div></section></div>';
   }
   function pickSeat(side) {
     const t=picks[side];
@@ -2055,27 +2333,28 @@ body:has(.mode-home) .transfer{display:block}
     partner: {
       outline:"M2 98 3 32Q4 11 26 8Q65 6 98 2L96 70Q95 93 73 95Q37 95 2 98Z",
       detail:"M7 88Q33 67 49 49M13 73 21 75M12 84 26 82M75 20 90 10M79 25 81 17M88 20 87 13",
-      fill:"#d3eddf", stroke:"#3c775b", vein:"#93bea4"
+      light:"#f0f4cb", fill:"#d4e4b7", shade:"#a5c09b", stroke:"#59734e", vein:"#97b787"
     },
     hit: {
       outline:"M15 2H84L98 16V79L85 97H16L2 82V17Z",
       detail:"M4 27 22 5M5 34 27 7M72 92 94 70M79 92 95 75",
-      fill:"#fbe2b9", stroke:"#a35a36", vein:"#e5b47e"
+      light:"#fff1cc", fill:"#f5d6a7", shade:"#e0ae80", stroke:"#9c623f", vein:"#cb9c69"
     },
     supply: {
       outline:"M5 8Q5 3 11 3H90Q97 3 97 11V83L83 97H11Q3 97 3 89Z",
       detail:"M82 95V83H95M11 20V11H22M12 26H21",
-      fill:"#d4eaf0", stroke:"#3b687f", vein:"#88afb8"
+      light:"#f1f4db", fill:"#d5e7df", shade:"#a3c6ca", stroke:"#4d7378", vein:"#8eafb0"
     },
     special: {
       outline:"M4 22Q1 8 16 5Q26 1 34 7Q48 -1 56 7Q70 0 77 7Q96 4 96 22Q102 32 95 42Q102 54 95 64Q102 74 95 81Q97 96 83 95Q73 101 64 94Q51 102 41 94Q28 102 19 95Q3 98 4 82Q-1 70 6 62Q-1 51 6 42Q-1 31 4 22Z",
       detail:"M68 14Q73 9 78 14M84 86Q90 86 90 80M17 86Q11 87 11 80",
-      fill:"#ebdbee", stroke:"#825688", vein:"#ba96bf"
+      light:"#fff1ea", fill:"#ebd8e5", shade:"#c6b1cf", stroke:"#816082", vein:"#b69ab5"
     }
   };
-  function cardFrame(kind) {
+  function cardFrame(kind,id) {
     const f=frames[kind];
-    return '<svg class="card-shell" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="'+f.outline+'" fill="'+f.fill+'" stroke="'+f.stroke+'" stroke-width="2.5" vector-effect="non-scaling-stroke"/><path d="'+f.outline+'" transform="translate(3.5 3.5) scale(.93)" fill="none" stroke="'+f.vein+'" stroke-width="1.4" vector-effect="non-scaling-stroke"/><path d="'+f.detail+'" fill="none" stroke="'+f.vein+'" stroke-width="1.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>';
+    const gradientId="card-light-"+id;
+    return '<svg class="card-shell" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="'+gradientId+'" x1="14%" y1="0%" x2="80%" y2="100%"><stop stop-color="'+f.light+'"/><stop offset=".58" stop-color="'+f.fill+'"/><stop offset="1" stop-color="'+f.shade+'"/></linearGradient></defs><path d="'+f.outline+'" fill="url(#'+gradientId+')" stroke="'+f.stroke+'" stroke-width="2.2" vector-effect="non-scaling-stroke"/><path d="'+f.outline+'" transform="translate(3.5 3.5) scale(.93)" fill="none" stroke="'+f.vein+'" stroke-width="1.1" vector-effect="non-scaling-stroke"/><path d="'+f.detail+'" fill="none" stroke="'+f.vein+'" stroke-width="1.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>';
   }
   function blockedLeafNote(side) {
     return game.board[side].every(Boolean)?"自己的叶位都站满了伙伴。":"剩下的空叶结着蛛网，收粉后才会打开。";
@@ -2092,7 +2371,7 @@ body:has(.mode-home) .transfer{display:block}
     if(special&&team==="butterfly")skillStat='<small class="hatch-caption">下轮 '+E.specialRules(team).hatchPower+'＋'+icon("pollen")+'</small>';
     const stat=special?'<span class="special-label">'+skills[team].name+skillStat+'</span>':supply?'<span class="card-stat">'+icon("handBack")+'+'+supplyAmount(side)+'</span>':'<span class="card-stat">'+icon("force")+(c.kind==="hit"?"−"+c.impact:E.powerForCost(c.cost))+'</span>';
     const disabledReason=!isMyTurn?"等你的回合":c.cost>game.players[side].sun?"阳光不足":special?skills[team].text:supply?"没有可摸的牌":c.kind==="hit"?"等对面上场":blockedLeafNote(side);
-    return '<button type="button" class="card '+c.kind+(can?'':' off')+(active?' picked':'')+(cycling?' for-cycle':'')+'" data-do="card" data-id="'+c.id+'" data-focus="card-'+c.id+'" aria-pressed="'+Boolean(active)+'" aria-label="'+(cycling?'换走':'')+cardLabel(c,side)+(can?'':'。'+disabledReason)+'" '+(!isMyTurn?"disabled":"")+' title="'+cardLabel(c,side)+'">'+cardFrame(c.kind)+'<span class="cost '+(c.cost===0?'free':'')+'">'+icon("sun")+c.cost+'</span>'+middle+stat+'</button>';
+    return '<button type="button" class="card '+c.kind+(can?'':' off')+(active?' picked':'')+(cycling?' for-cycle':'')+'" data-do="card" data-id="'+c.id+'" data-focus="card-'+c.id+'" aria-pressed="'+Boolean(active)+'" aria-label="'+(cycling?'换走':'')+cardLabel(c,side)+(can?'':'。'+disabledReason)+'" '+(!isMyTurn?"disabled":"")+' title="'+cardLabel(c,side)+'">'+cardFrame(c.kind,c.id)+'<span class="cost '+(c.cost===0?'free':'')+'">'+icon("sun")+c.cost+'</span>'+middle+stat+'</button>';
   }
   function score(p,side) {
     const n=tally?tally.display[side]:p.score;
@@ -2567,7 +2846,355 @@ body:has(.mode-home) .transfer{display:block}
   window.addEventListener("pagehide",()=>{stopFlights();clearPollenFlights();});
   window.addEventListener("resize",()=>{stopFlights();clearPollenFlights();});
   matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change",e=>{if(e.matches&&tally?.running)finishTally(tally,true);});
+  // Keep the illustrated insects visible while the shared photographic atlas loads.
+  const castUrl=getComputedStyle(document.documentElement).getPropertyValue("--cine-cast").trim();
+  if(castUrl && CSS.supports("width","1cqw")){
+    const castImage=new Image();
+    castImage.onload=()=>document.documentElement.classList.add("cast-ready");
+    castImage.src=castUrl.replace(/^url\(["']?|["']?\)$/g,"");
+  }
   render();
+})();
+
+</script>
+  <script>
+// “Petit pollen” — an original miniature chanson for reeds, guitar, bass and voice.
+(() => {
+  "use strict";
+  const beat = 60 / 110;
+  const barTime = 3 * beat;
+  const noteHz = n => 440 * Math.pow(2, (n - 69) / 12);
+  // Guitar voicings are kept close together, as on the middle four strings.
+  const chords = {
+    Dm: [38, 53, 57, 62], Gm: [43, 55, 58, 62], A7: [45, 55, 61, 64],
+    Bb: [34, 53, 58, 62], F: [41, 53, 57, 60], C7: [36, 52, 58, 60],
+    Ed: [40, 55, 58, 62], D7: [38, 54, 57, 60], Gm6: [43, 52, 58, 62]
+  };
+  // Each bar contains one harmony followed by [pitch, beats, optional sung syllable].
+  // A zero pitch is a rest. The opening voice is the accordion; the refrain is sung.
+  const intro = [
+    ["Dm", [0, 1], [69, .5], [68, .5], [69, 1]],
+    ["Gm", [70, 1.5], [67, .5], [65, 1]],
+    ["Ed", [64, 1], [67, 1], [70, 1]],
+    ["A7", [69, 1.5], [0, .5], [64, .5], [61, .5]]
+  ];
+  const verse = [
+    ["Dm", [62, 1.5], [65, .5], [69, 1]],
+    ["Dm", [72, .75], [71, .25], [69, 1], [65, 1]],
+    ["Gm", [67, 1], [70, 1.5], [69, .5]],
+    ["A7", [64, 2], [61, .5], [64, .5]],
+    ["Dm", [65, 1.5], [67, .5], [69, 1]],
+    ["Bb", [70, 1], [74, .5], [72, .5], [70, 1]],
+    ["Ed", [67, 1], [64, 1], [65, .5], [67, .5]],
+    ["A7", [69, 2], [0, .5], [67, .5]]
+  ];
+  // Danse, danse, petit pollen, au soleil du matin.
+  // Vole, vole, petite reine, sur le bord du chemin.
+  const refrain = [
+    ["F", [69, 1, "danse"], [67, 1, "danse"], [65, .5, "pe"], [67, .5, "tit"]],
+    ["C7", [67, 1, "pol"], [64, 1.5, "len"], [0, .5]],
+    ["F", [65, .5, "au"], [67, .5, "so"], [69, 1, "leil"], [72, 1, "du"]],
+    ["D7", [69, 1, "ma"], [66, 1.5, "tin"], [0, .5]],
+    ["Gm", [70, 1, "vole"], [69, 1, "vole"], [67, .5, "pe"], [69, .5, "tite"]],
+    ["Dm", [65, 2.5, "reine"], [0, .5]],
+    ["Ed", [67, .5, "sur"], [65, .5, "le"], [64, 1, "bord"], [62, 1, "du"]],
+    ["A7", [64, 1, "che"], [61, 1.5, "min"], [0, .5]]
+  ];
+  const reply = [
+    ["Dm", [62, 1], [65, .5], [69, .5], [72, 1]],
+    ["F", [77, 1], [76, .5], [74, .5], [72, 1]],
+    ["Gm", [70, 1.5], [69, .5], [67, 1]],
+    ["A7", [64, 2], [61, .5], [64, .5]],
+    ["Dm", [65, .5], [69, .5], [72, 1], [74, 1]],
+    ["Bb", [74, 1.5], [72, .5], [70, 1]],
+    ["Gm6", [67, 1], [64, .5], [65, .5], [67, 1]],
+    ["A7", [69, 1.5], [0, .5], [64, .5], [67, .5]]
+  ];
+  const coda = [
+    ["Dm", [62, 1.5], [65, .5], [69, 1]],
+    ["Gm", [70, 1], [67, 1], [65, 1]],
+    ["A7", [64, 1], [61, .5], [64, .5], [67, 1]],
+    ["Dm", [65, 1], [62, 1.8], [0, .2]]
+  ];
+  const score = [...intro, ...refrain, ...verse, ...reply, ...refrain, ...coda];
+
+  // Approximate French vowel colours and consonant envelopes for the sung refrain.
+  const vowels = {
+    a:[780,1450,2700], an:[645,1040,2480], oe:[520,1500,2550],
+    i:[310,2380,3140], o:[475,860,2430], oh:[565,1050,2470],
+    e:[515,1920,2820], u:[335,1710,2450], in:[560,1680,2670]
+  };
+  const syllables = {
+    danse:["d","an","s"], pe:["p","oe"], tit:["t","i"], pol:["p","oh","l"],
+    len:["l","e","n"], au:["","o"], so:["s","o"], leil:["l","e","y"], du:["d","u"],
+    ma:["m","a"], tin:["t","in"], vole:["v","oh","l"], tite:["t","i","t"],
+    reine:["r","e","n"], sur:["s","u","r"], le:["l","oe"], bord:["b","oh","r"],
+    che:["sh","oe"], min:["m","in"]
+  };
+  const muteKey = "pollen-table.music-muted.v1";
+  let muted = false;
+  try { muted = localStorage.getItem(muteKey) === "1"; } catch {}
+  const Audio = window.AudioContext || window.webkitAudioContext;
+  if (!Audio) return;
+
+  let ctx, mix, reedWave, glottis, breath, mutedByPage = false, userStarted = false;
+  let timer = 0, nextBar = 0, nextAt = 0, requestId = 0;
+  const strings = new Map();
+  let seed = 17011;
+  function random() {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+    return seed / 4294967296;
+  }
+  function wave(harmonics) {
+    return ctx.createPeriodicWave(new Float32Array(harmonics.length), Float32Array.from(harmonics));
+  }
+  function unplug(nodes) { nodes.forEach(node => node.disconnect()); }
+  function init() {
+    ctx = new Audio();
+    mix = ctx.createGain();
+    mix.gain.value = .57;
+    const limiter = ctx.createDynamicsCompressor();
+    limiter.threshold.value = -17;
+    limiter.knee.value = 12;
+    limiter.ratio.value = 3;
+    mix.connect(limiter).connect(ctx.destination);
+    const room = ctx.createDelay();
+    const reflected = ctx.createGain();
+    room.delayTime.value = .077;
+    reflected.gain.value = .11;
+    mix.connect(room).connect(reflected).connect(limiter);
+    reedWave = wave([0,1,.43,.26,.17,.19,.085,.065,.095,.04,.035,.045,.028,.021]);
+    glottis = wave(Array.from({length:42}, (_, i) => i ? Math.pow(i,-.99) : 0));
+    breath = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * .18), ctx.sampleRate);
+    const noise = breath.getChannelData(0);
+    for (let i=0; i<noise.length; i++) noise[i] = 2*random()-1;
+  }
+  function envelope(gain, at, length, attack, level, hold = .8) {
+    const p = gain.gain;
+    p.setValueAtTime(.0001, at);
+    p.exponentialRampToValueAtTime(level, at+attack);
+    p.linearRampToValueAtTime(level*hold, at+Math.max(attack,length-.08));
+    p.exponentialRampToValueAtTime(.0001, at+length);
+  }
+  function accordion(pitch, at, length, level) {
+    const amp = ctx.createGain();
+    const tone = ctx.createBiquadFilter();
+    tone.type = "lowpass";
+    tone.frequency.value = 2520;
+    tone.Q.value = .55;
+    tone.connect(amp).connect(mix);
+    envelope(amp,at,length,Math.min(.057,length/3),level);
+    const reeds = [-4.5,4.5].map(cents => {
+      const osc = ctx.createOscillator();
+      osc.setPeriodicWave(reedWave);
+      osc.frequency.value = noteHz(pitch);
+      osc.detune.value = cents;
+      osc.connect(tone);
+      osc.start(at);
+      osc.stop(at+length+.008);
+      return osc;
+    });
+    reeds[1].onended = () => unplug([...reeds,tone,amp]);
+  }
+  function guitar(pitch, at, level) {
+    if (!strings.has(pitch)) {
+      const rate = 22050;
+      const period = Math.max(2,Math.round(rate/noteHz(pitch)-.5));
+      const line = Float32Array.from({length:period}, () => 2*random()-1);
+      const buffer = ctx.createBuffer(1,rate,rate);
+      const data = buffer.getChannelData(0);
+      // Average adjacent samples on every trip around the virtual string.
+      for (let i=0; i<data.length; i++) {
+        const j = i%period;
+        data[i] = line[j];
+        line[j] = .496 * (line[j]+line[(j+1)%period]);
+      }
+      strings.set(pitch,{buffer,tune:noteHz(pitch)*(period+.5)/rate});
+    }
+    const sample = strings.get(pitch);
+    const src = ctx.createBufferSource();
+    const amp = ctx.createGain();
+    src.buffer = sample.buffer;
+    src.playbackRate.value = sample.tune;
+    envelope(amp,at,.51,.006,level,.38);
+    src.connect(amp).connect(mix);
+    src.start(at);
+    src.stop(at+.52);
+    src.onended = () => unplug([src,amp]);
+  }
+  function bass(pitch, at, length, level) {
+    const osc = ctx.createOscillator();
+    const amp = ctx.createGain();
+    const tone = ctx.createBiquadFilter();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(noteHz(pitch)*1.012,at);
+    osc.frequency.exponentialRampToValueAtTime(noteHz(pitch),at+.04);
+    tone.frequency.value = 430;
+    tone.Q.value = .5;
+    envelope(amp,at,length,.015,level,.36);
+    osc.connect(tone).connect(amp).connect(mix);
+    osc.start(at);
+    osc.stop(at+length+.01);
+    osc.onended = () => unplug([osc,tone,amp]);
+  }
+  function consonant(sound, at, duration, level) {
+    if (!["s","sh","t","p","v","r","d","b"].includes(sound)) return;
+    const src = ctx.createBufferSource();
+    const filter = ctx.createBiquadFilter();
+    const amp = ctx.createGain();
+    src.buffer = breath;
+    filter.type = "bandpass";
+    filter.frequency.value = ({s:5700,sh:2700,t:4300,p:1300,v:1530,r:1100,d:1900,b:950})[sound];
+    filter.Q.value = .85;
+    envelope(amp,at,duration,.004,level,.42);
+    src.connect(filter).connect(amp).connect(mix);
+    src.start(at);
+    src.stop(at+duration+.001);
+    src.onended = () => unplug([src,filter,amp]);
+  }
+  function sing(pitch, at, length, text) {
+    const [initial, vowel, final] = syllables[text];
+    const hiss = initial === "s" || initial === "sh";
+    const attack = hiss ? .066 : initial ? .029 : .01;
+    consonant(initial,at,hiss ? .077 : .031,hiss ? .091 : .049);
+    if (final) consonant(final,at+length-.061,.058,.066);
+    const voice = ctx.createOscillator();
+    const amp = ctx.createGain();
+    const vib = ctx.createOscillator();
+    const depth = ctx.createGain();
+    voice.setPeriodicWave(glottis);
+    voice.frequency.setValueAtTime(noteHz(pitch)*.989,at);
+    voice.frequency.exponentialRampToValueAtTime(noteHz(pitch),at+.073);
+    vib.frequency.value = 5.1;
+    depth.gain.setValueAtTime(.1,at);
+    depth.gain.linearRampToValueAtTime(13,at+Math.min(.29,length*.8));
+    vib.connect(depth).connect(voice.detune);
+    amp.connect(mix);
+    envelope(amp,at+attack,length-attack,.036,.26,.89);
+    const nodes = [voice,amp,vib,depth];
+    const formants = vowels[vowel];
+    formants.forEach((hz,i) => {
+      const f = ctx.createBiquadFilter();
+      const partial = ctx.createGain();
+      f.type = "bandpass";
+      f.Q.value = [2.4,4.7,6.5][i];
+      const closed = ["m","b","p"].includes(initial);
+      f.frequency.setValueAtTime(closed && !i ? hz*.64 : hz,at);
+      f.frequency.linearRampToValueAtTime(hz,at+.08);
+      const endHz = final === "n" || final === "l" ? hz*(i===0?.70:.91) : final==="y" ? vowels.i[i] : hz;
+      f.frequency.setValueAtTime(hz,at+length*.7);
+      f.frequency.linearRampToValueAtTime(endHz,at+length);
+      partial.gain.value = [1.35,.94,.56][i];
+      voice.connect(f).connect(partial).connect(amp);
+      nodes.push(f,partial);
+    });
+    vib.start(at);
+    voice.start(at);
+    vib.stop(at+length+.005);
+    voice.stop(at+length+.01);
+    voice.onended = () => unplug(nodes);
+  }
+  function playBar(index, at) {
+    const [chord, ...melody] = score[index];
+    const isRefrain = melody.some(note => note[2]);
+    const [root, ...voicing] = chords[chord];
+    bass(root,at,beat*1.38,.31);
+    if (index%4===3 && index!==score.length-1) bass(root+7,at+2.48*beat,.40*beat,.17);
+    // A light down–up offbeat strum provides the three-step musette pulse.
+    for (let stroke=1; stroke<=2; stroke++) {
+      const order = stroke===1 ? voicing : [...voicing].reverse();
+      order.forEach((p,i) => guitar(p,at+stroke*beat+.014+i*.012,stroke===1?.27:.22));
+    }
+    let ticks = 0;
+    for (const [pitch, count, lyric] of melody) {
+      const start = at+ticks*beat;
+      const length = beat*count*(count<1?.92:.955);
+      if (lyric) sing(pitch,start,length,lyric);
+      else if (pitch) accordion(pitch,start,length,count<1?.097:.111);
+      // The reeds answer in the spaces between sung phrases.
+      if (!pitch && isRefrain && count===.5) {
+        accordion(voicing[1]+12,start,length,.062);
+      }
+      ticks += count;
+    }
+  }
+  function schedule() {
+    if (!ctx || ctx.state !== "running" || muted || mutedByPage) return;
+    const now = ctx.currentTime;
+    if (nextAt < now) nextAt = now+.04;
+    while (nextAt <= now+.28) {
+      playBar(nextBar, nextAt);
+      nextAt += barTime;
+      nextBar = (nextBar+1)%score.length;
+    }
+  }
+  function setTransport() {
+    const id = ++requestId;
+    clearInterval(timer);
+    if (muted || mutedByPage || !userStarted) {
+      if (ctx && ctx.state !== "suspended") ctx.suspend().catch(() => {});
+      return;
+    }
+    try { if (!ctx) init(); } catch { return; }
+    ctx.resume().then(() => {
+      if (id!==requestId || muted || mutedByPage || ctx.state!=="running") return;
+      schedule();
+      timer = setInterval(schedule,125);
+    }).catch(() => {});
+  }
+
+  const app = document.getElementById("app");
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "round-btn chanson-toggle";
+  button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3z"/><g class="sound-waves"><path d="M15.5 8.7a5 5 0 0 1 0 6.6M18.3 5.9a8.8 8.8 0 0 1 0 12.2"/></g><path class="quiet-mark" d="m16 9 5 6m0-6-5 6"/></svg>';
+  function updateButton() {
+    const playing = userStarted && !muted;
+    button.setAttribute("aria-pressed",String(playing));
+    button.setAttribute("aria-label","背景音乐");
+    button.title = playing ? "关闭音乐《Petit pollen》" : "播放音乐《Petit pollen》";
+  }
+  function mountButton() {
+    if (app.contains(button)) return;
+    const actions = app.querySelector(".mast-actions, .setup-start>.row");
+    if (actions) { actions.prepend(button); return; }
+    const help = app.querySelector(".mast>[data-do='help']");
+    if (help) {
+      const both = document.createElement("span");
+      both.className = "chanson-tools";
+      help.replaceWith(both);
+      both.append(button,help);
+    }
+  }
+  updateButton();
+  mountButton();
+  new MutationObserver(mountButton).observe(app,{childList:true});
+  button.addEventListener("click", () => {
+    muted = userStarted ? !muted : false;
+    userStarted = true;
+    try { localStorage.setItem(muteKey,muted ? "1" : "0"); } catch {}
+    updateButton();
+    setTransport();
+  });
+  function unlock(event) {
+    if (button.contains(event.target) || event.isComposing ||
+        (event.type==="keydown" && !["Enter"," "].includes(event.key))) return;
+    if (!userStarted || (!muted && ctx && ctx.state !== "running")) {
+      userStarted = true;
+      updateButton();
+      setTransport();
+    }
+  }
+  document.addEventListener("click",unlock,true);
+  document.addEventListener("keydown",unlock,true);
+  function pageState(hidden) {
+    if (hidden===mutedByPage) return;
+    mutedByPage = hidden;
+    setTransport();
+  }
+  document.addEventListener("visibilitychange", () => pageState(document.hidden));
+  window.addEventListener("pagehide", () => pageState(true));
+  window.addEventListener("pageshow", () => pageState(document.hidden));
 })();
 
 </script>

@@ -2,7 +2,7 @@
 const cacheName = 'pollen-table-RELEASE_HASH';
 const root = new URL('./', self.registration.scope);
 const paths = ['./', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png',
-  './icon-512.png', './guide.html', './pollen-table-v5.zip'];
+  './icon-512.png', './guide.html', './pollen-table-v5.zip', './meadow-cinema.webp', './cine-cast.webp'];
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {

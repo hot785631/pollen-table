@@ -134,7 +134,7 @@
   }
   const cycleGlyph='<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a11 11 0 0 1 19-5l3 3M27 4v7h-7M27 19a11 11 0 0 1-19 5l-3-3M5 28v-7h7"/></svg>';
   const icon = (name,cls="") => '<span aria-hidden="true" class="icon '+cls+'">'+(name==="cycle"?cycleGlyph:art.icon(name))+'</span>';
-  const bug = t => '<span aria-hidden="true" class="bug">'+art.bug(t)+'</span>';
+  const bug = t => '<span aria-hidden="true" class="bug" data-species="'+t+'">'+art.bug(t)+'</span>';
   const mark = () => '<div class="mast-mark">'+icon("leaf")+'<span class="word-mark">微境</span></div>';
   const say = str => {live.textContent=str;};
   const copy = x => JSON.parse(JSON.stringify(x));
@@ -157,12 +157,12 @@
     const notice=migrationNotice?'<p class="home-note" role="status">旧牌盒已按原比例整理为'+deckLimit+'张，可继续调整。</p>':"";
     migrationNotice=false;
     const choice=(id,title,note,images)=>'<button class="mode-choice '+id+'" data-do="mode-'+id+'" data-focus="mode-'+id+'"><span class="mode-symbol" aria-hidden="true">'+images+'</span><span class="mode-copy"><strong>'+title+'</strong><small>'+note+'</small></span></button>';
-    return '<div class="wrap mode-home">'+head()+'<section class="home"><div class="home-hero"><h1>花粉擂台</h1><p>五条花道，先带回 30 枚花粉。</p></div><div class="mode-menu">'+choice("solo","单人挑战","和电脑对战",bug("ant")+icon("play"))+choice("duo","双人同桌","坐在平板两边，一人一队",bug("bee")+bug("beetle"))+'</div>'+notice+'</section></div>';
+    return '<div class="wrap mode-home">'+head()+'<section class="home"><div class="home-hero"><h1>花粉<span>擂台</span></h1><p>五条花道，先带回 <strong>30</strong> 枚花粉。</p></div><div class="mode-menu">'+choice("solo","单人挑战","和电脑对战",bug("ant")+icon("play"))+choice("duo","双人同桌","面对面，一人一队",bug("bee")+bug("beetle"))+'</div>'+notice+'</section></div>';
   }
   function soloSetup() {
     const cards=TEAMS.map(t=>'<button type="button" data-do="team" data-team="'+t+'" data-focus="tribe-'+t+'" aria-pressed="'+(t===team)+'" aria-label="选择'+names[t]+'队" class="tribe '+t+(t===team?' chosen':'')+'"><span class="portrait">'+bug(t)+'</span><strong>'+names[t]+'队</strong></button>').join("");
     const choices=decks[team]?'<div class="deck-options solo-deck-options" aria-label="选择牌盒">'+[["preset","预组牌"],["box","我的牌盒"]].map(([v,label])=>'<button class="pill" data-do="solo-deck" data-source="'+v+'" aria-pressed="'+(activeSource(null,team)===v)+'">'+label+'</button>').join("")+'</div>':'';
-    return '<div class="wrap">'+head()+'<section class="home solo-setup"><div class="home-hero"><h1>选队</h1></div><div class="roster" aria-label="选择队伍">'+cards+'</div>'+abilityPanel(team)+choices+'<div class="home-actions">'+actionButton("modes","选模式","plain","back")+actionButton("build","配牌","edit-btn","leaf")+actionButton("start","开始对战","solid","play")+'</div></section></div>';
+    return '<div class="wrap solo-lobby">'+head()+'<section class="home solo-setup"><div class="home-hero"><h1>选队</h1></div><div class="roster" aria-label="选择队伍">'+cards+'</div>'+abilityPanel(team)+choices+'<div class="home-actions">'+actionButton("modes","选模式","plain","back")+actionButton("build","配牌","edit-btn","leaf")+actionButton("start","开始对战","solid","play")+'</div></section></div>';
   }
   function pickSeat(side) {
     const t=picks[side];
@@ -413,27 +413,28 @@
     partner: {
       outline:"M2 98 3 32Q4 11 26 8Q65 6 98 2L96 70Q95 93 73 95Q37 95 2 98Z",
       detail:"M7 88Q33 67 49 49M13 73 21 75M12 84 26 82M75 20 90 10M79 25 81 17M88 20 87 13",
-      fill:"#d3eddf", stroke:"#3c775b", vein:"#93bea4"
+      light:"#f0f4cb", fill:"#d4e4b7", shade:"#a5c09b", stroke:"#59734e", vein:"#97b787"
     },
     hit: {
       outline:"M15 2H84L98 16V79L85 97H16L2 82V17Z",
       detail:"M4 27 22 5M5 34 27 7M72 92 94 70M79 92 95 75",
-      fill:"#fbe2b9", stroke:"#a35a36", vein:"#e5b47e"
+      light:"#fff1cc", fill:"#f5d6a7", shade:"#e0ae80", stroke:"#9c623f", vein:"#cb9c69"
     },
     supply: {
       outline:"M5 8Q5 3 11 3H90Q97 3 97 11V83L83 97H11Q3 97 3 89Z",
       detail:"M82 95V83H95M11 20V11H22M12 26H21",
-      fill:"#d4eaf0", stroke:"#3b687f", vein:"#88afb8"
+      light:"#f1f4db", fill:"#d5e7df", shade:"#a3c6ca", stroke:"#4d7378", vein:"#8eafb0"
     },
     special: {
       outline:"M4 22Q1 8 16 5Q26 1 34 7Q48 -1 56 7Q70 0 77 7Q96 4 96 22Q102 32 95 42Q102 54 95 64Q102 74 95 81Q97 96 83 95Q73 101 64 94Q51 102 41 94Q28 102 19 95Q3 98 4 82Q-1 70 6 62Q-1 51 6 42Q-1 31 4 22Z",
       detail:"M68 14Q73 9 78 14M84 86Q90 86 90 80M17 86Q11 87 11 80",
-      fill:"#ebdbee", stroke:"#825688", vein:"#ba96bf"
+      light:"#fff1ea", fill:"#ebd8e5", shade:"#c6b1cf", stroke:"#816082", vein:"#b69ab5"
     }
   };
-  function cardFrame(kind) {
+  function cardFrame(kind,id) {
     const f=frames[kind];
-    return '<svg class="card-shell" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="'+f.outline+'" fill="'+f.fill+'" stroke="'+f.stroke+'" stroke-width="2.5" vector-effect="non-scaling-stroke"/><path d="'+f.outline+'" transform="translate(3.5 3.5) scale(.93)" fill="none" stroke="'+f.vein+'" stroke-width="1.4" vector-effect="non-scaling-stroke"/><path d="'+f.detail+'" fill="none" stroke="'+f.vein+'" stroke-width="1.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>';
+    const gradientId="card-light-"+id;
+    return '<svg class="card-shell" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="'+gradientId+'" x1="14%" y1="0%" x2="80%" y2="100%"><stop stop-color="'+f.light+'"/><stop offset=".58" stop-color="'+f.fill+'"/><stop offset="1" stop-color="'+f.shade+'"/></linearGradient></defs><path d="'+f.outline+'" fill="url(#'+gradientId+')" stroke="'+f.stroke+'" stroke-width="2.2" vector-effect="non-scaling-stroke"/><path d="'+f.outline+'" transform="translate(3.5 3.5) scale(.93)" fill="none" stroke="'+f.vein+'" stroke-width="1.1" vector-effect="non-scaling-stroke"/><path d="'+f.detail+'" fill="none" stroke="'+f.vein+'" stroke-width="1.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>';
   }
   function blockedLeafNote(side) {
     return game.board[side].every(Boolean)?"自己的叶位都站满了伙伴。":"剩下的空叶结着蛛网，收粉后才会打开。";
@@ -450,7 +451,7 @@
     if(special&&team==="butterfly")skillStat='<small class="hatch-caption">下轮 '+E.specialRules(team).hatchPower+'＋'+icon("pollen")+'</small>';
     const stat=special?'<span class="special-label">'+skills[team].name+skillStat+'</span>':supply?'<span class="card-stat">'+icon("handBack")+'+'+supplyAmount(side)+'</span>':'<span class="card-stat">'+icon("force")+(c.kind==="hit"?"−"+c.impact:E.powerForCost(c.cost))+'</span>';
     const disabledReason=!isMyTurn?"等你的回合":c.cost>game.players[side].sun?"阳光不足":special?skills[team].text:supply?"没有可摸的牌":c.kind==="hit"?"等对面上场":blockedLeafNote(side);
-    return '<button type="button" class="card '+c.kind+(can?'':' off')+(active?' picked':'')+(cycling?' for-cycle':'')+'" data-do="card" data-id="'+c.id+'" data-focus="card-'+c.id+'" aria-pressed="'+Boolean(active)+'" aria-label="'+(cycling?'换走':'')+cardLabel(c,side)+(can?'':'。'+disabledReason)+'" '+(!isMyTurn?"disabled":"")+' title="'+cardLabel(c,side)+'">'+cardFrame(c.kind)+'<span class="cost '+(c.cost===0?'free':'')+'">'+icon("sun")+c.cost+'</span>'+middle+stat+'</button>';
+    return '<button type="button" class="card '+c.kind+(can?'':' off')+(active?' picked':'')+(cycling?' for-cycle':'')+'" data-do="card" data-id="'+c.id+'" data-focus="card-'+c.id+'" aria-pressed="'+Boolean(active)+'" aria-label="'+(cycling?'换走':'')+cardLabel(c,side)+(can?'':'。'+disabledReason)+'" '+(!isMyTurn?"disabled":"")+' title="'+cardLabel(c,side)+'">'+cardFrame(c.kind,c.id)+'<span class="cost '+(c.cost===0?'free':'')+'">'+icon("sun")+c.cost+'</span>'+middle+stat+'</button>';
   }
   function score(p,side) {
     const n=tally?tally.display[side]:p.score;
@@ -925,5 +926,12 @@
   window.addEventListener("pagehide",()=>{stopFlights();clearPollenFlights();});
   window.addEventListener("resize",()=>{stopFlights();clearPollenFlights();});
   matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change",e=>{if(e.matches&&tally?.running)finishTally(tally,true);});
+  // Keep the illustrated insects visible while the shared photographic atlas loads.
+  const castUrl=getComputedStyle(document.documentElement).getPropertyValue("--cine-cast").trim();
+  if(castUrl && CSS.supports("width","1cqw")){
+    const castImage=new Image();
+    castImage.onload=()=>document.documentElement.classList.add("cast-ready");
+    castImage.src=castUrl.replace(/^url\(["']?|["']?\)$/g,"");
+  }
   render();
 })();

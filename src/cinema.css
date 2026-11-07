@@ -1,0 +1,262 @@
+/* Morning light at grass level. The same two plates also travel in the offline edition. */
+:root {
+  --meadow-cinema: url('meadow-cinema.webp');
+  --cine-cast: url('cine-cast.webp');
+  --ink: #29382b;
+  --moss: #33543a;
+  --paper: #fff9e5;
+  --cream: #f3ead2;
+  --line: #b9ac83;
+  --amber: #f9c85b;
+  --display-face: "Songti SC", "STZhongsong", "Noto Serif CJK SC", "SimSun", serif;
+  background: #20382c;
+}
+body {background:#20382c}
+#app {position:relative;isolation:isolate;min-height:100vh;min-height:100dvh}
+#app::before {
+  position:fixed;inset:0;z-index:-1;content:"";pointer-events:none;
+  background-color:#344830;
+  background-image:linear-gradient(125deg,rgba(12,31,22,.72),rgba(41,52,27,.43) 52%,rgba(14,32,23,.64)),var(--meadow-cinema);
+  background-position:center;background-size:cover;
+}
+.mast .mast-mark {color:#fff8db;letter-spacing:.12em}
+.mast-mark .icon {
+  width:38px;height:38px;padding:6px;border:1px solid #f1d8989c;border-radius:47% 53% 46% 50%;
+  background:linear-gradient(145deg,#f4f1bb,#adc697);box-shadow:0 2px 8px #1523174a;
+}
+.mast .round-btn {
+  color:#344132;background:linear-gradient(150deg,#fff9e4,#e5dec2);
+  border-color:#a4a481;box-shadow:0 2px 8px #10211445;
+}
+.plain,.pill,.edit-btn,.cancel {
+  color:#344331;border-color:#b5aa84;background:linear-gradient(145deg,#fffae9,#ece6cb);
+}
+.solid,.confirm {
+  color:#fff9e5;border-color:#36492c;background:linear-gradient(150deg,#536d3e,#304c35);
+  box-shadow:inset 0 1px #e6ebc368,0 3px 0 #263b28;
+}
+button:focus-visible {outline:3px solid #0077bb;outline-offset:3px}
+
+/* Opening shot. Keep the right of the frame open for the beetle. */
+.mode-home.wrap {
+  width:100%;max-width:none;min-height:100vh;min-height:100svh;
+  display:flex;flex-direction:column;padding:clamp(14px,3.6vh,40px) clamp(22px,7.3vw,150px);
+  background-color:#435438;
+  background-image:linear-gradient(90deg,rgba(12,29,22,.84),rgba(15,32,23,.66) 25%,rgba(19,32,20,.16) 63%,transparent 80%),
+    linear-gradient(0deg,rgba(13,30,21,.57),transparent 34%,transparent 79%,rgba(16,28,18,.15)),var(--meadow-cinema);
+  background-size:cover;background-position:center;
+}
+.mode-home .mast {min-height:46px;margin:0}
+.mode-home .mast-mark {gap:12px}
+.mode-home .mast .word-mark {font-size:clamp(17px,1.75vw,23px)}
+.mode-home .mast-actions .round-btn {
+  color:#fff8dc;background:#24382ad9;border-color:#fff1bd8c;box-shadow:0 3px 12px #12221842;
+}
+.mode-home .home {
+  flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  padding:clamp(52px,13vh,130px) 0 clamp(42px,10vh,105px);
+}
+.mode-home .home-hero {margin:0;text-align:left;max-width:none}
+.home-hero::before,.home-hero::after {display:none}
+.mode-home .home-hero h1 {
+  margin:0 0 .17em -.045em;color:#fffae5;font-family:var(--display-face);
+  font-size:clamp(68px,8.8vw,146px);font-weight:900;line-height:1.12;letter-spacing:.025em;
+  white-space:nowrap;text-shadow:0 3px 2px #332c1980,0 6px 30px #16251766;
+}
+.mode-home .home-hero h1 span {color:#ffe292}
+.mode-home .home-hero p {margin:0;color:#fff8e3;font-size:clamp(16px,1.6vw,23px);font-weight:650;letter-spacing:.035em;text-shadow:0 2px 6px #152317}
+.mode-home .home-hero p strong {color:#ffe292;font-variant-numeric:tabular-nums}
+.mode-home .mode-menu {
+  width:min(100%,595px);max-width:none;margin:clamp(25px,5.5vh,70px) 0 0;
+  grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.2vw,18px);
+}
+.mode-menu .mode-choice {
+  --button-light:#fff9dd;--button-shadow:#eadcb8;
+  position:relative;gap:clamp(7px,1vw,16px);min-height:clamp(80px,10vh,108px);
+  padding:11px clamp(9px,1.15vw,17px);border:1px solid #f3daa1;
+  border-radius:18px;color:#304334;
+  background:linear-gradient(140deg,var(--button-light),var(--button-shadow));
+  box-shadow:inset 0 1px #fff7,0 3px 0 #1a2b20b3,0 7px 20px #101c1770;
+}
+.mode-menu .mode-choice.duo {
+  --button-light:#3d5948;--button-shadow:#263f31;color:#fff6d5;border-color:#b9cd94;
+}
+.mode-choice::after {
+  content:"";width:8px;height:8px;flex:0 0 auto;margin-left:auto;margin-right:3px;
+  border-right:2px solid currentColor;border-top:2px solid currentColor;transform:rotate(45deg);opacity:.8;
+}
+.mode-choice .mode-copy {gap:3px}
+.mode-choice .mode-copy strong {font-size:clamp(19px,2.0vw,29px);letter-spacing:.025em}
+.mode-choice .mode-copy small {color:#4b5849;font-size:clamp(12px,1.05vw,15px);font-weight:600}
+.mode-choice.duo .mode-copy small {color:#e4e9d5}
+.mode-choice .mode-symbol {
+  width:clamp(48px,4.8vw,76px);height:auto;border-radius:50%;
+  background:radial-gradient(circle at 34% 25%,#f9ecc3,#dfc88b 64%,#bba46b);
+  box-shadow:inset 0 0 0 1px #a48b59,0 1px #fff9;
+}
+.mode-choice.duo .mode-symbol {background:radial-gradient(circle at 34% 25%,#e5e7bb,#bdca91 65%,#82986a);box-shadow:inset 0 0 0 1px #94a77d,0 1px #f5f1b75a}
+.mode-home .home-note {margin:16px 0 0;color:#fff6d8}
+@media (hover:hover) {
+  .mode-choice:hover,.tribe:hover,.pick-team:hover {box-shadow:inset 0 0 0 2px #e7c877,0 4px 12px #15231950}
+}
+
+/* Each insect keeps its silhouette in the little diagrams. In larger portraits
+   a single preloaded atlas supplies all five species without more requests. */
+.bug[data-species="ant"] {--cast-x:0%;--cast-y:0%}
+.bug[data-species="bee"] {--cast-x:50%;--cast-y:0%}
+.bug[data-species="beetle"] {--cast-x:100%;--cast-y:0%}
+.bug[data-species="spider"] {--cast-x:0%;--cast-y:100%}
+.bug[data-species="butterfly"] {--cast-x:50%;--cast-y:100%}
+:where(.cast-ready) :where(.bug[data-species]) {position:relative}
+.cast-ready .bug[data-species] {container-type:size}
+.cast-ready .bug[data-species]>.bug-svg {visibility:hidden}
+.cast-ready .bug[data-species]::after {
+  content:"";position:absolute;pointer-events:none;top:50%;left:50%;translate:-50% -50%;
+  width:min(100cqw,100cqh);height:min(100cqw,100cqh);
+  background-image:var(--cine-cast);background-repeat:no-repeat;
+  background-size:300% 200%;background-position:var(--cast-x) var(--cast-y);
+}
+.cast-ready .slot.hatched .bug::after {animation:pollen-open-wings .55s ease-out}
+
+/* Each faction sits in a softly lit patch of its own habitat. */
+.solo-lobby {max-width:1130px}
+.solo-lobby .solo-setup {padding-top:clamp(20px,8vh,85px)}
+.solo-setup .home-hero h1 {
+  color:#fff6d8;font-family:var(--display-face);font-weight:900;letter-spacing:.09em;
+  text-shadow:0 2px 16px #14281d;margin:0 0 clamp(18px,3.7vh,42px);
+}
+.tribe.ant,.pick-team.ant {--habitat:#d59c6c;--habitat-light:#ffedcb}
+.tribe.beetle,.pick-team.beetle {--habitat:#91a473;--habitat-light:#e1eaba}
+.tribe.bee,.pick-team.bee {--habitat:#e0ba67;--habitat-light:#fff1bb}
+.tribe.spider,.pick-team.spider {--habitat:#81b2a2;--habitat-light:#d6efe0}
+.tribe.butterfly,.pick-team.butterfly {--habitat:#afa2c7;--habitat-light:#eee1f2}
+.roster .tribe,.mini-roster .pick-team {
+  color:#303f30;border-color:#b3ae88;
+  background:linear-gradient(158deg,var(--habitat-light),#fff7df 55%,#e6dcc1);
+  box-shadow:inset 0 1px #fffdf1,0 3px 0 #24362565,0 5px 13px #22341f38;
+}
+.roster .tribe {border-radius:17px}
+.portrait {
+  border-radius:14px;background:radial-gradient(ellipse at 30% 20%,#fff7d690,transparent 56%),
+    linear-gradient(140deg,var(--habitat-light),var(--habitat));
+  box-shadow:inset 0 0 0 1px #735f382a;
+}
+.portrait::before {
+  left:9%;bottom:10%;width:24%;height:12%;background:var(--habitat);
+  box-shadow:10px -10px 0 -2px var(--habitat);opacity:.55;
+}
+.portrait::after {
+  left:24%;right:auto;bottom:13%;width:51%;height:13%;border-radius:50%;transform:none;
+  background:radial-gradient(ellipse at center,#493b2260,transparent 72%);opacity:.82;
+}
+.roster .tribe.chosen,.mini-roster .pick-team.chosen {
+  border-color:#506337;outline:2px solid #fbd67b;outline-offset:1px;
+  box-shadow:inset 0 0 0 1px #647648,0 4px 0 #293f2b82;
+}
+.solo-setup .team-ability,.duo-setup .team-ability {
+  background:#fff7e1;color:#344232;border-color:#c9b889;
+}
+.solo-setup .team-ability {box-shadow:0 3px 15px #1d2c2042}
+.solo-setup .home-actions {gap:clamp(7px,1.1vw,15px)}
+.solo-setup .home-actions .solid,.duo-setup .setup-start .solid {border-color:#d9d69d}
+.duo-setup .pick-seat,.duo-setup .pick-seat.seat-1,.deck.builder,#sheet {
+  color:#2d3d2e;border-color:#9f9e73;
+  background-color:#efe9d0;
+  background-image:linear-gradient(150deg,#f9f4dfef,#e6e7ccd9),var(--meadow-cinema);
+  background-size:cover;background-position:center;
+  box-shadow:inset 0 1px #fff5cc,0 4px 16px #15261e55;
+}
+.duo-setup .pick-seat.seat-1 {background-position:center 35%}
+.duo-setup .setup-caption {color:#fff4cf;text-shadow:0 1px 6px #132519}
+.duo-setup .setup-caption small {color:#eee9ca}
+.deck.builder .deck-group,.deck.builder .draw-odds {background:#fff8e6;border-color:#c6b991}
+.deck.builder .build-row+.build-row {border-color:#dcd4b8}
+.builder .deck-heading h2 {font-family:var(--display-face);font-weight:900}
+.deck.builder .deck-foot {border-color:#c7bc9a}
+#sheet::backdrop {background:#13251bc4}
+
+/* A dark, moss-lined playmat frames five light leaves. Numbers and action
+   previews remain on solid backgrounds, including during pollen settlement. */
+.battle:not(.tabletop) {
+  background:linear-gradient(155deg,#f9f4ddf5,#e6e9d1ed);
+  box-shadow:0 0 42px #15291c77;min-height:100vh;min-height:100dvh;
+}
+.battle.tabletop .tt-head .word-mark {color:#fff6d9;text-shadow:0 1px 4px #17271b}
+.battle .table {
+  border-color:#435332;background-color:#4e643c;
+  background-image:linear-gradient(135deg,#4d6032a6,#35472f9e),var(--meadow-cinema);
+  background-size:cover;background-position:center 74%;
+  box-shadow:inset 0 0 0 2px #b9bc7e,0 3px 1px #2c412cc2,0 6px 17px #20331c40;
+}
+.battle .table::before,.battle .table::after {display:none}
+.lane {
+  border-radius:53% 43% 50% 47% / 10% 9% 11% 10%;
+  background-color:#d3dba1;
+  background-image:
+    linear-gradient(90deg,transparent 49.35%,#92a56980 49.6% 50.4%,transparent 50.65%),
+    repeating-linear-gradient(31deg,transparent 0 22px,#80945836 23px,transparent 25px 46px),
+    repeating-linear-gradient(-31deg,transparent 0 22px,#80945836 23px,transparent 25px 46px),
+    linear-gradient(100deg,#b8c989,#e3e9aa 48%,#d3df9e 55%,#aabf80);
+  background-size:100% 100%,50% 100%,50% 100%,100% 100%;
+  background-repeat:no-repeat;background-position:center,left top,right top,center;
+  box-shadow:inset 0 0 0 1px #f2edaa, inset 1px -3px 6px #657e494f,0 2px 4px #24321f73;
+}
+.lane[data-tally="active"] {
+  background-image:linear-gradient(125deg,#fff2a5,#e5dc91 55%,#f6e49b);
+  box-shadow:inset 0 0 0 3px #97712c,0 0 0 2px #ffdf91;
+}
+.slot .vacant {border-color:#667e48}
+.slot .unit-power,.pollen-count {box-shadow:0 1px 3px #49532e30}
+.pollen-node>.icon {filter:drop-shadow(0 1px 2px #6d693e55)}
+.slot.legal,.pollen-node.legal {background-color:#ffed9a85;outline-color:#435b30}
+.tabletop .seat {
+  border-color:#adae87;background:linear-gradient(140deg,#dddcc5,#c9ceb7);
+  box-shadow:inset 0 1px #f8f3d9,0 2px 6px #17281d47;
+}
+.tabletop .active-seat,.tabletop .seat-top.active-seat {
+  border-color:#c5a359;background:linear-gradient(145deg,#fff6d7,#e9edd1);
+  box-shadow:inset 0 0 0 2px #ebca77,0 2px 9px #16271b50;
+}
+.tabletop .waiting-seat .card,.tabletop .finished-seat .card {filter:grayscale(1);opacity:.56}
+.tabletop .active-seat .card:not(.off) {filter:drop-shadow(0 1px 2px #41513b85)}
+.hand .card.picked {outline-color:#28643f}
+.card .cost,.card .card-stat,.card .special-label {box-shadow:0 1px 3px #293e292b}
+.hand .card-empty {border-color:#8f9d7e}
+
+@media(max-width:650px) and (orientation:portrait) {
+  .mode-home.wrap {
+    padding:14px max(19px,env(safe-area-inset-right)) max(25px,env(safe-area-inset-bottom)) max(19px,env(safe-area-inset-left));
+    background-image:linear-gradient(0deg,#172a20 0%,#182c21bf 12%,transparent 39%),
+      linear-gradient(180deg,#13291c75,#182e2269 28%,transparent 56%),var(--meadow-cinema);
+    background-position:center,center,90% center;
+  }
+  .mode-home .home {justify-content:space-between;padding:clamp(37px,11svh,115px) 0 0}
+  .mode-home .home-hero h1 {font-size:clamp(53px,13vw,81px)}
+  .mode-home .mode-menu {width:100%;margin:20px 0 0;gap:8px}
+  .mode-menu .mode-choice {min-height:76px;padding:9px;gap:6px;border-radius:13px}
+  .mode-choice .mode-symbol {width:clamp(30px,9.5vw,56px)}
+  .mode-choice .mode-copy strong {font-size:clamp(17px,4.6vw,23px)}
+  .mode-choice .mode-copy small {font-size:clamp(11px,2.8vw,14px)}
+  .mode-choice::after {display:none}
+  .solo-lobby .solo-setup {padding-top:14px}
+  .solo-setup .home-hero h1 {margin-bottom:14px}
+}
+@media(max-height:590px) and (orientation:landscape) {
+  .mode-home.wrap {padding:9px clamp(18px,5.5vw,65px)}
+  .mode-home .home {padding:15px 0;justify-content:center}
+  .mode-home .home-hero h1 {font-size:clamp(42px,14vh,77px);margin-bottom:.1em}
+  .mode-home .home-hero p {font-size:15px}
+  .mode-home .mode-menu {width:min(100%,465px);margin-top:clamp(10px,3.5vh,20px)}
+  .mode-menu .mode-choice {min-height:61px;padding:5px 9px;border-radius:14px}
+  .mode-choice .mode-symbol {width:43px}
+  .mode-choice .mode-copy strong {font-size:19px}
+  .solo-lobby .solo-setup {padding-top:3px}
+  .solo-lobby.wrap {padding-block:5px}
+  .solo-lobby .mast {margin-bottom:4px}
+  .solo-setup .home-actions {margin:8px 0}
+  .solo-setup .team-ability {margin-top:9px}
+  .solo-setup .home-hero h1 {margin-bottom:6px}
+}
+@media(prefers-reduced-motion:reduce) {
+  .cast-ready .slot.hatched .bug::after {animation:none}
+}

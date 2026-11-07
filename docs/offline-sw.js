@@ -1,8 +1,8 @@
 'use strict';
-const cacheName = 'pollen-table-770cf54188614698';
+const cacheName = 'pollen-table-de983718ab0f0555';
 const root = new URL('./', self.registration.scope);
 const paths = ['./', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png',
-  './icon-512.png', './guide.html', './pollen-table-v5.zip'];
+  './icon-512.png', './guide.html', './pollen-table-v5.zip', './meadow-cinema.webp', './cine-cast.webp'];
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
