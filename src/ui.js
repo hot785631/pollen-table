@@ -490,7 +490,7 @@
     const hot=hotZone(side,lane,moves);
     const web=(view.result?.webs??view.webs)[side][lane],brood=view.broods[side][lane];
     const webPreview=web&&!(game.result?.webs??game.webs)[side][lane],broodPreview=brood&&!game.broods[side][lane];
-    const destroyedBrood=game.broods[side][lane]>0&&!brood;
+    const destroyedBrood=pending?.type==="special"&&actorTeam()==="spider"&&game.broods[side][lane]>0&&!brood;
     const released=pending?.type==="special"&&actorTeam()==="beetle"&&side===actorSide()&&lane===pending.from&&game.webs[side][lane]&&!web;
     const diff=(shown?.power??-1)!==(now?.power??-1)||webPreview||broodPreview||destroyedBrood||released;
     const me=actorSide(),team=actorTeam(),skillSide=specialRow(team,me);
