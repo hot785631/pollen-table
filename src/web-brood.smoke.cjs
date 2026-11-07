@@ -13,7 +13,7 @@ function prepareFixture(spider) {
     const foe = 1 - spider;
     const state = original({
       factions: spider === 0 ? ["spider", "butterfly"] : ["butterfly", "spider"],
-      first: spider, rng: () => 0.41,
+      first: foe, rng: () => 0.41,
     });
     state.players.forEach(player => {
       player.sun = 10;
@@ -23,10 +23,11 @@ function prepareFixture(spider) {
       player.discard = [];
     });
     state.board[foe][2] = { power: 3, base: 3, cost: 2 };
-    state.broods[foe][2] = 7;
-    state.broods[foe][4] = 5;
-    state.pollen[2] = 0;
-    state.eaten[2] = 3;
+    state.board[spider][2] = { power: 1, base: 1, cost: 1 };
+    state.broods[foe][4] = engine.specialRules("butterfly").hatchPower;
+    state.broodFirst[4] = foe;
+    state.pollen = [0, 0, 3, 0, 1];
+    state.startingPollen = 4;
     window.fixture = state;
     return state;
   };
@@ -53,7 +54,7 @@ const server = http.createServer((request, response) => {
 async function checkSeat(browser, spider, viewport) {
   const context = await browser.newContext({
     viewport, hasTouch: true,
-    isMobile: true, reducedMotion: "reduce",
+    isMobile: true, reducedMotion: spider === 0 ? "reduce" : "no-preference",
   });
   try {
     const page = await context.newPage();
@@ -71,17 +72,26 @@ async function checkSeat(browser, spider, viewport) {
     assert.equal(await page.locator(".card").count(), 4);
     assert.equal(await page.locator(".waiting-seat .card:disabled").count(), 2);
     assert.equal(await page.locator(".active-seat .card:enabled").count(), 2);
-    assert.ok((await page.locator(".waiting-seat .card.special").first().getAttribute("aria-label")).startsWith("守蛹"));
+    assert.ok((await page.locator(".waiting-seat .card.special").first().getAttribute("aria-label")).startsWith("织网"));
     assert.equal(await page.locator(".waiting-seat .card").first().evaluate(card => getComputedStyle(card).filter), "grayscale(1)");
     const otherCard = await page.locator(".waiting-seat .card").first().boundingBox();
     await page.touchscreen.tap(otherCard.x + otherCard.width / 2, otherCard.y + otherCard.height / 2);
     assert.equal(await page.locator(".card.picked").count(), 0, "waiting player cannot select a card");
     const target = page.locator('.slot[data-side="' + (1 - spider) + '"][data-lane="2"]');
+    const flower = page.locator('.pollen-node[data-lane="2"]');
+    await page.locator(".active-seat .card.special").first().tap();
+    await target.tap();
+    assert.equal(await flower.getAttribute("data-pollen"), "3");
+    assert.equal(await target.locator(".brood-marker b").textContent(), "7");
+    await page.locator('[data-do="confirm"]').tap();
+    assert.equal(await flower.getAttribute("data-pollen"), "3");
+    assert.equal(await flower.locator(".feed-destination").count(), 1);
     await page.locator(".active-seat .card.special").first().tap();
     await target.tap();
     assert.ok((await target.getAttribute("aria-label")).includes("蛹被摧毁"));
     assert.equal(await target.locator(".brood-destroyed").count(), 1);
-    assert.equal(await page.evaluate(side => window.fixture.broods[1 - side][2], spider), 7);
+    assert.equal(await flower.getAttribute("data-pollen"), "3");
+    assert.equal(await flower.locator(".feed-destination").count(), 0);
     if (process.env.POLLEN_SCREENSHOT && spider === 0 && viewport.width === 1024) {
       await page.screenshot({ path: process.env.POLLEN_SCREENSHOT });
     }
@@ -92,6 +102,7 @@ async function checkSeat(browser, spider, viewport) {
     await target.tap();
     await page.locator('[data-do="confirm"]').tap();
     assert.equal(await target.locator(".brood-marker").count(), 0);
+    assert.equal(await flower.getAttribute("data-pollen"), "3");
     assert.equal(await page.locator(".active-seat").getAttribute("data-seat"), String(1 - spider));
     assert.equal(await page.locator(".waiting-seat .card:enabled").count(), 0);
     for (const side of [1 - spider, spider]) {
@@ -99,6 +110,10 @@ async function checkSeat(browser, spider, viewport) {
       await page.locator('[data-do="confirm"]').tap();
     }
     await page.locator('[data-do="next"]').first().waitFor();
+    assert.equal(await flower.locator(".collection-result").getAttribute("data-award"), String(spider));
+    assert.equal(await flower.locator(".collection-result b").textContent(), "+3");
+    assert.equal(await page.locator('[data-lane="4"] .collection-result[data-award="feed"] b').textContent(), "×1");
+    assert.equal(await page.locator('[data-score-side="'+spider+'"] b').first().textContent(), "3");
     await page.locator('[data-do="next"]').first().tap();
     assert.equal(await page.locator('[data-do="reveal"],[data-do="cover"],.covered-card').count(), 0);
     assert.equal(await page.locator(".waiting-seat .card:enabled").count(), 0);

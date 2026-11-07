@@ -6,6 +6,8 @@
   line-height:1.1;white-space:nowrap;
 }
 .collection-result[data-award="1"] {color:#324c52;border-color:#5b7884;background:#f8ecb4}
+.collection-result[data-award="feed"] {color:#395b45;background:#e4efd2}
+.collection-result[data-award="feed"] svg,.feed-destination svg {width:17px;height:19px;vertical-align:middle}
 .collection-result:is([data-award="empty"],[data-award="tie"]) {background:#ecebd7;border-color:#abb397;color:#4c604c}
 .tabletop .collection-result[data-award="1"] b {transform:rotate(180deg)}
 .lane:is([data-tally="active"],[data-tally="complete"]) .collection-result {display:inline-flex}

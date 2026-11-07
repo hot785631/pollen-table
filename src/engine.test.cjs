@@ -703,8 +703,12 @@ test("weaving destroys only the targeted enemy brood and it cannot hatch next ro
     s.turn = butterfly;
     s.players.forEach(p => { p.sun = 10; deal(p, ["special"]); });
     s.board[butterfly][2] = unit(3);
+    s.board[spider][2] = unit(1);
+    s.pollen.fill(0);
     s.pollen[2] = 3;
     s = P.play(s, skill(s, 2, 2));
+    assert.equal(s.pollen[2], 3);
+    assert.equal(s.eaten[2], 0);
     s.broods[butterfly][4] = 5;
     const original = structuredClone(s);
     const chosen = skill(s, 2, 2);
@@ -714,12 +718,16 @@ test("weaving destroys only the targeted enemy brood and it cannot hatch next ro
     assert.deepEqual(s, original, "a cancelled UI preview must leave its source intact");
     assert.equal(netted.broods[butterfly][2], 0);
     assert.equal(netted.broods[butterfly][4], 5);
-    assert.equal(netted.pollen[2], 0, "eaten pollen is not refunded");
-    assert.equal(netted.eaten[2], 3);
+    assert.equal(netted.pollen[2], 3, "destroying a waiting brood leaves the pile intact");
+    assert.equal(netted.eaten[2], 0);
     assert.equal(netted.board[butterfly][2].power, 3);
     assert.equal(netted.players[spider].sun, 10 - P.specialCost("spider"));
     assert.ok(netted.webs[butterfly][2]);
-    const next = P.nextRound(close(netted));
+    const settled = close(netted);
+    assert.equal(settled.result.winners[2], spider);
+    assert.equal(settled.result.gain[spider], 3);
+    assert.equal(settled.eaten[2], 0);
+    const next = P.nextRound(settled);
     assert.equal(next.board[butterfly][2], null);
     assert.equal(next.board[butterfly][4].power, 5);
     assert.deepEqual(next.lastEvent.hatched[butterfly], [4]);
@@ -761,15 +769,17 @@ test("both sides may guard the same lane, with separate meals and newborns at th
   const base = P.specialRules("butterfly").hatchPower;
   assert.deepEqual(P.chooseAI(s), skill(s, 4, 4), "deny the opponent's two flowers and raise a stronger newborn");
   assert.ok(!P.actions(s).some(a => a.type === "special" && a.from !== 4));
-  const afterMeal = P.play(s, skill(s, 4, 4));
-  assert.deepEqual(afterMeal.board, s.board);
-  assert.deepEqual(afterMeal.pollen, [1, 1, 1, 0, 0]);
-  assert.deepEqual(afterMeal.eaten, [0, 0, 0, 0, 2]);
-  assert.equal(afterMeal.broods[0][4], base + 2);
-  s = P.play(afterMeal, skill(afterMeal, 4, 4)); // No pollen left; still guards a base-strength brood.
+  const waiting = P.play(s, skill(s, 4, 4));
+  assert.deepEqual(waiting.board, s.board);
+  assert.deepEqual(waiting.pollen, [1, 1, 1, 0, 2]);
+  assert.deepEqual(waiting.eaten, [0, 0, 0, 0, 0]);
+  assert.equal(waiting.broods[0][4], base);
+  s = P.play(waiting, skill(waiting, 4, 4));
   assert.equal(s.broods[1][4], base);
   assert.ok(!P.actions(s).some(a => a.type === "special" && a.from === 4));
   s = close(s);
+  assert.equal(s.result.feeders[4], 0);
+  assert.equal(s.eaten[4], 2);
   assert.deepEqual(s.result.gain, [0, 0]);
   assert.equal(s.board[0][4].power, 1); assert.equal(s.board[1][4].power, 5);
   s = P.nextRound(s);
@@ -783,7 +793,7 @@ test("both sides may guard the same lane, with separate meals and newborns at th
   assert.ok(skill(s, 4, 4), "a newborn can guard the following generation");
 });
 
-test("butterflies eat pollen brought by bees; pollen moved there afterwards still scores", () => {
+test("a cocoon eats the final pile, including pollen delivered after it was placed", () => {
   let s = fresh("bee", "butterfly");
   s.players.forEach(p => { p.sun = 10; });
   deal(s.players[0], ["special", "special"]); deal(s.players[1], ["special"]);
@@ -791,14 +801,47 @@ test("butterflies eat pollen brought by bees; pollen moved there afterwards stil
   s.board[0][3] = unit(5); s.board[1][3] = unit(1);
   s = P.play(s, skill(s, 2, 3)); assert.equal(s.pollen[3], 5);
   s = P.play(s, skill(s, 3, 3));
-  assert.equal(s.eaten[3], 5); assert.equal(s.pollen[3], 0);
-  assert.equal(s.broods[1][3], P.specialRules("butterfly").hatchPower + 5);
+  assert.equal(s.eaten[3], 0); assert.equal(s.pollen[3], 5);
+  assert.equal(s.broods[1][3], P.specialRules("butterfly").hatchPower);
   s = P.play(s, skill(s, 4, 3));
-  assert.equal(s.eaten[3], 5); assert.equal(s.pollen[3], 1);
+  assert.equal(s.eaten[3], 0); assert.equal(s.pollen[3], 6);
   assert.equal(s.eaten[3] + s.pollen.reduce((a,b) => a+b), s.startingPollen);
   s = close(s);
-  assert.deepEqual(s.result.gain, [1, 0]);
+  assert.deepEqual(s.result.gain, [0, 0]);
+  assert.equal(s.eaten[3], 6);
+  assert.equal(s.pollen[3], 0);
+  assert.equal(P.nextRound(s).board[1][3].power, P.specialRules("butterfly").hatchPower + 6);
   assert.equal(s.players[1].score, 0);
+});
+
+test("bees can take all pollen from a waiting cocoon and score it elsewhere", () => {
+  let s = fresh("butterfly", "bee");
+  s.players.forEach(p => { p.sun = 10; deal(p, ["special"]); });
+  s.board[0][1] = unit(3); s.board[1][2] = unit(1);
+  s.pollen = [0, 3, 1, 0, 0];
+  s = P.play(s, skill(s, 1, 1));
+  s = P.play(s, skill(s, 1, 2));
+  assert.deepEqual(s.pollen, [0, 0, 4, 0, 0]);
+  const settled = close(s);
+  assert.deepEqual(settled.eaten, [0, 0, 0, 0, 0]);
+  assert.deepEqual(settled.result.gain, [0, 4]);
+  assert.equal(P.nextRound(settled).board[0][1].power, P.specialRules("butterfly").hatchPower);
+});
+
+test("opposing cocoons feed in placement order even when the upper seat placed first", () => {
+  let s = fresh("butterfly", "butterfly");
+  s.turn = 1;
+  s.players.forEach(p => { p.sun = 10; deal(p, ["special"]); });
+  s.board.forEach(row => { row[1] = unit(1); });
+  s.pollen = [0, 3, 0, 0, 0];
+  s = P.play(s, skill(s, 1, 1));
+  s = P.play(s, skill(s, 1, 1));
+  s = close(s);
+  assert.equal(s.result.feeders[1], 1);
+  assert.equal(s.eaten[1], 3);
+  const next = P.nextRound(s), base = P.specialRules("butterfly").hatchPower;
+  assert.equal(next.board[1][1].power, base + 3);
+  assert.equal(next.board[0][1].power, base);
 });
 
 test("guarding leaves the parent vulnerable to hits and pushes; its brood stays with the flower", () => {
@@ -814,7 +857,7 @@ test("guarding leaves the parent vulnerable to hits and pushes; its brood stays 
   assert.ok(moved.board[0][4]);
   assert.equal(moved.broods[0][4], 0);
   const hatch = P.specialRules("butterfly").hatchPower + 2;
-  assert.equal(moved.broods[0][3], hatch);
+  assert.equal(moved.broods[0][3], P.specialRules("butterfly").hatchPower);
   const next = P.nextRound(close(moved));
   assert.equal(next.board[0][3].power, hatch);
   assert.equal(next.board[0][4], null);

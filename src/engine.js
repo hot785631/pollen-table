@@ -16,6 +16,15 @@
   const powerForCost = cost => [0, 1, 3, 5, 7][cost];
   const projectedPower = unit => unit?.power || 0;
   const scorePower = (unit, isWebbed) => isWebbed ? 0 : projectedPower(unit);
+  // With two surviving cocoons, the one placed first takes the single shared pile.
+  function feedingSide(brood0, brood1, first) {
+    if (brood0 && brood1) return first;
+    return brood0 ? 0 : brood1 ? 1 : null;
+  }
+  function laneFeeder(state, lane) {
+    return state.result ? state.result.feeders[lane] :
+      feedingSide(state.broods[0][lane], state.broods[1][lane], state.broodFirst[lane]);
+  }
   function lanePower(state, side, lane) {
     const webs = state.result?.webs || state.webs;
     return scorePower(state.board[side][lane], webs[side][lane]);
@@ -197,7 +206,8 @@
     const decks = options.decks || [];
     const seed = Math.floor(rng() * 4294967296) >>> 0;
     const state = { round: 1, first, turn: first, phase: "play", winner: null, result: null,
-      board: emptyBoard(), webs: rows(false), broods: rows(0), eaten: lanes.map(() => 0), players: [],
+      board: emptyBoard(), webs: rows(false), broods: rows(0), broodFirst: lanes.map(() => null),
+      eaten: lanes.map(() => 0), players: [],
       lastEvent: drawEvent("deal"), seed, pollenSeed: (seed ^ 0x9e3779b9) >>> 0 };
     // The public flower layout is independent of shuffles and private draw history.
     state.pollen = freshPollen(state);
@@ -212,7 +222,7 @@
   // Context has only the acting player's cards and the shared board.
   function context(state, side) {
     const p = state.players[side];
-    return { own: state.board[side], enemy: state.board[1 - side], pollen: state.pollen, eaten: state.eaten,
+    return { side, own: state.board[side], enemy: state.board[1 - side], pollen: state.pollen, broodFirst: state.broodFirst,
       ownWeb: state.webs[side], enemyWeb: state.webs[1 - side],
       ownBrood: state.broods[side], enemyBrood: state.broods[1 - side],
       faction: p.faction, sun: p.sun, hand: p.hand, canCycle: p.canCycle,
@@ -291,10 +301,8 @@
         c.enemyWeb[act.from] = true;
         c.enemyBrood[act.from] = 0;
       } else if (c.faction === "butterfly") {
-        const meal = c.pollen[act.from];
-        c.ownBrood[act.from] = rules.hatchPower + meal;
-        c.eaten[act.from] += meal;
-        c.pollen[act.from] = 0;
+        if (!c.enemyBrood[act.from]) c.broodFirst[act.from] = c.side;
+        c.ownBrood[act.from] = rules.hatchPower;
       }
     } else if (card.kind === "partner") {
       const base = powerForCost(card.cost);
@@ -308,14 +316,23 @@
 
   function finishRound(state) {
     const gain = [0, 0];
+    const feeders = lanes.map(lane => laneFeeder(state, lane));
     const winners = lanes.map(lane => {
+      const feeder = feeders[lane];
+      if (feeder !== null) {
+        const meal = state.pollen[lane];
+        state.broods[feeder][lane] += meal;
+        state.eaten[lane] = meal;
+        state.pollen[lane] = 0;
+        return null;
+      }
       const a = scorePower(state.board[0][lane], state.webs[0][lane]);
       const b = scorePower(state.board[1][lane], state.webs[1][lane]);
       const winner = a === b ? null : a > b ? 0 : 1;
       if (winner !== null) gain[winner] += state.pollen[lane];
       return winner;
     });
-    state.result = { gain, winners, webs: state.webs };
+    state.result = { gain, winners, feeders, webs: state.webs };
     state.webs = rows(false);
     state.players.forEach((player, i) => { player.score += gain[i]; });
     const [a, b] = state.players.map(player => player.score);
@@ -377,6 +394,7 @@
     result.board = emptyBoard();
     result.webs = rows(false);
     result.broods = rows(0);
+    result.broodFirst = lanes.map(() => null);
     result.eaten = lanes.map(() => 0);
     result.pollen = freshPollen(result);
     result.lastEvent = drawEvent("round");
@@ -407,7 +425,7 @@
     if (action.type === "special" && c.faction === "beetle") next.ownWeb = [...c.ownWeb];
     if (action.type === "special" && c.faction === "butterfly") {
       next.ownBrood = [...c.ownBrood];
-      next.eaten = [...c.eaten];
+      next.broodFirst = [...c.broodFirst];
     }
     applyToContext(next, action);
     return next;
@@ -417,6 +435,12 @@
     let value = 0, future = 0;
     const largestPartner = powerForCost(Math.min(foeSun, 4));
     for (const lane of lanes) {
+      if (c.ownBrood[lane] || c.enemyBrood[lane]) {
+        const feeder = feedingSide(c.ownBrood[lane], c.enemyBrood[lane], c.broodFirst[lane] === c.side ? 0 : 1);
+        const hatchLead = c.ownBrood[lane] - c.enemyBrood[lane] + (feeder === 0 ? c.pollen[lane] : -c.pollen[lane]);
+        if (hatchLead) future += Math.sign(hatchLead) * (0.55 + 0.08 * Math.min(6, Math.abs(hatchLead)));
+        continue;
+      }
       const a = scorePower(c.own[lane], c.ownWeb[lane]);
       const b = scorePower(c.enemy[lane], c.enemyWeb[lane]);
       const lead = a - b;
@@ -433,7 +457,7 @@
           // An equally good open flower lets the opponent simply deploy elsewhere.
           let alternative = 0;
           for (const other of lanes) {
-            if (other !== lane && !c.enemy[other] && !c.enemyWeb[other] &&
+            if (other !== lane && !c.enemy[other] && !c.enemyWeb[other] && !c.ownBrood[other] && !c.enemyBrood[other] &&
                 scorePower(c.own[other], c.ownWeb[other]) <= largestPartner) {
               alternative = Math.max(alternative, c.pollen[other]);
             }
@@ -441,8 +465,6 @@
           value += 0.65 * Math.max(0, c.pollen[lane] - alternative);
         }
       }
-      const hatchLead = c.ownBrood[lane] - c.enemyBrood[lane];
-      if (hatchLead) future += Math.sign(hatchLead) * (0.55 + 0.08 * Math.min(6, Math.abs(hatchLead)));
     }
     if (Math.max(myScore, foeScore) >= 30 && myScore !== foeScore) {
       if (!couldRespond) return Math.sign(myScore - foeScore) * 100 + value;
@@ -453,6 +475,7 @@
 
   function winsAtClose(c, mine, theirs) {
     for (const lane of lanes) {
+      if (c.ownBrood[lane] || c.enemyBrood[lane]) continue;
       const lead = scorePower(c.own[lane], c.ownWeb[lane]) - scorePower(c.enemy[lane], c.enemyWeb[lane]);
       if (lead > 0) mine += c.pollen[lane];
       if (lead < 0) theirs += c.pollen[lane];
@@ -547,5 +570,5 @@
     return exchangeCandidate(c) || draw || best;
   }
 
-  return { newGame, actions, play, nextRound, chooseAI, defaultDeck, validateDeck, migrateDeck, powerForCost, projectedPower, scorePower, lanePower, hitCost, supplyCost, supplyDrawCount, specialCost, specialCount, openingChance, specialRules, tuning, deckLimit };
+  return { newGame, actions, play, nextRound, chooseAI, defaultDeck, validateDeck, migrateDeck, powerForCost, projectedPower, scorePower, lanePower, laneFeeder, hitCost, supplyCost, supplyDrawCount, specialCost, specialCount, openingChance, specialRules, tuning, deckLimit };
 });

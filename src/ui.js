@@ -12,7 +12,7 @@
     beetle:{name:"顶一顶", row:"enemy", get text(){const n=E.specialRules("beetle").pushLoss;return "把正对甲虫的敌虫顶到邻道。"+(n?"它减 "+n+" 力，最低到 0。":"")+"若邻道有敌虫，两只交换位置。顶撞也能挣脱自己脚下的网。";}, ask:"点甲虫正对的敌虫", next:"点相邻敌方叶位"},
     bee:{name:"搬花粉", row:"pollen", text:"把一朵花的花粉全部搬走，堆到隔壁有自己蜜蜂的花上。新的一堆也能再整堆搬。", ask:"点要搬走的一堆花粉", next:"点旁边有蜂的花道"},
     spider:{name:"织网", row:"enemy", single:true, text:"点对手没结网或有蛹的叶子。空网挡新伙伴；网里的虫这轮不采粉；现有的蛹被摧毁，下轮不孵化。", ask:"点对面没网或有蛹的叶子"},
-    butterfly:{name:"守蛹", row:"own", single:true, get text(){return "点场上自己的蝴蝶。蛹吃掉这朵花的全部花粉，双方都收不到这几枚。下轮原地孵化：原有 "+E.specialRules("butterfly").hatchPower+" 力，每吃一枚再加 1 力。每道同时只留一个蛹，蛹可被织网摧毁。";}, ask:"点场上的蝴蝶守蛹"}
+    butterfly:{name:"守蛹", row:"own", single:true, get text(){return "点自己的蝴蝶留蛹。结算时蛹还在，就吃光本道剩余花粉，下轮孵出 "+E.specialRules("butterfly").hatchPower+"＋吃粉数 力的新蝶。织网破蛹，花粉留在道上。";}, ask:"点场上的蝴蝶守蛹"}
   };
   const laneName = i => "第"+(i+1)+"花道";
   const phases = [
@@ -127,7 +127,7 @@
     if(t==="beetle")return "把对面的虫顶到邻道或交换位置"+(r.pushLoss?"，被顶的虫减 "+r.pushLoss+" 力":"")+"，甲虫自己也挣脱蛛网。";
     if(t==="bee")return "把一条道的全部花粉搬到相邻、有己方蜜蜂的花道。";
     if(t==="spider")return "点对面没网或有蛹的叶位：空位挡伙伴，有虫则本轮不采粉；现有的蛹被摧毁，下轮不孵化。";
-    return "让场上的蝴蝶守蛹，蛹吃光本道花粉，下轮原地孵出 "+r.hatchPower+"＋花粉数 力的新蝶。";
+    return "在自己的蝴蝶旁留蛹。活到结算才吃光本道剩余花粉，下轮孵出 "+r.hatchPower+"＋吃粉数 力的新蝶。";
   }
   function abilityPanel(t) {
     return '<div class="team-ability" aria-live="polite"><span class="ability-thumb" aria-hidden="true">'+art.skill(t)+'</span><div class="ability-copy"><div class="ability-title"><strong>'+skills[t].name+'</strong>'+specialPrice(t)+'</div><p>'+abilityBlurb(t)+'</p></div></div>';
@@ -297,8 +297,8 @@
       ["sun","阳光","第一轮每人 3 点，以后每轮多 1 点，升到 10 点为止。每轮重新补满。上限 3～4 点叫初花，5～7 点叫盛花，8～10 点叫晚花。"],
       ["force","伙伴","点虫牌，再点自己这边的空位。脚印旁的数字是力量。"],
       ["bump","撞击","点撞击牌，再点对面的虫。减 1、2、3 力的牌，分别花 "+[1,2,3].map(E.hitCost).join("、")+" 点阳光。虫的力量最低到 0。"],
-      ["web","蛛网","点对手没网或有蛹的叶子，自己场上没有蜘蛛也能出牌。织网同时摧毁该处现有的蛹，下轮不孵化，已吃的花粉不退回。空网挡手牌伙伴；网中虫保留力量和绝招，但本轮不采粉。甲虫顶撞能挣脱网。若两边都没有采粉力量，就都得 0。收完花粉清网。"],
-      ["cocoon","蛹","守蛹时吃光本道花粉，空花也能守蛹。原蝶力量照旧，蜜蜂后来搬来的花粉还能争。原蝶被顶走，蛹留在原道。被织网摧毁的蛹下轮不孵化；可再花一张守蛹留新蛹，蜘蛛也可再次织网摧毁它。"],
+      ["web","蛛网","织网会摧毁目标位置现有的蛹，花粉留在道上。空网挡手牌伙伴；网中虫保留力量和绝招，但本轮不采粉。甲虫顶撞能挣脱网。若两边都没有采粉力量，就都得 0。收完花粉清网。"],
+      ["cocoon","蛹","放蛹时花粉留在道上，蜜蜂可以搬进或搬走花粉。结算时，活着的蛹先吃光本道剩余花粉，下一轮原地孵化。双方在同一道留蛹时，先放的先吃，另一只按基础力量孵化。原蝶被顶走，蛹仍留在原道。"],
       ["supply","补给","花 "+E.supplyCost+" 点阳光打出补给，从自己的牌堆补满 6 张手牌。手里原有 3 张时，打掉补给剩 2 张，再摸 4 张。刚打出的补给等摸完才放进弃牌堆。"],
       ["drawStack","摸牌","绿色牌堆旁边是还没抽的张数，托盘旁边是弃牌数。牌堆空了又要摸牌时，弃牌洗回来。"],
       ["flower",skills[team].name,"花 "+E.specialCost(team)+" 点阳光。"+skills[team].text+deckLimit+" 张牌里至少留 1 张伙伴，本族专属可放 0 到 "+(deckLimit-1)+" 张。"],
@@ -489,6 +489,7 @@
     const shown=view.board[side][lane], now=game.board[side][lane];
     const hot=hotZone(side,lane,moves);
     const web=(view.result?.webs??view.webs)[side][lane],brood=view.broods[side][lane];
+    const hatchPower=brood+(!view.result&&E.laneFeeder(view,lane)===side?view.pollen[lane]:0);
     const webPreview=web&&!(game.result?.webs??game.webs)[side][lane],broodPreview=brood&&!game.broods[side][lane];
     const destroyedBrood=pending?.type==="special"&&actorTeam()==="spider"&&game.broods[side][lane]>0&&!brood;
     const released=pending?.type==="special"&&actorTeam()==="beetle"&&side===actorSide()&&lane===pending.from&&game.webs[side][lane]&&!web;
@@ -503,10 +504,10 @@
     if(shown)artBody=bug(game.players[side].faction)+'<span class="unit-power">'+icon("force")+(changed?'<s class="old-number">'+now.power+'</s>':'')+shown.power+'</span>';
     const webMark=web?'<span class="web-marker" aria-hidden="true">'+art.icon("web")+'</span>':"";
     const harvestMark=web&&shown?'<small class="no-harvest" title="本轮不采粉" aria-hidden="true">'+art.icon("noHarvest")+'<span>不采粉</span></small>':"";
-    const broodMark=brood?'<span class="brood-marker" aria-hidden="true">'+art.cocoon()+'<small>下轮</small><b>'+brood+'</b></span>':destroyedBrood?'<span class="brood-marker brood-destroyed" aria-hidden="true">'+art.cocoon()+'<b>×</b><small>不孵化</small></span>':"";
+    const broodMark=brood?'<span class="brood-marker" aria-hidden="true">'+art.cocoon()+'<small>'+(view.result?'下轮':'预计')+'</small><b>'+hatchPower+'</b></span>':destroyedBrood?'<span class="brood-marker brood-destroyed" aria-hidden="true">'+art.cocoon()+'<b>×</b><small>不孵化</small></span>':"";
     const content=artBody+webMark+harvestMark+broodMark+routeMarker(side===skillSide,lane);
     const label=playerName(side)+laneName(lane)+"，"+(shown?(shown.hatched?"新生蝴蝶，":"")+"力量"+shown.power:"空位")+
-      (web?(shown?"，网中虫保留力量和技能，本轮不采粉":"，有网，本轮不能从手牌放伙伴"):released?"，甲虫挣脱蛛网，恢复采粉":"")+(brood?"，留有蛹，下轮孵出"+brood+"力蝴蝶":destroyedBrood?"，蛹被摧毁，下轮不孵化":"")+(hot?"，可选择":"");
+      (web?(shown?"，网中虫保留力量和技能，本轮不采粉":"，有网，本轮不能从手牌放伙伴"):released?"，甲虫挣脱蛛网，恢复采粉":"")+(brood?"，留有蛹，预计下轮孵出"+hatchPower+"力蝴蝶":destroyedBrood?"，蛹被摧毁，下轮不孵化":"")+(hot?"，可选择":"");
     return '<button type="button" class="slot '+(hot?"legal ":"")+(diff||destination?"previewed ":"")+(isFrom?"selected":"")+unitClass+'" data-do="zone" data-side="'+side+'" data-lane="'+lane+'" data-focus="zone-'+side+lane+'" aria-label="'+label+'" '+(hot?'':'disabled')+'>'+content+'</button>';
   }
   function routeMarker(onRow,lane) {
@@ -557,19 +558,21 @@
   }
   function awardMessage(lane) {
     const n=game.pollen[lane],winner=game.result.winners[lane];
-    const text=n===0?(game.eaten[lane]>0?"蛹吃过了，两边 +0":"空花，两边 +0"):
+    const text=n===0?(game.eaten[lane]>0?playerName(game.result.feeders[lane])+"的蛹吃 "+game.eaten[lane]+" 枚，两边 +0 分":"空花，两边 +0"):
       winner===null?"平手，两边 +0":playerName(winner)+"收 "+n+" 枚";
     return laneName(lane)+" · "+text;
   }
   function awardBadge(lane) {
     const n=game.pollen[lane],side=game.result.winners[lane];
+    if(game.eaten[lane]>0)return '<span class="collection-result" data-award="feed" aria-hidden="true">'+art.cocoon()+'<b>×'+game.eaten[lane]+'</b></span>';
     const award=n===0?"empty":side===null?"tie":side;
     const symbol=award==="empty"?"空":award==="tie"?"＝":side===0?"↓":"↑";
     return '<span class="collection-result" data-award="'+award+'" aria-hidden="true"><span>'+symbol+'</span><b>+'+((award===0||award===1)?n:0)+'</b></span>';
   }
   function sendPollen(lane,side,index) {
     const start=app.querySelector('.pollen-node[data-lane="'+lane+'"]')?.getBoundingClientRect();
-    const end=app.querySelector('[data-score-side="'+side+'"] .icon')?.getBoundingClientRect();
+    const target=game.eaten[lane]>0?'.slot[data-side="'+side+'"][data-lane="'+lane+'"]':'[data-score-side="'+side+'"] .icon';
+    const end=app.querySelector(target)?.getBoundingClientRect();
     if(!start||!end||!Element.prototype.animate)return;
     const mote=document.createElement("span");
     mote.className="pollen-flight";mote.dataset.side=String(side);mote.dataset.lane=String(lane);
@@ -611,7 +614,8 @@
     if(!run.running){unlockTallyNav(run);return;}
     let at=120;
     for(let lane=0;lane<game.pollen.length;lane++){
-      const side=game.result.winners[lane],count=side===null?0:game.pollen[lane];
+      const meal=game.eaten[lane],side=meal?game.result.feeders[lane]:game.result.winners[lane];
+      const count=meal||(side===null?0:game.pollen[lane]);
       later(run,at,()=>{
         run.lane=lane;run.phases[lane]="active";run.message=awardMessage(lane);
         syncTally(run);say(run.message);
@@ -619,7 +623,7 @@
       for(let i=0;i<count;i++){
         const launch=at+90+i*95;
         later(run,launch,()=>sendPollen(lane,side,i));
-        later(run,launch+310,()=>{run.display[side]++;syncTally(run);});
+        if(!meal)later(run,launch+310,()=>{run.display[side]++;syncTally(run);});
       }
       at+=count?470+(count-1)*95:370;
       later(run,at,()=>{run.phases[lane]="complete";syncTally(run);});
@@ -639,14 +643,16 @@
   }
   function pollenSlot(lane,view,moves) {
     const team=actorTeam();
-    const n=view.pollen[lane],hot=hotZone(2,lane,moves),final=game.phase!=="play";
+    const hot=hotZone(2,lane,moves),final=game.phase!=="play";
+    const n=view.pollen[lane]+(final?game.eaten[lane]:0);
+    const feeder=E.laneFeeder(view,lane);
     const w=laneWinner(view,lane), arrow=w===0?"↓":w===1?"↑":"＝";
     const diff=n!==game.pollen[lane],isFrom=team==="bee"&&sel?.from===lane;
     const drops=n?icon("pollen")+(n>1?'<b class="pollen-count">×'+n+'</b>':''):'<span class="pollen-empty" aria-hidden="true"></span><b class="pollen-count">0</b>';
     const showArrow=final||pending && !["cycle","supply"].includes(pending.type);
-    const direction=final?awardBadge(lane):showArrow&&n?'<span class="destination proposed" aria-hidden="true">'+arrow+'</span>':'';
+    const direction=final?awardBadge(lane):feeder!==null&&n?'<span class="destination feed-destination" aria-hidden="true">'+art.cocoon()+'</span>':showArrow&&n?'<span class="destination proposed" aria-hidden="true">'+arrow+'</span>':'';
     const eating=team==="butterfly"&&pending?.type==="special"&&pending.from===lane;
-    const label=laneName(lane)+"，"+n+"枚花粉"+(eating?"，守蛹会吃掉"+game.pollen[lane]+"枚":"")+(showArrow&&n?(w===null?"，平手":"，朝向"+playerName(w)):"")+(hot?"，可选择":"");
+    const label=final?awardMessage(lane):laneName(lane)+"，"+n+"枚花粉"+(feeder!==null?"，若现在结算，由"+playerName(feeder)+"的蛹进食":showArrow&&n?(w===null?"，平手":"，朝向"+playerName(w)):"")+(hot?"，可选择":"");
     const rich=n>=3?" pollen-jackpot":n===2?" pollen-rich":"";
     return '<button type="button" class="pollen-node '+(hot?"legal ":"")+(diff?"previewed ":"")+(isFrom?"selected ":"")+(eating?"eaten-preview":"")+rich+'" data-do="zone" data-side="2" data-pollen="'+n+'" data-lane="'+lane+'" data-focus="zone-2'+lane+'" aria-label="'+label+'" '+(hot?'':'disabled')+'>'+drops+direction+routeMarker(team==="bee",lane)+'</button>';
   }
@@ -661,7 +667,7 @@
       const enemy=changed.board[1-side][lane];
       return (enemy?"对面 "+enemy.power+" 力 · 不采粉":"对面空叶结网")+(game.broods[1-side][lane]?" · 摧毁蛹，下轮不孵化":E.lanePower(changed,side,lane)?"":" · 暂时平手");
     }
-    if(t==="butterfly")return '<span class="guard-preview"><span>'+icon("pollen")+game.pollen[lane]+' → 0</span><span>下轮 '+icon("force")+changed.broods[side][lane]+'</span></span>';
+    if(t==="butterfly")return '<span class="guard-preview"><span>结算时吃 '+icon("pollen")+(E.laneFeeder(changed,lane)===side?changed.pollen[lane]:0)+'</span></span>';
     if(t==="ant")return "隔壁伙伴 "+game.board[side][lane].power+" → "+changed.board[side][lane].power;
     if(t==="bee"){
       const from=pending.from;
@@ -701,7 +707,7 @@
     return '<section class="seat '+(side===1?'seat-top':'seat-bottom')+' '+status+'" data-seat="'+side+'" aria-label="'+playerName(side)+'的座位"><div class="seat-inner">'+sideBar(side,view)+'<div class="hand-section"><div class="hand '+(won?'victory-hand':'')+'" data-hand="'+side+'" aria-label="'+(won?'本局赢家':playerName(side)+'的手牌，'+(active?'可以出牌':'等待出牌'))+'">'+hand+'</div>'+toolbar(choice,side,view)+'</div></div></section>';
   }
   function battle() {
-    const legal=myMoves(), view=pending&&!["cycle","supply"].includes(pending.type)?E.play(game,pending):game;
+    const legal=myMoves(), view=pending&&!["cycle","supply","pass"].includes(pending.type)?E.play(game,pending):game;
     const ph=phaseAt(game.round);
     const headBar='<header class="mast '+(mode==="duo"?'tt-head':'')+'"><div class="row"><button type="button" class="round-btn" data-do="exit-game" aria-label="返回选队" title="返回选队">‹</button><span class="word-mark">'+(mode==="duo"?'双人同桌':'花粉擂台')+'</span></div><div class="round-indicator"><span>第 '+game.round+' 轮</span><span class="phase-chip '+ph.id+'" aria-label="'+ph.name+'，本阶段每轮上限'+ph.cap+'点阳光">'+phaseIcon(ph)+ph.name+'</span></div>'+helpButton()+'</header>';
     const stage=tally?(tally.running?"counting":"complete"):"play";
@@ -749,7 +755,7 @@
     }
     pending=sel.kind==="special"?opts.find(m=>m.from===sel.from && m.to===lane):opts.find(m=>m.lane===lane);
     render();const v=E.play(game,pending);
-    if(sel.kind==="special"&&team==="butterfly")say("预演。蛹吃掉本道"+game.pollen[lane]+"枚花粉，还剩0枚。原蝶这轮力量不变，下轮原地孵出"+v.broods[me][lane]+"力蝴蝶。确认后出牌。");
+    if(sel.kind==="special"&&team==="butterfly")say("预演留蛹。本道仍有"+v.pollen[lane]+"枚花粉，活到结算时才进食。");
     else if(sel.kind==="special"&&team==="bee")say("预演。从"+laneName(pending.from)+"搬走全部 "+game.pollen[pending.from]+" 枚，那里变成 "+v.pollen[pending.from]+" 枚。"+laneName(lane)+"从 "+game.pollen[lane]+" 枚变成 "+v.pollen[lane]+" 枚。确认后搬运。");
     else if(sel.kind==="special"&&team==="spider")say("预演，在对手"+laneName(lane)+"织网。"+(game.broods[1-me][lane]?"摧毁这里的蛹，下轮不孵化。":"")+(v.board[1-me][lane]?"网中虫保留 "+v.board[1-me][lane].power+" 力，这轮不采粉。":"空网不能派伙伴。")+"确认后织网。");
     else if(sel.kind==="special"&&team==="beetle"&&game.webs[me][pending.from]&&!v.webs[me][pending.from])say("预演。甲虫把对面的虫顶去"+laneName(lane)+"，挣脱自己脚下的网，恢复采粉。确认后顶撞。");
@@ -762,7 +768,7 @@
     if(a.type==="pass")return who+"收手了。";
     if(a.type==="cycle")return who+"换了一张牌。";
     if(a.type==="supply")return who+"用了补给。";
-    if(a.type==="special"&&game.players[side].faction==="butterfly")return who+"在"+laneName(a.from)+"守蛹，蛹吃掉"+game.pollen[a.from]+"枚花粉。";
+    if(a.type==="special"&&game.players[side].faction==="butterfly")return who+"在"+laneName(a.from)+"留蛹，结算时进食。";
     if(a.type==="special"&&game.players[side].faction==="spider")return who+"在对手的"+laneName(a.to)+"织了网。"+(game.broods[1-side][a.to]?"蛹被摧毁，下轮不孵化。":"");
     if(a.type==="special"&&game.players[side].faction==="bee")return who+"把"+laneName(a.from)+"的全部 "+game.pollen[a.from]+" 枚花粉搬到"+laneName(a.to)+"，堆成 "+(game.pollen[a.from]+game.pollen[a.to])+" 枚。";
     if(a.type==="special"&&game.players[side].faction==="beetle"&&game.webs[side][a.from])return who+"的甲虫把敌虫顶去"+laneName(a.to)+"，挣脱蛛网，可以采粉了。";
