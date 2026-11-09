@@ -1,0 +1,501 @@
+{
+  "rulesDigest": "dab7d9b6a45da0481b75379a8abab25da0b1c81a5b5ba84e361b5ea9eeb1feff",
+  "gamesPerArm": 512,
+  "totalGames": 3072,
+  "blocks": 128,
+  "firstSeedIndex": 1780214823,
+  "protocol": "Disjoint holdout seeds. Four games per seed cross seat and opener. Every arm shares those scenarios. Both seats start with the same respective shuffle permutations across arms; only single-card enhanced flags change in the skill control. During play, draw/discard recycling can diverge. The ordinary default bee opponent always uses baseline AI.",
+  "accounting": "Own final pollen and own pollen per round are actual engine awards. Haul points replay the same round with this player's hauls omitted, holding final lane winners and all opposing routing decisions fixed. This attributes realized flower distribution conditional on that board, not a replayed opponent strategy. Beneficial/neutral/harmful classify omitting each cast individually; its effect can interact with later casts. One/two sources count actually nonempty lanes drained; declaredBoth counts the button choice including when only one neighbor held flowers. Repeatedly moved flowers can appear repeatedly in pollenTransported.",
+  "intervals": "Approximate 95% intervals for paired changes use the independent seed block as the unit, with four seat/opener combinations per block. winPct differences are percentage points. Sampling uncertainty refers to these AIs and presets.",
+  "recipes": {
+    "old": {
+      "partners": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4
+      ],
+      "hits": [],
+      "supplies": 1,
+      "specials": 6
+    },
+    "candidate": {
+      "partners": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "hits": [
+        2
+      ],
+      "supplies": 1,
+      "specials": 3
+    },
+    "opponent": {
+      "partners": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4
+      ],
+      "hits": [
+        3
+      ],
+      "specials": 2,
+      "supplies": 1
+    }
+  },
+  "arms": {
+    "oldDeckOldTactics": {
+      "deck": "old",
+      "enhanced": true,
+      "skillFee": 2,
+      "policy": "legacy-double"
+    },
+    "oldDeckNewTactics": {
+      "deck": "old",
+      "enhanced": true,
+      "skillFee": 2,
+      "policy": "shipped"
+    },
+    "regular": {
+      "deck": "candidate",
+      "enhanced": false,
+      "skillFee": 2,
+      "policy": "baseline"
+    },
+    "forcedDouble": {
+      "deck": "candidate",
+      "enhanced": true,
+      "skillFee": 2,
+      "policy": "legacy-double"
+    },
+    "optionalGeneric": {
+      "deck": "candidate",
+      "enhanced": true,
+      "skillFee": 2,
+      "policy": "baseline"
+    },
+    "shipped": {
+      "deck": "candidate",
+      "enhanced": true,
+      "skillFee": 2,
+      "policy": "shipped"
+    }
+  },
+  "results": {
+    "oldDeckOldTactics": {
+      "games": 512,
+      "wins": 371,
+      "winPct": 72.4609,
+      "gamesStartingFirst": 256,
+      "winsStartingFirst": 178,
+      "winsStartingSecond": 193,
+      "meanOwnFinalPollen": 29.3887,
+      "meanEnemyFinalPollen": 24,
+      "realizedOwnPollenPerRound": 2.1688,
+      "meanRounds": 13.5508,
+      "meanRealizedHaulPointsPerGame": 17.1719,
+      "total": {
+        "win": 371,
+        "ownPollen": 15047,
+        "enemyPollen": 12288,
+        "rounds": 6938,
+        "oneSource": 2934,
+        "twoSources": 4819,
+        "declaredBoth": 4819,
+        "bothWithOnlyOneFunded": 0,
+        "pollenTransported": 23914,
+        "realizedHaulPoints": 8792,
+        "oneSourceMarginalPollen": 3883,
+        "twoSourceMarginalPollen": 6788,
+        "beneficialPlays": 3873,
+        "neutralPlays": 3840,
+        "harmfulPlays": 40
+      }
+    },
+    "oldDeckNewTactics": {
+      "games": 512,
+      "wins": 424,
+      "winPct": 82.8125,
+      "gamesStartingFirst": 256,
+      "winsStartingFirst": 206,
+      "winsStartingSecond": 218,
+      "meanOwnFinalPollen": 30.2637,
+      "meanEnemyFinalPollen": 23.2266,
+      "realizedOwnPollenPerRound": 2.06,
+      "meanRounds": 14.6914,
+      "meanRealizedHaulPointsPerGame": 15.1328,
+      "total": {
+        "win": 424,
+        "ownPollen": 15495,
+        "enemyPollen": 11892,
+        "rounds": 7522,
+        "oneSource": 4837,
+        "twoSources": 1747,
+        "declaredBoth": 1747,
+        "bothWithOnlyOneFunded": 0,
+        "pollenTransported": 16164,
+        "realizedHaulPoints": 7748,
+        "oneSourceMarginalPollen": 4827,
+        "twoSourceMarginalPollen": 3515,
+        "beneficialPlays": 3330,
+        "neutralPlays": 3192,
+        "harmfulPlays": 62
+      }
+    },
+    "regular": {
+      "games": 512,
+      "wins": 249,
+      "winPct": 48.6328,
+      "gamesStartingFirst": 256,
+      "winsStartingFirst": 118,
+      "winsStartingSecond": 131,
+      "meanOwnFinalPollen": 27.6563,
+      "meanEnemyFinalPollen": 28.1387,
+      "realizedOwnPollenPerRound": 1.8713,
+      "meanRounds": 14.7793,
+      "meanRealizedHaulPointsPerGame": 8.6211,
+      "total": {
+        "win": 249,
+        "ownPollen": 14160,
+        "enemyPollen": 14407,
+        "rounds": 7567,
+        "oneSource": 5150,
+        "twoSources": 0,
+        "declaredBoth": 0,
+        "bothWithOnlyOneFunded": 0,
+        "pollenTransported": 9471,
+        "realizedHaulPoints": 4414,
+        "oneSourceMarginalPollen": 4525,
+        "twoSourceMarginalPollen": 0,
+        "beneficialPlays": 2249,
+        "neutralPlays": 2901,
+        "harmfulPlays": 0
+      }
+    },
+    "forcedDouble": {
+      "games": 512,
+      "wins": 339,
+      "winPct": 66.2109,
+      "gamesStartingFirst": 256,
+      "winsStartingFirst": 155,
+      "winsStartingSecond": 184,
+      "meanOwnFinalPollen": 28.877,
+      "meanEnemyFinalPollen": 25.4414,
+      "realizedOwnPollenPerRound": 2.12,
+      "meanRounds": 13.6211,
+      "meanRealizedHaulPointsPerGame": 11.6563,
+      "total": {
+        "win": 339,
+        "ownPollen": 14785,
+        "enemyPollen": 13026,
+        "rounds": 6974,
+        "oneSource": 1366,
+        "twoSources": 3327,
+        "declaredBoth": 3327,
+        "bothWithOnlyOneFunded": 0,
+        "pollenTransported": 13500,
+        "realizedHaulPoints": 5968,
+        "oneSourceMarginalPollen": 1779,
+        "twoSourceMarginalPollen": 4774,
+        "beneficialPlays": 2527,
+        "neutralPlays": 2150,
+        "harmfulPlays": 16
+      }
+    },
+    "optionalGeneric": {
+      "games": 512,
+      "wins": 340,
+      "winPct": 66.4063,
+      "gamesStartingFirst": 256,
+      "winsStartingFirst": 159,
+      "winsStartingSecond": 181,
+      "meanOwnFinalPollen": 28.8809,
+      "meanEnemyFinalPollen": 25.457,
+      "realizedOwnPollenPerRound": 2.1188,
+      "meanRounds": 13.6309,
+      "meanRealizedHaulPointsPerGame": 11.6543,
+      "total": {
+        "win": 340,
+        "ownPollen": 14787,
+        "enemyPollen": 13034,
+        "rounds": 6979,
+        "oneSource": 1505,
+        "twoSources": 3212,
+        "declaredBoth": 3212,
+        "bothWithOnlyOneFunded": 0,
+        "pollenTransported": 13338,
+        "realizedHaulPoints": 5967,
+        "oneSourceMarginalPollen": 1805,
+        "twoSourceMarginalPollen": 4734,
+        "beneficialPlays": 2524,
+        "neutralPlays": 2184,
+        "harmfulPlays": 9
+      }
+    },
+    "shipped": {
+      "games": 512,
+      "wins": 452,
+      "winPct": 88.2813,
+      "gamesStartingFirst": 256,
+      "winsStartingFirst": 221,
+      "winsStartingSecond": 231,
+      "meanOwnFinalPollen": 30.8379,
+      "meanEnemyFinalPollen": 23.2012,
+      "realizedOwnPollenPerRound": 2.1748,
+      "meanRounds": 14.1797,
+      "meanRealizedHaulPointsPerGame": 9.5,
+      "total": {
+        "win": 452,
+        "ownPollen": 15789,
+        "enemyPollen": 11879,
+        "rounds": 7260,
+        "oneSource": 2276,
+        "twoSources": 1097,
+        "declaredBoth": 1097,
+        "bothWithOnlyOneFunded": 0,
+        "pollenTransported": 8280,
+        "realizedHaulPoints": 4864,
+        "oneSourceMarginalPollen": 2792,
+        "twoSourceMarginalPollen": 2218,
+        "beneficialPlays": 2114,
+        "neutralPlays": 1196,
+        "harmfulPlays": 63
+      }
+    }
+  },
+  "comparisons": {
+    "deckOnly": {
+      "from": "oldDeckNewTactics",
+      "to": "shipped",
+      "pairedGames": 512,
+      "flippedToWin": 70,
+      "flippedToLoss": 42,
+      "paired": {
+        "winPct": {
+          "difference": 5.4688,
+          "approx95": [
+            1.4771,
+            9.4604
+          ]
+        },
+        "ownPollen": {
+          "difference": 0.5742,
+          "approx95": [
+            0.241,
+            0.9074
+          ]
+        },
+        "realizedHaulPoints": {
+          "difference": -5.6328,
+          "approx95": [
+            -6.0712,
+            -5.1944
+          ]
+        }
+      }
+    },
+    "skillOnlySameGenericAI": {
+      "from": "regular",
+      "to": "optionalGeneric",
+      "pairedGames": 512,
+      "flippedToWin": 152,
+      "flippedToLoss": 61,
+      "paired": {
+        "winPct": {
+          "difference": 17.7734,
+          "approx95": [
+            11.9411,
+            23.6057
+          ]
+        },
+        "ownPollen": {
+          "difference": 1.2246,
+          "approx95": [
+            0.6155,
+            1.8337
+          ]
+        },
+        "realizedHaulPoints": {
+          "difference": 3.0332,
+          "approx95": [
+            2.5701,
+            3.4963
+          ]
+        }
+      }
+    },
+    "freerChoicesSameGenericAI": {
+      "from": "forcedDouble",
+      "to": "optionalGeneric",
+      "pairedGames": 512,
+      "flippedToWin": 7,
+      "flippedToLoss": 6,
+      "paired": {
+        "winPct": {
+          "difference": 0.1953,
+          "approx95": [
+            -1.1899,
+            1.5806
+          ]
+        },
+        "ownPollen": {
+          "difference": 0.0039,
+          "approx95": [
+            -0.1339,
+            0.1417
+          ]
+        },
+        "realizedHaulPoints": {
+          "difference": -0.002,
+          "approx95": [
+            -0.1064,
+            0.1025
+          ]
+        }
+      }
+    },
+    "policyOnly": {
+      "from": "optionalGeneric",
+      "to": "shipped",
+      "pairedGames": 512,
+      "flippedToWin": 148,
+      "flippedToLoss": 36,
+      "paired": {
+        "winPct": {
+          "difference": 21.875,
+          "approx95": [
+            16.6619,
+            27.0881
+          ]
+        },
+        "ownPollen": {
+          "difference": 1.957,
+          "approx95": [
+            1.415,
+            2.4991
+          ]
+        },
+        "realizedHaulPoints": {
+          "difference": -2.1543,
+          "approx95": [
+            -2.6731,
+            -1.6355
+          ]
+        }
+      }
+    },
+    "oldTacticsToNew": {
+      "from": "forcedDouble",
+      "to": "shipped",
+      "pairedGames": 512,
+      "flippedToWin": 147,
+      "flippedToLoss": 34,
+      "paired": {
+        "winPct": {
+          "difference": 22.0703,
+          "approx95": [
+            16.8679,
+            27.2727
+          ]
+        },
+        "ownPollen": {
+          "difference": 1.9609,
+          "approx95": [
+            1.4341,
+            2.4878
+          ]
+        },
+        "realizedHaulPoints": {
+          "difference": -2.1563,
+          "approx95": [
+            -2.6734,
+            -1.6391
+          ]
+        }
+      }
+    },
+    "regularToShipped": {
+      "from": "regular",
+      "to": "shipped",
+      "pairedGames": 512,
+      "flippedToWin": 223,
+      "flippedToLoss": 20,
+      "paired": {
+        "winPct": {
+          "difference": 39.6484,
+          "approx95": [
+            34.172,
+            45.1248
+          ]
+        },
+        "ownPollen": {
+          "difference": 3.1816,
+          "approx95": [
+            2.6437,
+            3.7195
+          ]
+        },
+        "realizedHaulPoints": {
+          "difference": 0.8789,
+          "approx95": [
+            0.4055,
+            1.3523
+          ]
+        }
+      }
+    },
+    "wholeEncounter": {
+      "from": "oldDeckOldTactics",
+      "to": "shipped",
+      "pairedGames": 512,
+      "flippedToWin": 127,
+      "flippedToLoss": 46,
+      "paired": {
+        "winPct": {
+          "difference": 15.8203,
+          "approx95": [
+            10.7838,
+            20.8568
+          ]
+        },
+        "ownPollen": {
+          "difference": 1.4492,
+          "approx95": [
+            0.9603,
+            1.9381
+          ]
+        },
+        "realizedHaulPoints": {
+          "difference": -7.6719,
+          "approx95": [
+            -8.1911,
+            -7.1526
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.puzzle-geometry {position:absolute;inset:0;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 20% 2%,#596854,#283b34 80%);border-radius:inherit}
+.puzzle-paint,.puzzle-seams {position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.puzzle-paint {background-image:var(--picture);background-size:100% 100%;background-repeat:no-repeat}
+.puzzle-seams path {fill:none;stroke-width:.85;stroke-linejoin:round;stroke:#fff0bc99}
+.puzzle-seams .unearned path {fill:#31423b;stroke:#d4d1a970}
+.puzzle-seams .unearned:nth-child(2n) path {fill:#394a41}
+.puzzle-seams text {fill:#efe4bd;text-anchor:middle;dominant-baseline:central;font:600 12px system-ui,sans-serif}
+.puzzle-seams .just-earned path {stroke:#fff2ab;stroke-width:2;animation:puzzle-piece-light 1.05s ease-out 2}
+@keyframes puzzle-piece-light {from{fill:#fff1b9b3}to{fill:transparent}}
+@media(prefers-reduced-motion:reduce){.puzzle-seams .just-earned path{animation:none}}

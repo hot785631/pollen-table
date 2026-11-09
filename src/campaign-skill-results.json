@@ -1,0 +1,498 @@
+{
+  "rulesDigest": "1600f1d9b2c5e3b2bb01d568ea9fd78e43e7be3744edfae9d206a12478d6e1b8",
+  "blocks": 100,
+  "startSeed": 1130000,
+  "games": 4000,
+  "commonDecks": {
+    "ant": {
+      "partners": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3
+      ],
+      "hits": [
+        1
+      ],
+      "specials": 2,
+      "supplies": 1
+    },
+    "bee": {
+      "partners": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4
+      ],
+      "hits": [
+        3
+      ],
+      "specials": 2,
+      "supplies": 1
+    },
+    "beetle": {
+      "partners": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4
+      ],
+      "hits": [
+        2
+      ],
+      "specials": 2,
+      "supplies": 1
+    },
+    "spider": {
+      "partners": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        3,
+        4
+      ],
+      "hits": [
+        1
+      ],
+      "specials": 2,
+      "supplies": 1
+    },
+    "butterfly": {
+      "partners": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4
+      ],
+      "hits": [
+        2
+      ],
+      "specials": 2,
+      "supplies": 1
+    }
+  },
+  "method": "Five equally weighted strata use the five published default recipes. Within each game both sides use the same partner and utility cards, swapping only the two standard skills. Matched blocks of four share initial draws and flower seed, swap factions between seats, and alternate starting player.",
+  "pairs": {
+    "ant/bee": {
+      "games": 400,
+      "ant": 367,
+      "bee": 33,
+      "byCommonDeck": {
+        "ant": {
+          "games": 80,
+          "ant": 74,
+          "bee": 6
+        },
+        "bee": {
+          "games": 80,
+          "ant": 74,
+          "bee": 6
+        },
+        "beetle": {
+          "games": 80,
+          "ant": 78,
+          "bee": 2
+        },
+        "spider": {
+          "games": 80,
+          "ant": 65,
+          "bee": 15
+        },
+        "butterfly": {
+          "games": 80,
+          "ant": 76,
+          "bee": 4
+        }
+      }
+    },
+    "ant/beetle": {
+      "games": 400,
+      "ant": 331,
+      "beetle": 69,
+      "byCommonDeck": {
+        "ant": {
+          "games": 80,
+          "ant": 62,
+          "beetle": 18
+        },
+        "bee": {
+          "games": 80,
+          "ant": 70,
+          "beetle": 10
+        },
+        "beetle": {
+          "games": 80,
+          "ant": 74,
+          "beetle": 6
+        },
+        "spider": {
+          "games": 80,
+          "ant": 50,
+          "beetle": 30
+        },
+        "butterfly": {
+          "games": 80,
+          "ant": 75,
+          "beetle": 5
+        }
+      }
+    },
+    "ant/spider": {
+      "games": 400,
+      "ant": 221,
+      "spider": 179,
+      "byCommonDeck": {
+        "ant": {
+          "games": 80,
+          "ant": 46,
+          "spider": 34
+        },
+        "bee": {
+          "games": 80,
+          "ant": 53,
+          "spider": 27
+        },
+        "beetle": {
+          "games": 80,
+          "ant": 49,
+          "spider": 31
+        },
+        "spider": {
+          "games": 80,
+          "ant": 27,
+          "spider": 53
+        },
+        "butterfly": {
+          "games": 80,
+          "ant": 46,
+          "spider": 34
+        }
+      }
+    },
+    "ant/butterfly": {
+      "games": 400,
+      "ant": 332,
+      "butterfly": 68,
+      "byCommonDeck": {
+        "ant": {
+          "games": 80,
+          "ant": 56,
+          "butterfly": 24
+        },
+        "bee": {
+          "games": 80,
+          "ant": 72,
+          "butterfly": 8
+        },
+        "beetle": {
+          "games": 80,
+          "ant": 76,
+          "butterfly": 4
+        },
+        "spider": {
+          "games": 80,
+          "ant": 52,
+          "butterfly": 28
+        },
+        "butterfly": {
+          "games": 80,
+          "ant": 76,
+          "butterfly": 4
+        }
+      }
+    },
+    "bee/beetle": {
+      "games": 400,
+      "bee": 168,
+      "beetle": 232,
+      "byCommonDeck": {
+        "ant": {
+          "games": 80,
+          "bee": 29,
+          "beetle": 51
+        },
+        "bee": {
+          "games": 80,
+          "bee": 40,
+          "beetle": 40
+        },
+        "beetle": {
+          "games": 80,
+          "bee": 28,
+          "beetle": 52
+        },
+        "spider": {
+          "games": 80,
+          "bee": 37,
+          "beetle": 43
+        },
+        "butterfly": {
+          "games": 80,
+          "bee": 34,
+          "beetle": 46
+        }
+      }
+    },
+    "bee/spider": {
+      "games": 400,
+      "bee": 127,
+      "spider": 273,
+      "byCommonDeck": {
+        "ant": {
+          "games": 80,
+          "bee": 34,
+          "spider": 46
+        },
+        "bee": {
+          "games": 80,
+          "bee": 26,
+          "spider": 54
+        },
+        "beetle": {
+          "games": 80,
+          "bee": 15,
+          "spider": 65
+        },
+        "spider": {
+          "games": 80,
+          "bee": 29,
+          "spider": 51
+        },
+        "butterfly": {
+          "games": 80,
+          "bee": 23,
+          "spider": 57
+        }
+      }
+    },
+    "bee/butterfly": {
+      "games": 400,
+      "bee": 189,
+      "butterfly": 211,
+      "byCommonDeck": {
+        "ant": {
+          "games": 80,
+          "bee": 26,
+          "butterfly": 54
+        },
+        "bee": {
+          "games": 80,
+          "bee": 42,
+          "butterfly": 38
+        },
+        "beetle": {
+          "games": 80,
+          "bee": 43,
+          "butterfly": 37
+        },
+        "spider": {
+          "games": 80,
+          "bee": 39,
+          "butterfly": 41
+        },
+        "butterfly": {
+          "games": 80,
+          "bee": 39,
+          "butterfly": 41
+        }
+      }
+    },
+    "beetle/spider": {
+      "games": 400,
+      "beetle": 218,
+      "spider": 182,
+      "byCommonDeck": {
+        "ant": {
+          "games": 80,
+          "beetle": 56,
+          "spider": 24
+        },
+        "bee": {
+          "games": 80,
+          "beetle": 42,
+          "spider": 38
+        },
+        "beetle": {
+          "games": 80,
+          "beetle": 36,
+          "spider": 44
+        },
+        "spider": {
+          "games": 80,
+          "beetle": 50,
+          "spider": 30
+        },
+        "butterfly": {
+          "games": 80,
+          "beetle": 34,
+          "spider": 46
+        }
+      }
+    },
+    "beetle/butterfly": {
+      "games": 400,
+      "beetle": 192,
+      "butterfly": 208,
+      "byCommonDeck": {
+        "ant": {
+          "games": 80,
+          "beetle": 36,
+          "butterfly": 44
+        },
+        "bee": {
+          "games": 80,
+          "beetle": 38,
+          "butterfly": 42
+        },
+        "beetle": {
+          "games": 80,
+          "beetle": 46,
+          "butterfly": 34
+        },
+        "spider": {
+          "games": 80,
+          "beetle": 37,
+          "butterfly": 43
+        },
+        "butterfly": {
+          "games": 80,
+          "beetle": 35,
+          "butterfly": 45
+        }
+      }
+    },
+    "spider/butterfly": {
+      "games": 400,
+      "spider": 318,
+      "butterfly": 82,
+      "byCommonDeck": {
+        "ant": {
+          "games": 80,
+          "spider": 57,
+          "butterfly": 23
+        },
+        "bee": {
+          "games": 80,
+          "spider": 65,
+          "butterfly": 15
+        },
+        "beetle": {
+          "games": 80,
+          "spider": 68,
+          "butterfly": 12
+        },
+        "spider": {
+          "games": 80,
+          "spider": 67,
+          "butterfly": 13
+        },
+        "butterfly": {
+          "games": 80,
+          "spider": 61,
+          "butterfly": 19
+        }
+      }
+    }
+  },
+  "counters": {
+    "ant": [
+      {
+        "opponent": "spider",
+        "winsAgainstPlayer": 179,
+        "games": 400
+      },
+      {
+        "opponent": "beetle",
+        "winsAgainstPlayer": 69,
+        "games": 400
+      }
+    ],
+    "bee": [
+      {
+        "opponent": "ant",
+        "winsAgainstPlayer": 367,
+        "games": 400
+      },
+      {
+        "opponent": "spider",
+        "winsAgainstPlayer": 273,
+        "games": 400
+      }
+    ],
+    "beetle": [
+      {
+        "opponent": "ant",
+        "winsAgainstPlayer": 331,
+        "games": 400
+      },
+      {
+        "opponent": "butterfly",
+        "winsAgainstPlayer": 208,
+        "games": 400
+      }
+    ],
+    "spider": [
+      {
+        "opponent": "ant",
+        "winsAgainstPlayer": 221,
+        "games": 400
+      },
+      {
+        "opponent": "beetle",
+        "winsAgainstPlayer": 218,
+        "games": 400
+      }
+    ],
+    "butterfly": [
+      {
+        "opponent": "ant",
+        "winsAgainstPlayer": 332,
+        "games": 400
+      },
+      {
+        "opponent": "spider",
+        "winsAgainstPlayer": 318,
+        "games": 400
+      }
+    ]
+  }
+}

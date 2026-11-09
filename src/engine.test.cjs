@@ -9,6 +9,22 @@ const key = a => JSON.stringify(a);
 const pass = { type: "pass" };
 const close = game => P.play(P.play(game, pass), pass);
 const allCards = player => [...player.hand, ...player.draw, ...player.discard];
+function bossGame(faction, stage = 5) {
+  const state = P.newGame({ campaign: { faction, stage }, rng: () => .41, first: 1 });
+  state.players[1].sun = 10;
+  return state;
+}
+function handOfSkills(player, wanted) {
+  const pool = allCards(player);
+  player.hand = wanted.map(([skill, enhanced]) => {
+    const i = pool.findIndex(c => c.kind === "special" && c.skill === skill && c.enhanced === enhanced);
+    assert.notEqual(i, -1);
+    return pool.splice(i, 1)[0];
+  });
+  player.draw = pool;
+  player.discard = [];
+  if (player.publicSkill) player.publicSkill = null; // isolated board fixture
+}
 function deal(player, kinds) {
   const pool = allCards(player);
   player.hand = kinds.map(kind => {
@@ -19,12 +35,323 @@ function deal(player, kinds) {
   player.draw = pool;
   player.discard = [];
 }
-function skill(game, from, to) {
-  const action = P.actions(game).find(a => a.type === "special" && a.from === from && a.to === to);
+function skill(game, from, to, also) {
+  const action = P.actions(game).find(a => a.type === "special" && a.from === from && a.to === to && a.also === also);
   assert.ok(action, "expected legal special " + from + "→" + to);
   return action;
 }
 
+test("campaign stages 1–4 follow measured head-to-head order; 5 and 6 have separate physical boss skills", () => {
+  const baseline = require("./balance-result.json");
+  const control = require("./campaign-skill-results.json");
+  for (const faction of factions) {
+    const order = factions.filter(f => f !== faction).sort((a,b) => {
+      const wins = f => (baseline.matchups[faction+"/"+f] || baseline.matchups[f+"/"+faction])[faction];
+      return wins(b) - wins(a);
+    });
+    for (let stage = 1; stage <= 6; stage++) {
+      const setup = P.campaignEncounter(faction,stage), s = bossGame(faction,stage);
+      assert.equal(s.players[0].faction,faction);
+      assert.equal(s.players[1].faction,stage <= 4 ? order[stage-1] : faction);
+      assert.equal(allCards(s.players[1]).length,16);
+      assert.ok(P.validateDeck(setup.deck));
+      assert.ok(allCards(s.players[0]).every(c => c.kind !== "special" || (c.skill === faction && !c.enhanced)));
+      if (stage <= 4) assert.deepEqual(setup.deck,P.defaultDeck(order[stage-1]));
+      else assert.deepEqual(setup.skills.map(x => x.faction), stage === 5 ? [faction] : [faction,...control.counters[faction].map(x=>x.opponent)]);
+      if (stage === 5) {
+        const meanPower = d => d.partners.reduce((sum,cost)=>sum+P.powerForCost(cost),0)/d.partners.length;
+        assert.ok(meanPower(setup.deck)>meanPower(P.defaultDeck(faction)), "higher native printed partner quality");
+        assert.ok(setup.deck.partners.includes(4), "every guild champion brings a seven-power partner");
+      }
+      for (const spec of setup.skills) {
+        assert.ok(spec.copies>=1, "every advertised boss skill can actually be drawn");
+        const copies = allCards(s.players[1]).filter(c => c.skill === spec.faction && c.enhanced === spec.enhanced);
+        assert.equal(copies.length,spec.copies);
+        assert.ok(copies.every(c => c.cost === P.specialCost(spec.faction)));
+      }
+    }
+  }
+  const custom = {partners:Array(16).fill(1),hits:[],supplies:0,specials:0};
+  const s = P.newGame({campaign:{faction:"spider",stage:6},decks:[custom,custom]});
+  assert.ok(allCards(s.players[0]).every(c=>c.kind==="partner"));
+  assert.ok(allCards(s.players[1]).some(c=>c.enhanced));
+  assert.throws(()=>P.campaignEncounter("ant",7));
+});
+
+test("every guild champion and chimera has a replayable default-player victory from the published holdout", () => {
+  const report=require("./campaign-results.json");
+  for(const faction of factions) for(const stage of [5,6]) {
+    const entry=report.encounters[faction][stage], example=entry.playerWinExample;
+    assert.ok(example && entry.bossWins<entry.games, faction+" "+stage);
+    let game=P.newGame({campaign:{faction,stage},first:example.first,rng:()=>example.seed/4294967296});
+    while(game.phase!=="done"){
+      assert.ok(game.round<=example.rounds);
+      game=P.play(game,P.chooseAI(game));
+      if(game.phase==="scored") game=P.nextRound(game);
+    }
+    assert.equal(game.winner,0);
+    assert.equal(game.round,example.rounds);
+    assert.deepEqual(game.players.map(p=>p.score),example.score);
+  }
+});
+
+function finaleWithOpen(faction, wanted, first=1) {
+  for(let i=1;i<=128;i++){
+    const seed=Math.imul(i,2654435761)>>>0;
+    const s=P.newGame({campaign:{faction,stage:6},first,rng:()=>seed/4294967296});
+    if(P.visibleSkill(s,1).skill===wanted)return s;
+  }
+  throw Error("opening not sampled");
+}
+
+test("only the finale has a seventh public card, with equal chances per skill type rather than per physical copy", () => {
+  assert.equal(P.visibleSkill(fresh(),1),null);
+  for(let stage=1;stage<6;stage++){
+    const s=P.newGame({campaign:{faction:"ant",stage}});
+    assert.equal(P.visibleSkill(s,0),null);assert.equal(P.visibleSkill(s,1),null);
+  }
+  const freq={};
+  for(let i=1;i<=900;i++){
+    const seed=Math.imul(i,2654435761)>>>0;
+    const s=P.newGame({campaign:{faction:"ant",stage:6},rng:()=>seed/4294967296,first:1});
+    const publicCard=P.visibleSkill(s,1);
+    assert.equal(P.visibleSkill(s,0),null);
+    assert.equal(s.players[1].hand.length,6); assert.equal(allCards(s.players[1]).length,16);
+    assert.equal(publicCard.cost,P.specialCost(publicCard.skill));
+    assert.equal(publicCard.enhanced,publicCard.skill==="ant");
+    assert.deepEqual(publicCard,s.lastEvent.revealedSkill);
+    assert.ok(s.lastEvent.drawn.flat().every(id=>id!==publicCard.id));
+    assert.ok(allCards(s.players[1]).every(c=>c.id!==publicCard.id));
+    freq[publicCard.skill]=(freq[publicCard.skill]||0)+1;
+  }
+  for(const f of ["ant","spider","beetle"]) assert.ok(freq[f]>250 && freq[f]<350);
+});
+
+test("a legal public skill costs sun and a turn, never enters the deck, cannot be exchanged or refilled by supply", () => {
+  let s=finaleWithOpen("spider","spider"), p=s.players[1], revealed=P.visibleSkill(s,1);
+  const pool=allCards(p), physical=pool.find(c=>c.skill==="spider"), supply=pool.find(c=>c.kind==="supply");
+  p.hand=[physical,supply];p.draw=pool.filter(c=>!p.hand.includes(c));p.discard=[];
+  p.sun=10;s.board[0][2]=unit(7);s.board[1][2]=unit(1);s.pollen=[0,0,3,0,0];
+  assert.ok(!P.actions(s).some(a=>a.type==="cycle"&&a.card===revealed.id));
+  assert.ok(P.actions(s).filter(a=>a.card===revealed.id).every(a=>a.type==="special"));
+  p.sun=0;assert.ok(!P.actions(s).some(a=>a.card===revealed.id));p.sun=10;
+  const use=P.chooseAI(s);
+  assert.equal(use.card,revealed.id,"prefer expiring public card over an equal physical copy");
+  assert.deepEqual(P.cardForAction(s,1,use),revealed);
+  const priorIds=allCards(p).map(c=>c.id);
+  s=P.play(s,use);
+  assert.equal(s.turn,0);assert.equal(s.players[1].sun,10-revealed.cost);assert.equal(P.visibleSkill(s,1),null);
+  assert.deepEqual(allCards(s.players[1]).map(c=>c.id),priorIds);
+  s=P.play(s,pass);
+  s=P.play(s,P.actions(s).find(a=>a.type==="supply"));
+  assert.equal(s.players[1].hand.length,6);assert.equal(P.visibleSkill(s,1),null);
+  assert.ok(!s.lastEvent.drawn[1].includes(revealed.id));
+  s=P.nextRound(P.play(s,pass));
+  assert.equal(P.visibleSkill(s,1).id,"1-public-2");
+  assert.equal(new Set(allCards(s.players[1]).map(c=>c.id)).size,16);
+});
+
+test("an unused public slot refreshes every round independently of reshuffles; consecutive identical choices are possible", () => {
+  let a=finaleWithOpen("bee","bee"), b=structuredClone(a), repeated=false;
+  for(let i=1;i<=40;i++){
+    const old=P.visibleSkill(a,1);
+    assert.equal(old.id,"1-public-"+i);
+    assert.deepEqual(old,P.visibleSkill(b,1));
+    // One table openly passes. The other exchanges a real card, altering its private shuffle history.
+    const replace=P.actions(b).find(action=>action.type==="cycle");
+    b=P.play(b,replace);
+    a=P.nextRound(close(a)); b=P.nextRound(close(b));
+    assert.notEqual(P.visibleSkill(a,1).id,old.id);
+    if(P.visibleSkill(a,1).skill===old.skill)repeated=true;
+    assert.deepEqual(a.pollen,b.pollen);
+  }
+  assert.ok(repeated);
+});
+
+test("player AI can defend against the actual face-up card without looking at the six covered cards", () => {
+  const s=finaleWithOpen("bee","bee",0),p=s.players[0],pool=allCards(p);
+  p.hand=[pool.find(c=>c.kind==="partner"&&c.cost===3)];p.draw=pool.filter(c=>!p.hand.includes(c));p.discard=[];
+  p.canCycle=false;p.sun=3;s.players[1].sun=2;
+  s.board[1][0]=unit(3);s.pollen=[0,3,0,3,0];
+  const open=P.visibleSkill(s,1);s.players[1].publicSkill=null;
+  assert.equal(P.chooseAI(s).lane,1);
+  s.players[1].publicSkill=open;
+  for(const field of ["hand","draw","discard"])Object.defineProperty(s.players[1],field,{get(){throw Error("private "+field)}});
+  assert.equal(P.chooseAI(s).lane,3);
+});
+
+test("elite ants lend to both neighbours and elite bees move both adjacent piles without duplicating pollen", () => {
+  for (const faction of ["ant","bee"]) {
+    const s = bossGame(faction); handOfSkills(s.players[1],[[faction,true]]);
+    s.board[1] = [null, unit(2), unit(5), unit(3), null];
+    s.pollen = [1, 2, 3, 4, 0]; s.startingPollen = 10;
+    const next = P.play(s,skill(s,2,2));
+    if (faction === "ant") assert.deepEqual(next.board[1].map(x=>x?.power || 0),[0,7,5,8,0]);
+    else assert.deepEqual(next.pollen,[1,0,9,0,0]);
+    assert.equal(next.players[1].sun,10-P.specialCost(faction));
+    assert.equal(s.board[1][1].power,2);
+    assert.equal(s.pollen[3],4);
+  }
+});
+
+test("two-sun hornets retain each ordinary one-sided transfer and add a single two-sided transfer where possible", () => {
+  for (let mask=0;mask<32;mask++) {
+    const normal=fresh("bee","bee"), elite=bossGame("bee");
+    for(const [s,side,enhanced] of [[normal,0,false],[elite,1,true]]){
+      handOfSkills(s.players[side],[["bee",enhanced]]);
+      s.board[side]=[unit(1),unit(3),unit(5),unit(7),unit(1)];
+      s.pollen=[0,1,2,3,4].map(i=>(mask & (1<<i)) ? i+1 : 0);
+      s.players[side].sun=2;
+    }
+    const standard=P.actions(normal).filter(a=>a.type==="special");
+    const stronger=P.actions(elite).filter(a=>a.type==="special");
+    for(const move of standard){
+      const shared=stronger.find(a=>a.from===move.from && a.to===move.to);
+      assert.ok(shared);
+      const next=P.play(elite,shared);
+      assert.deepEqual(next.pollen,P.play(normal,move).pollen);
+      assert.equal(next.players[1].sun,0);
+    }
+    const doubles=stronger.filter(a=>a.from===a.to);
+    assert.equal(stronger.length,standard.length+doubles.length);
+    assert.deepEqual(doubles.map(a=>a.to),[1,2,3].filter(i=>elite.pollen[i-1]>0 && elite.pollen[i+1]>0));
+    for(const both of doubles){
+      const next=P.play(elite,both),i=both.to;
+      assert.equal(next.pollen[i],elite.pollen[i-1]+elite.pollen[i]+elite.pollen[i+1]);
+      assert.equal(next.pollen[i-1]+next.pollen[i+1],0);
+    }
+  }
+});
+
+test("hornets protect their collection site against a visible bee return route and stop pricing it after the foe passes", () => {
+  const s=bossGame("bee");
+  handOfSkills(s.players[1],[["bee",true]]);
+  s.players[0].sun=2;
+  s.board[1][1]=unit(7); s.board[1][3]=unit(7); s.board[0][0]=unit(7);
+  s.pollen=[0,0,3,0,0];
+  assert.equal(P.chooseAI(s,1,{beePolicy:"baseline"}).to,1);
+  // Sending the pile left would give the rival an immediate return to its occupied flower.
+  assert.deepEqual(P.chooseAI(s),skill(s,2,3));
+  for(const field of ["hand","draw","discard"]){
+    Object.defineProperty(s.players[0],field,{get(){throw Error("private "+field)}});
+  }
+  assert.equal(P.chooseAI(s).to,3);
+  s.players[0].passed=true;
+  assert.equal(P.chooseAI(s).to,1);
+});
+
+test("hornet AI chooses one losing source without stripping a secured flower, or both sources if both are lost", () => {
+  const s=bossGame("bee");
+  s.players[0].passed=true;
+  handOfSkills(s.players[1],[["bee",true]]);
+  s.board[0][0]=unit(5); s.board[1][1]=unit(7); s.board[1][2]=unit(7); s.pollen=[2,0,3,0,0];
+  assert.deepEqual(P.chooseAI(s),skill(s,0,1));
+  assert.deepEqual(P.chooseAI(s,1,{beePolicy:"legacy-double"}),skill(s,1,1));
+  s.board[1][2]=null; s.board[0][2]=unit(5);
+  assert.deepEqual(P.chooseAI(s),skill(s,1,1));
+});
+
+test("hornets budget a three-sun five-power receiver plus their two-sun transfer and prefer the harder site to recapture", () => {
+  const s=bossGame("bee"), p=s.players[1];
+  handOfSkills(p,[["bee",true]]);
+  p.sun=5; s.players[0].sun=4;
+  for(const fee of [1,3]){
+    const i=p.draw.findIndex(card=>card.kind==="partner" && card.cost===fee);
+    p.hand.push(p.draw.splice(i,1)[0]);
+  }
+  s.pollen=[0,2,0,3,0]; s.board[0][1]=unit(5); s.board[0][3]=unit(7);
+  const setup=P.chooseAI(s), partner=p.hand.find(card=>card.id===setup.card);
+  assert.equal(setup.type,"partner"); assert.equal(setup.lane,2); assert.equal(partner.cost,3);
+  const deployed=P.play(s,setup);
+  assert.equal(deployed.players[1].sun,P.specialCost("bee"));
+  const ripe=P.play(deployed,pass);
+  assert.deepEqual(P.chooseAI(ripe),skill(ripe,2,2));
+
+  const pair=bossGame("bee");
+  handOfSkills(pair.players[1],[["bee",true]]);
+  pair.players[0].sun=4; pair.pollen=[0,3,0,0,0];
+  pair.board[1][0]=unit(3); pair.board[1][2]=unit(7);
+  assert.equal(P.chooseAI(pair,1,{beePolicy:"baseline"}).to,0);
+  assert.equal(P.chooseAI(pair).to,2);
+});
+
+test("elite webs last exactly two scoring rounds; a legal regular push breaks the whole remaining web", () => {
+  let s = bossGame("spider");
+  handOfSkills(s.players[1],[["spider",true]]);
+  s = P.play(s,skill(s,2,2));
+  assert.equal(P.webDuration(s,0,2),2);
+  s = close(s);
+  assert.equal(P.webDuration(s,0,2),2);
+  s = P.nextRound(s);
+  assert.equal(P.webDuration(s,0,2),1);
+  assert.ok(!P.actions(s).some(a=>a.type==="partner" && a.lane===2));
+  assert.equal(P.webDuration(P.nextRound(close(s)),0,2),0);
+  const rival = fresh("beetle","spider");
+  handOfSkills(rival.players[0],[["beetle",false]]);
+  rival.webs[0][2]=true; rival.lastingWebs[0][2]=true;
+  rival.board[0][2]=unit(1); rival.board[1][2]=unit(7);
+  const escaped=P.play(rival,skill(rival,2,3));
+  assert.equal(P.webDuration(escaped,0,2),0);
+  assert.equal(escaped.board[1][3].power,7-P.specialRules("beetle").pushLoss);
+  assert.equal(P.webDuration(P.nextRound(close(escaped)),0,2),0);
+});
+
+test("elite beetles subtract four only from the pushed rival and can drive its power to zero", () => {
+  const s=bossGame("beetle"); handOfSkills(s.players[1],[["beetle",true]]);
+  s.board[1][2]=unit(1); s.board[0][2]=unit(7); s.board[0][3]=unit(3);
+  const next=P.play(s,skill(s,2,3));
+  assert.equal(next.board[0][3].power,3); assert.equal(next.board[0][2].power,3);
+  s.board[0][2]=unit(2);
+  assert.equal(P.play(s,skill(s,2,3)).board[0][3].power,0);
+});
+
+test("three overlapping cocoons split each source once; remainders score and each newborn hatches in its own lane", () => {
+  let s=bossGame("butterfly"); s.players[0].sun=10;
+  handOfSkills(s.players[1],[["butterfly",true],["butterfly",true]]);
+  handOfSkills(s.players[0],[["butterfly",false]]);
+  s.pollen=[1,0,8,0,2]; s.startingPollen=11;
+  s.board[1][0]=unit(1); s.board[1][4]=unit(3); s.board[0][2]=unit(5);
+  s=P.play(s,skill(s,0,0,2)); s=P.play(s,skill(s,2,2)); s=P.play(s,skill(s,4,2,4));
+  const base=P.specialRules("butterfly").hatchPower, meal=P.broodMeal(s,2);
+  assert.deepEqual(meal.counts,[1,2]);
+  assert.deepEqual(meal.shares,[2,4]); assert.equal(meal.remaining,2);
+  assert.deepEqual([P.projectedHatch(s,1,0),P.projectedHatch(s,0,2),P.projectedHatch(s,1,4)],[base+3,base+2,base+4]);
+  const settled=close(s);
+  assert.deepEqual(settled.result.gain,[2,0]);
+  assert.deepEqual(settled.eaten,[1,0,6,0,2]);
+  assert.deepEqual(P.broodMeal(settled,2),meal);
+  const next=P.nextRound(settled);
+  assert.deepEqual([next.board[1][0].power,next.board[0][2].power,next.board[1][4].power],[base+3,base+2,base+4]);
+});
+
+test("a great cocoon can choose two distant flowers while its nesting flower stays open for collection", () => {
+  let s=bossGame("butterfly"); handOfSkills(s.players[1],[["butterfly",true]]);
+  s.board[1][2]=unit(5); s.pollen=[2,0,3,0,1];
+  const pairs=P.actions(s).filter(a=>a.type==="special");
+  assert.equal(pairs.length,10); assert.ok(pairs.every(a=>a.from===2 && a.to<a.also));
+  s=P.play(s,skill(s,2,0,4));
+  assert.deepEqual(s.broodForage[1][2],[0,4]);
+  assert.deepEqual(P.broodMeal(s,2).counts,[0,0]);
+  const base=P.specialRules("butterfly").hatchPower;
+  assert.equal(P.projectedHatch(s,1,2),base+3);
+  s=close(s); assert.deepEqual(s.result.gain,[0,3]);
+  assert.deepEqual(s.eaten,[2,0,0,0,1]);
+  s=P.nextRound(s); assert.equal(s.board[1][2].power,base+3);
+  assert.equal(s.board[1][0],null); assert.equal(s.board[1][4],null);
+});
+
+test("the chimera AI uses a foreign skill even when its cost matches another card and its own faction cannot help", () => {
+  let s=bossGame("butterfly",6);
+  handOfSkills(s.players[1],[["butterfly",true],["spider",false]]);
+  assert.equal(s.players[1].hand[0].cost,s.players[1].hand[1].cost);
+  s.players[0].passed=true; s.players[1].score=29; s.pollen=[0,0,3,0,0];
+  s.board[1][2]=unit(3); s.board[0][2]=unit(7);
+  const before=structuredClone(s), move=P.chooseAI(s);
+  assert.deepEqual(s,before);
+  assert.equal(s.players[1].hand.find(c=>c.id===move.card).skill,"spider");
+  s=P.play(P.play(s,move),pass);
+  assert.equal(s.winner,1);
+});
 test("new presets include one supply; migrating an older recipe keeps its chosen cards and adds no supplies", () => {
   const old = { partners: [3, 3, 1, 2, 2, 1, 3, 3], hits: [3, 2, 1] };
   for (const faction of factions) {
@@ -778,13 +1105,13 @@ test("both sides may guard the same lane, with separate meals and newborns at th
   assert.equal(s.broods[1][4], base);
   assert.ok(!P.actions(s).some(a => a.type === "special" && a.from === 4));
   s = close(s);
-  assert.equal(s.result.feeders[4], 0);
+  assert.deepEqual(s.result.meals[4].shares, [1,1]);
   assert.equal(s.eaten[4], 2);
   assert.deepEqual(s.result.gain, [0, 0]);
   assert.equal(s.board[0][4].power, 1); assert.equal(s.board[1][4].power, 5);
   s = P.nextRound(s);
   assert.deepEqual(s.lastEvent.hatched, [[4], [4]]);
-  assert.equal(s.board[0][4].power, base + 2); assert.equal(s.board[1][4].power, base);
+  assert.equal(s.board[0][4].power, base + 1); assert.equal(s.board[1][4].power, base + 1);
   assert.ok(s.board.every(row => row[4].hatched && row[4].cost === 0));
   assert.ok(s.players.every(p => p.sun === 4 && allCards(p).length === 16));
   assert.ok(s.broods.flat().every(x => x === 0));
@@ -828,20 +1155,23 @@ test("bees can take all pollen from a waiting cocoon and score it elsewhere", ()
   assert.equal(P.nextRound(settled).board[0][1].power, P.specialRules("butterfly").hatchPower);
 });
 
-test("opposing cocoons feed in placement order even when the upper seat placed first", () => {
+test("opposing cocoons share the same snapshot and an odd flower remains contestable regardless of placement order", () => {
   let s = fresh("butterfly", "butterfly");
   s.turn = 1;
   s.players.forEach(p => { p.sun = 10; deal(p, ["special"]); });
   s.board.forEach(row => { row[1] = unit(1); });
+  s.board[0][1] = unit(3);
   s.pollen = [0, 3, 0, 0, 0];
   s = P.play(s, skill(s, 1, 1));
   s = P.play(s, skill(s, 1, 1));
   s = close(s);
-  assert.equal(s.result.feeders[1], 1);
-  assert.equal(s.eaten[1], 3);
+  assert.deepEqual(s.result.meals[1].shares, [1,1]);
+  assert.equal(s.eaten[1], 2);
+  assert.equal(s.pollen[1], 1);
+  assert.deepEqual(s.result.gain, [1,0]);
   const next = P.nextRound(s), base = P.specialRules("butterfly").hatchPower;
-  assert.equal(next.board[1][1].power, base + 3);
-  assert.equal(next.board[0][1].power, base);
+  assert.equal(next.board[1][1].power, base + 1);
+  assert.equal(next.board[0][1].power, base + 1);
 });
 
 test("guarding leaves the parent vulnerable to hits and pushes; its brood stays with the flower", () => {

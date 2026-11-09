@@ -25,7 +25,6 @@ function prepareFixture(spider) {
     state.board[foe][2] = { power: 3, base: 3, cost: 2 };
     state.board[spider][2] = { power: 1, base: 1, cost: 1 };
     state.broods[foe][4] = engine.specialRules("butterfly").hatchPower;
-    state.broodFirst[4] = foe;
     state.pollen = [0, 0, 3, 0, 1];
     state.startingPollen = 4;
     window.fixture = state;

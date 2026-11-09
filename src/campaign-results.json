@@ -1,0 +1,863 @@
+{
+  "rulesDigest": "b0f556888541310f9e030cd60d54a50f61e3e2d49157bab4e21dfe7ad83c787c",
+  "baselineDigest": "1600f1d9b2c5e3b2bb01d568ea9fd78e43e7be3744edfae9d206a12478d6e1b8",
+  "skillControl": {
+    "file": "campaign-skill-results.json",
+    "rulesDigest": "1600f1d9b2c5e3b2bb01d568ea9fd78e43e7be3744edfae9d206a12478d6e1b8",
+    "games": 4000,
+    "startSeed": 1130000
+  },
+  "games": 3840,
+  "startingSeed": 1190000,
+  "gamesPerEncounter": 384,
+  "method": "Both sides use the shipped AI. Player uses their faction's default deck. CPU is always seat 1. First mover alternates; deals are seeded independently. Stages 1–4 use the default-deck head-to-head report.",
+  "route": {
+    "ant": [
+      {
+        "stage": 1,
+        "opponent": "bee",
+        "games": 1600,
+        "playerWins": 1010,
+        "bossWins": 590
+      },
+      {
+        "stage": 2,
+        "opponent": "spider",
+        "games": 1600,
+        "playerWins": 966,
+        "bossWins": 634
+      },
+      {
+        "stage": 3,
+        "opponent": "beetle",
+        "games": 1600,
+        "playerWins": 744,
+        "bossWins": 856
+      },
+      {
+        "stage": 4,
+        "opponent": "butterfly",
+        "games": 1600,
+        "playerWins": 577,
+        "bossWins": 1023
+      }
+    ],
+    "bee": [
+      {
+        "stage": 1,
+        "opponent": "beetle",
+        "games": 1600,
+        "playerWins": 894,
+        "bossWins": 706
+      },
+      {
+        "stage": 2,
+        "opponent": "butterfly",
+        "games": 1600,
+        "playerWins": 862,
+        "bossWins": 738
+      },
+      {
+        "stage": 3,
+        "opponent": "spider",
+        "games": 1600,
+        "playerWins": 698,
+        "bossWins": 902
+      },
+      {
+        "stage": 4,
+        "opponent": "ant",
+        "games": 1600,
+        "playerWins": 590,
+        "bossWins": 1010
+      }
+    ],
+    "beetle": [
+      {
+        "stage": 1,
+        "opponent": "spider",
+        "games": 1600,
+        "playerWins": 968,
+        "bossWins": 632
+      },
+      {
+        "stage": 2,
+        "opponent": "ant",
+        "games": 1600,
+        "playerWins": 856,
+        "bossWins": 744
+      },
+      {
+        "stage": 3,
+        "opponent": "butterfly",
+        "games": 1600,
+        "playerWins": 712,
+        "bossWins": 888
+      },
+      {
+        "stage": 4,
+        "opponent": "bee",
+        "games": 1600,
+        "playerWins": 706,
+        "bossWins": 894
+      }
+    ],
+    "spider": [
+      {
+        "stage": 1,
+        "opponent": "butterfly",
+        "games": 1600,
+        "playerWins": 982,
+        "bossWins": 618
+      },
+      {
+        "stage": 2,
+        "opponent": "bee",
+        "games": 1600,
+        "playerWins": 902,
+        "bossWins": 698
+      },
+      {
+        "stage": 3,
+        "opponent": "ant",
+        "games": 1600,
+        "playerWins": 634,
+        "bossWins": 966
+      },
+      {
+        "stage": 4,
+        "opponent": "beetle",
+        "games": 1600,
+        "playerWins": 632,
+        "bossWins": 968
+      }
+    ],
+    "butterfly": [
+      {
+        "stage": 1,
+        "opponent": "ant",
+        "games": 1600,
+        "playerWins": 1023,
+        "bossWins": 577
+      },
+      {
+        "stage": 2,
+        "opponent": "beetle",
+        "games": 1600,
+        "playerWins": 888,
+        "bossWins": 712
+      },
+      {
+        "stage": 3,
+        "opponent": "bee",
+        "games": 1600,
+        "playerWins": 738,
+        "bossWins": 862
+      },
+      {
+        "stage": 4,
+        "opponent": "spider",
+        "games": 1600,
+        "playerWins": 618,
+        "bossWins": 982
+      }
+    ]
+  },
+  "encounters": {
+    "ant": {
+      "5": {
+        "games": 384,
+        "bossWins": 318,
+        "bossWinRate": 0.8281,
+        "wilson95": [
+          0.7872,
+          0.8626
+        ],
+        "bossWinsStartingFirst": 159,
+        "bossWinsStartingSecond": 159,
+        "meanRounds": 12.2839,
+        "skillPlays": {
+          "ant+": 1684
+        },
+        "gamesUsingEachSkill": {
+          "ant+": 384
+        },
+        "gamesUsingAllSkills": 384,
+        "playerWinExample": {
+          "index": 4,
+          "seed": 3558047521,
+          "first": 0,
+          "rounds": 12,
+          "score": [
+            31,
+            21
+          ]
+        },
+        "publicCardsDealt": {},
+        "publicCardsPlayed": {},
+        "deck": {
+          "partners": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4
+          ],
+          "hits": [
+            2
+          ],
+          "supplies": 1,
+          "specials": 2
+        },
+        "skills": [
+          {
+            "faction": "ant",
+            "enhanced": true,
+            "copies": 2
+          }
+        ]
+      },
+      "6": {
+        "games": 384,
+        "bossWins": 347,
+        "bossWinRate": 0.9036,
+        "wilson95": [
+          0.87,
+          0.9293
+        ],
+        "bossWinsStartingFirst": 172,
+        "bossWinsStartingSecond": 175,
+        "meanRounds": 12.1354,
+        "skillPlays": {
+          "ant+": 3426,
+          "beetle": 980,
+          "spider": 1332
+        },
+        "gamesUsingEachSkill": {
+          "ant+": 384,
+          "beetle": 359,
+          "spider": 377
+        },
+        "gamesUsingAllSkills": 352,
+        "playerWinExample": {
+          "index": 3,
+          "seed": 994391831,
+          "first": 1,
+          "rounds": 13,
+          "score": [
+            31,
+            27
+          ]
+        },
+        "publicCardsDealt": {
+          "ant+": 1553,
+          "beetle": 1604,
+          "spider": 1503
+        },
+        "publicCardsPlayed": {
+          "ant+": 885,
+          "beetle": 433,
+          "spider": 618
+        },
+        "deck": {
+          "partners": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "hits": [],
+          "supplies": 1,
+          "specials": 6
+        },
+        "skills": [
+          {
+            "faction": "ant",
+            "enhanced": true,
+            "copies": 4
+          },
+          {
+            "faction": "spider",
+            "enhanced": false,
+            "copies": 1
+          },
+          {
+            "faction": "beetle",
+            "enhanced": false,
+            "copies": 1
+          }
+        ]
+      }
+    },
+    "bee": {
+      "5": {
+        "games": 384,
+        "bossWins": 336,
+        "bossWinRate": 0.875,
+        "wilson95": [
+          0.8382,
+          0.9044
+        ],
+        "bossWinsStartingFirst": 170,
+        "bossWinsStartingSecond": 166,
+        "meanRounds": 14.0469,
+        "skillPlays": {
+          "bee+": 2467
+        },
+        "gamesUsingEachSkill": {
+          "bee+": 384
+        },
+        "gamesUsingAllSkills": 384,
+        "playerWinExample": {
+          "index": 5,
+          "seed": 765163623,
+          "first": 1,
+          "rounds": 14,
+          "score": [
+            31,
+            26
+          ]
+        },
+        "publicCardsDealt": {},
+        "publicCardsPlayed": {},
+        "deck": {
+          "partners": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4
+          ],
+          "hits": [
+            2
+          ],
+          "supplies": 1,
+          "specials": 3
+        },
+        "skills": [
+          {
+            "faction": "bee",
+            "enhanced": true,
+            "copies": 3
+          }
+        ]
+      },
+      "6": {
+        "games": 384,
+        "bossWins": 362,
+        "bossWinRate": 0.9427,
+        "wilson95": [
+          0.9148,
+          0.9619
+        ],
+        "bossWinsStartingFirst": 179,
+        "bossWinsStartingSecond": 183,
+        "meanRounds": 13.3203,
+        "skillPlays": {
+          "ant": 1434,
+          "bee+": 1186,
+          "spider": 1381
+        },
+        "gamesUsingEachSkill": {
+          "ant": 381,
+          "bee+": 382,
+          "spider": 382
+        },
+        "gamesUsingAllSkills": 377,
+        "playerWinExample": {
+          "index": 1,
+          "seed": 2806229335,
+          "first": 1,
+          "rounds": 15,
+          "score": [
+            34,
+            31
+          ]
+        },
+        "publicCardsDealt": {
+          "ant": 1720,
+          "bee+": 1697,
+          "spider": 1698
+        },
+        "publicCardsPlayed": {
+          "ant": 729,
+          "bee+": 638,
+          "spider": 672
+        },
+        "deck": {
+          "partners": [
+            1,
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4
+          ],
+          "hits": [
+            2
+          ],
+          "supplies": 1,
+          "specials": 3
+        },
+        "skills": [
+          {
+            "faction": "bee",
+            "enhanced": true,
+            "copies": 1
+          },
+          {
+            "faction": "ant",
+            "enhanced": false,
+            "copies": 1
+          },
+          {
+            "faction": "spider",
+            "enhanced": false,
+            "copies": 1
+          }
+        ]
+      }
+    },
+    "beetle": {
+      "5": {
+        "games": 384,
+        "bossWins": 330,
+        "bossWinRate": 0.8594,
+        "wilson95": [
+          0.821,
+          0.8906
+        ],
+        "bossWinsStartingFirst": 159,
+        "bossWinsStartingSecond": 171,
+        "meanRounds": 15.1667,
+        "skillPlays": {
+          "beetle+": 5239
+        },
+        "gamesUsingEachSkill": {
+          "beetle+": 384
+        },
+        "gamesUsingAllSkills": 384,
+        "playerWinExample": {
+          "index": 11,
+          "seed": 1609056317,
+          "first": 1,
+          "rounds": 13,
+          "score": [
+            30,
+            29
+          ]
+        },
+        "publicCardsDealt": {},
+        "publicCardsPlayed": {},
+        "deck": {
+          "partners": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4
+          ],
+          "hits": [],
+          "supplies": 1,
+          "specials": 5
+        },
+        "skills": [
+          {
+            "faction": "beetle",
+            "enhanced": true,
+            "copies": 5
+          }
+        ]
+      },
+      "6": {
+        "games": 384,
+        "bossWins": 362,
+        "bossWinRate": 0.9427,
+        "wilson95": [
+          0.9148,
+          0.9619
+        ],
+        "bossWinsStartingFirst": 180,
+        "bossWinsStartingSecond": 182,
+        "meanRounds": 14.2969,
+        "skillPlays": {
+          "ant": 1513,
+          "beetle+": 1004,
+          "butterfly": 382
+        },
+        "gamesUsingEachSkill": {
+          "ant": 380,
+          "beetle+": 372,
+          "butterfly": 246
+        },
+        "gamesUsingAllSkills": 235,
+        "playerWinExample": {
+          "index": 3,
+          "seed": 3130128377,
+          "first": 1,
+          "rounds": 16,
+          "score": [
+            30,
+            28
+          ]
+        },
+        "publicCardsDealt": {
+          "ant": 1907,
+          "beetle+": 1799,
+          "butterfly": 1784
+        },
+        "publicCardsPlayed": {
+          "ant": 753,
+          "beetle+": 351,
+          "butterfly": 144
+        },
+        "deck": {
+          "partners": [
+            1,
+            1,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4
+          ],
+          "hits": [
+            2,
+            3
+          ],
+          "supplies": 1,
+          "specials": 3
+        },
+        "skills": [
+          {
+            "faction": "beetle",
+            "enhanced": true,
+            "copies": 1
+          },
+          {
+            "faction": "ant",
+            "enhanced": false,
+            "copies": 1
+          },
+          {
+            "faction": "butterfly",
+            "enhanced": false,
+            "copies": 1
+          }
+        ]
+      }
+    },
+    "spider": {
+      "5": {
+        "games": 384,
+        "bossWins": 325,
+        "bossWinRate": 0.8464,
+        "wilson95": [
+          0.8069,
+          0.879
+        ],
+        "bossWinsStartingFirst": 154,
+        "bossWinsStartingSecond": 171,
+        "meanRounds": 15.6224,
+        "skillPlays": {
+          "spider+": 3380
+        },
+        "gamesUsingEachSkill": {
+          "spider+": 384
+        },
+        "gamesUsingAllSkills": 384,
+        "playerWinExample": {
+          "index": 3,
+          "seed": 3806763831,
+          "first": 1,
+          "rounds": 17,
+          "score": [
+            31,
+            26
+          ]
+        },
+        "publicCardsDealt": {},
+        "publicCardsPlayed": {},
+        "deck": {
+          "partners": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4,
+            4
+          ],
+          "hits": [
+            1,
+            2
+          ],
+          "supplies": 1,
+          "specials": 3
+        },
+        "skills": [
+          {
+            "faction": "spider",
+            "enhanced": true,
+            "copies": 3
+          }
+        ]
+      },
+      "6": {
+        "games": 384,
+        "bossWins": 366,
+        "bossWinRate": 0.9531,
+        "wilson95": [
+          0.9271,
+          0.9701
+        ],
+        "bossWinsStartingFirst": 177,
+        "bossWinsStartingSecond": 189,
+        "meanRounds": 13.7266,
+        "skillPlays": {
+          "ant": 1304,
+          "beetle": 1113,
+          "spider+": 1983
+        },
+        "gamesUsingEachSkill": {
+          "ant": 376,
+          "beetle": 372,
+          "spider+": 384
+        },
+        "gamesUsingAllSkills": 364,
+        "playerWinExample": {
+          "index": 12,
+          "seed": 2369698615,
+          "first": 0,
+          "rounds": 15,
+          "score": [
+            31,
+            30
+          ]
+        },
+        "publicCardsDealt": {
+          "ant": 1783,
+          "beetle": 1712,
+          "spider+": 1776
+        },
+        "publicCardsPlayed": {
+          "ant": 692,
+          "beetle": 440,
+          "spider+": 1073
+        },
+        "deck": {
+          "partners": [
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "hits": [
+            1
+          ],
+          "supplies": 1,
+          "specials": 3
+        },
+        "skills": [
+          {
+            "faction": "spider",
+            "enhanced": true,
+            "copies": 1
+          },
+          {
+            "faction": "ant",
+            "enhanced": false,
+            "copies": 1
+          },
+          {
+            "faction": "beetle",
+            "enhanced": false,
+            "copies": 1
+          }
+        ]
+      }
+    },
+    "butterfly": {
+      "5": {
+        "games": 384,
+        "bossWins": 335,
+        "bossWinRate": 0.8724,
+        "wilson95": [
+          0.8353,
+          0.9021
+        ],
+        "bossWinsStartingFirst": 163,
+        "bossWinsStartingSecond": 172,
+        "meanRounds": 19.1432,
+        "skillPlays": {
+          "butterfly+": 3192
+        },
+        "gamesUsingEachSkill": {
+          "butterfly+": 384
+        },
+        "gamesUsingAllSkills": 384,
+        "playerWinExample": {
+          "index": 5,
+          "seed": 1354394783,
+          "first": 1,
+          "rounds": 21,
+          "score": [
+            31,
+            29
+          ]
+        },
+        "publicCardsDealt": {},
+        "publicCardsPlayed": {},
+        "deck": {
+          "partners": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            3,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4
+          ],
+          "hits": [
+            2
+          ],
+          "supplies": 1,
+          "specials": 2
+        },
+        "skills": [
+          {
+            "faction": "butterfly",
+            "enhanced": true,
+            "copies": 2
+          }
+        ]
+      },
+      "6": {
+        "games": 384,
+        "bossWins": 378,
+        "bossWinRate": 0.9844,
+        "wilson95": [
+          0.9663,
+          0.9928
+        ],
+        "bossWinsStartingFirst": 189,
+        "bossWinsStartingSecond": 189,
+        "meanRounds": 15.5807,
+        "skillPlays": {
+          "ant": 1308,
+          "butterfly+": 1833,
+          "spider": 1410
+        },
+        "gamesUsingEachSkill": {
+          "ant": 381,
+          "butterfly+": 384,
+          "spider": 381
+        },
+        "gamesUsingAllSkills": 378,
+        "playerWinExample": {
+          "index": 23,
+          "seed": 3452369653,
+          "first": 1,
+          "rounds": 17,
+          "score": [
+            30,
+            29
+          ]
+        },
+        "publicCardsDealt": {
+          "ant": 1971,
+          "butterfly+": 2042,
+          "spider": 1970
+        },
+        "publicCardsPlayed": {
+          "ant": 647,
+          "butterfly+": 1067,
+          "spider": 591
+        },
+        "deck": {
+          "partners": [
+            1,
+            1,
+            2,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "hits": [
+            1
+          ],
+          "supplies": 1,
+          "specials": 3
+        },
+        "skills": [
+          {
+            "faction": "butterfly",
+            "enhanced": true,
+            "copies": 1
+          },
+          {
+            "faction": "ant",
+            "enhanced": false,
+            "copies": 1
+          },
+          {
+            "faction": "spider",
+            "enhanced": false,
+            "copies": 1
+          }
+        ]
+      }
+    }
+  }
+}

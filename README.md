@@ -2,9 +2,17 @@
 
 适合 5–8 岁孩子的昆虫卡牌游戏。选一族，带上 16 张牌，在五条花道上争花粉。可以挑战电脑，也可以两个人坐在平板两端轮流出牌。
 
-贴近草叶看五族昆虫争花粉。点屏幕后，手风琴、木吉他和低音会奏起原创法语小曲《Petit pollen》（小花粉）；游戏内的扬声器按钮可以开关音乐，断网也能听。[美术与配乐制作说明](ART.md)
+贴近草叶看五族昆虫争花粉。点屏幕后，真实手风琴、尼龙弦吉他和低音提琴的录音采样会奏起原创器乐曲《Petit pollen》（小花粉）；游戏内的扬声器按钮可以开关音乐，断网也能听。[美术与配乐制作说明](ART.md)
 
 [打开游戏](https://hot785631.github.io/pollen-table/) · [规则和五族对阵胜率](https://hot785631.github.io/pollen-table/guide.html#balance) · [下载离线包](https://hot785631.github.io/pollen-table/pollen-table-v5.zip)
+
+## 五族闯关
+
+单人选队后可选择随机速战或六关战役。每族以独立进度保存最高星数，首次胜利得到一块专属轮廓的拼图。单人牌桌上席为电脑，普通手牌显示牌背，第六关首领另有一张每轮公开刷新的专属。[关卡与首领实测](https://hot785631.github.io/pollen-table/guide.html#campaign) · [五族各收集三块时的拼图](media/puzzle-cuts.jpg)
+
+## 匹配测试服
+
+[启动 GitHub Codespaces](https://codespaces.new/hot785631/pollen-table?quickstart=1) · [两台设备的配对步骤和接口](server/README.md)
 
 ## 添加到手机或平板主屏幕
 

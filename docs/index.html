@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-pollen-cache="pollen-table-de983718ab0f0555" lang="zh-CN">
+<html data-pollen-cache="pollen-table-ca32d812ec238e05" lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -1117,6 +1117,148 @@ button:focus-visible {outline:3px solid #0077bb;outline-offset:3px}
 
 </style>
   <style>
+.campaign-puzzle[data-picture=ant] {--picture:url("./campaign-ant.webp")}
+.campaign-puzzle[data-picture=bee] {--picture:url("./campaign-bee.webp")}
+.campaign-puzzle[data-picture=beetle] {--picture:url("./campaign-beetle.webp")}
+.campaign-puzzle[data-picture=spider] {--picture:url("./campaign-spider.webp")}
+.campaign-puzzle[data-picture=butterfly] {--picture:url("./campaign-butterfly.webp")}
+.campaign-map {width:min(100%,1000px);margin:clamp(14px,5vh,56px) auto 34px;color:#fff7d7}
+.campaign-heading,.campaign-album header {display:flex;align-items:center;justify-content:space-between;gap:12px}
+.campaign-heading {margin-bottom:clamp(14px,3vh,28px)}
+.campaign-heading p {margin:0 0 4px;color:#ffdfa0;letter-spacing:.15em;font-weight:700}
+.campaign-heading h1,.campaign-album h2,.campaign-opponent h3 {margin:0;font-family:var(--display-face);line-height:1.2}
+.campaign-heading h1 {color:#fff8da;font-size:clamp(32px,4.6vw,65px)}
+.campaign-layout {display:grid;grid-template-columns:minmax(260px,.83fr) minmax(300px,1.17fr);gap:clamp(16px,2.3vw,34px);align-items:start}
+.campaign-stages {display:grid;gap:8px}
+.campaign-stage {display:grid;grid-template-columns:37px 1fr auto;gap:12px;align-items:center;text-align:left;min-height:52px;width:100%;padding:6px 14px 6px 8px;border-radius:13px;border:1px solid #d2c696;color:#304434;background:linear-gradient(120deg,#fff9e1,#ece2bd);box-shadow:0 3px 0 #13291e70}
+.campaign-stage.next-stage {border:2px solid #f7d269;background:#ffedb4}
+.campaign-stage.locked {opacity:1;color:#d2d7c1;border-color:#b1bf9566;background:#263c31e6;box-shadow:none}
+.stage-number {height:34px;aspect-ratio:1;display:grid;place-items:center;border-radius:50%;background:#3d5b40;color:#fff9df;font-size:19px;font-weight:800}
+.locked .stage-number {background:#566a54;color:#edf0e1}
+.stage-name {font-size:clamp(16px,2vw,21px);font-weight:750}
+.stage-lock,.stage-lock svg {width:20px;height:20px}
+.stage-go {font:700 28px/1 sans-serif}
+.campaign-stars {display:inline-flex;align-items:center;color:#807856;letter-spacing:0;font:700 19px/1.1 Arial,sans-serif;white-space:nowrap}
+.campaign-stars .lit {color:#b66d06}
+.campaign-album {padding:clamp(12px,2vw,24px);border:1px solid #bfad79;border-radius:19px;color:#2b3d30;background:#fff6dcee;box-shadow:0 5px 13px #17271a55}
+.campaign-album header {margin-bottom:12px}.campaign-album h2{font-size:clamp(21px,2.4vw,33px)}
+.campaign-album header>span {font-size:17px;font-weight:800;white-space:nowrap}
+.campaign-album p {margin:10px 0 0;font-size:14px}.campaign-album .solid {margin-top:12px}
+.campaign-puzzle {width:100%;aspect-ratio:3/2;display:block;position:relative;overflow:hidden;border:1px solid #7f8b68;border-radius:11px;background:#61715b}
+#sheet:has(.campaign-puzzle.large) {width:min(90vw,1000px);max-width:94vw}
+.campaign-puzzle.large {width:min(100%,108vh);margin:auto}
+.campaign-opponent {display:flex;gap:15px;align-items:center;margin:12px 0 14px}
+.campaign-opponent>svg {background:#e2e4c7;border-radius:50%;width:66px;height:66px;flex:none;padding:5px}
+.campaign-opponent small {font-size:14px;color:#475d43}.campaign-opponent h3 {font-size:27px;margin:4px 0 0}
+.campaign-skills {display:grid;gap:9px;padding:0;margin:12px 0;list-style:none}
+.campaign-skills li {display:grid;grid-template-columns:46px 1fr;gap:9px;align-items:center}
+.campaign-skill-art {display:grid;place-items:center;width:46px;height:42px;background:#ede2ec;border-radius:8px}
+.campaign-skill-art svg {width:100%;height:100%}.campaign-skills p {margin:3px 0 0;line-height:1.45}
+.boss-skill-cost {display:inline-flex;align-items:center;vertical-align:middle;gap:2px;margin-left:7px;font:700 13px/1 sans-serif}.boss-skill-cost svg {width:16px;height:16px}
+.skill-plus {display:inline-block;margin-left:5px;color:#603d71;background:#ead7ee;padding:2px 5px;border-radius:4px;font-size:11px;line-height:1.1}
+.medal-guide {display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin-top:16px;padding:9px 0;border-top:1px solid #c3b88e}
+.medal-guide small {width:100%;color:#445342}.medal-guide span {color:#945d00;font-size:15px;font-weight:700}.medal-guide b {color:#354636}
+.campaign-result {width:100%;display:flex;flex-wrap:wrap;gap:3px 12px;align-content:center;align-items:center;justify-content:center;color:#273e2d}
+.campaign-result>div:not(.campaign-puzzle) {display:flex;flex-direction:column;align-items:center;gap:2px}
+.campaign-result .campaign-puzzle {width:clamp(57px,12vw,122px);max-height:100%}
+.campaign-result strong {font-family:var(--display-face);font-size:clamp(19px,2.4vw,30px)}.campaign-result>div>span:last-child {text-align:center;font-size:14px}
+.campaign-result .campaign-stars {font-size:24px}
+.campaign-rival {color:inherit;background:transparent;padding:3px 4px;border:1px solid #9caa7c;border-radius:6px;text-align:left;font:inherit;font-weight:700;line-height:1.15}
+.battle .role-name.campaign-rival {display:inline-flex;gap:3px;align-items:center;min-height:36px}.campaign-rival small{font-size:12px}
+.campaign-rival:is(.chief,.fantasy) {border-color:#a87829;color:#5e430d;background:#ffe4a4}
+.campaign-rival.fantasy {border-color:#9771a2;color:#4e365b;background:#efe0f2}.campaign-rival svg {width:17px;height:15px;flex:none}
+.campaign-activity {color:#35462c;background:#f1edcb;padding:5px 9px;border-radius:8px;align-self:center;font-size:13px}
+.slot .web-clock {position:absolute;z-index:4;top:2px;left:2px;padding:1px 4px;background:#e3eff0;color:#254653;border:1px solid #65858b;border-radius:5px;font:bold clamp(9px,1.25vw,13px)/1.2 sans-serif}
+.tabletop .slot[data-side="1"] .web-clock {rotate:180deg}
+.solo-setup .home-actions {flex-wrap:wrap}
+.online-match-entry {background:none;color:#fff5cf;border:1px solid #e9e9b58c;border-radius:24px;min-height:42px;padding:6px 17px;margin-top:14px;font-weight:700}
+.campaign-double-target {box-shadow:inset 0 0 0 3px #b38328}
+.brood-counts {display:inline-flex;gap:2px;align-items:center;font-size:11px}
+.slot .bee-both {position:absolute;inset:auto 3px 2px auto;z-index:5;padding:2px 5px;border-radius:6px;color:#392810;background:#ffe09a;border:1px solid #997536;font-weight:800;font-size:clamp(10px,1.5vw,14px);line-height:1.2}
+.tabletop .slot[data-side="1"] .bee-both {inset:2px auto auto 3px;rotate:180deg}
+.solo-table .computer-seat .seat-inner,.solo-table[data-turn="1"] .pollen-count,
+.solo-table .slot[data-side="1"]>.unit-power,.solo-table .slot[data-side="1"]>.brood-marker,
+.solo-table .slot[data-side="1"]>.no-harvest,.solo-table .collection-result[data-award="1"] b {transform:none}
+.solo-table .slot[data-side="1"] .web-clock,.solo-table .slot[data-side="1"] .bee-both {rotate:none}
+.solo-table .computer-seat .roles {width:100%}
+.solo-table .computer-seat .cpu-hand {width:100%;max-width:850px;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(3px,1vw,14px);min-height:var(--cpu-height);align-items:stretch}
+.solo-table .computer-seat .cpu-hand.with-public {grid-template-columns:repeat(6,minmax(0,1fr)) minmax(64px,1.28fr)}
+.solo-table {--cpu-height:clamp(66px,10dvh,108px)}
+.cpu-back {position:relative;isolation:isolate;display:grid;place-items:center;min-width:0;justify-self:center;height:var(--cpu-height);width:min(100%,calc(var(--cpu-height)*.86));border:2px solid #a9a878;border-radius:clamp(5px,1vw,11px);background-color:#345646;background-image:repeating-linear-gradient(45deg,transparent 0 8px,#d5d7a311 8px 9px);box-shadow:inset 0 0 0 2px #284e42,0 2px 2px #1c351c45}
+.cpu-back::before {content:"";position:absolute;inset:4px;border:1px solid #bdc297ad;border-radius:inherit}
+.cpu-back .icon {width:43%;height:43%;transform:rotate(155deg);filter:sepia(.3);opacity:.9}
+.solo-table .computer-seat.active-seat .cpu-back {box-shadow:inset 0 0 0 2px #284e42,0 0 0 2px #e2cd87}
+.solo-table .cpu-toolbar {min-height:21px;display:flex;align-items:center;justify-content:center;gap:6px}
+.cpu-turn {padding:2px 8px;color:#485746;font-weight:700;font-size:12px;white-space:nowrap}
+.computer-seat.active-seat .cpu-turn {color:#fff9df;background:#3d6047;border-radius:12px}
+.cpu-toolbar .campaign-activity {font-size:12px;padding:2px 6px}
+.cpu-hand .public-skill {grid-column:7;grid-row:1;position:relative;min-width:44px;max-width:128px;height:var(--cpu-height);width:100%;padding:2px 3px;display:grid;grid-template-rows:auto minmax(0,1fr) auto;justify-items:center;align-items:center;border:2px solid #865735;border-radius:9px;background:linear-gradient(130deg,#fff0b9,#fae5be 55%,#ecd7dd);box-shadow:0 2px 3px #67463047;color:#463221;line-height:1.1}
+.public-skill>small {color:#654214;padding:1px 4px;background:#ffe09a;border-radius:5px;justify-self:start;font-size:clamp(10px,1.2vw,13px);font-weight:800}
+.public-cost {position:absolute;right:3px;top:3px;display:flex;gap:1px;align-items:center;font-size:clamp(11px,1.4vw,16px);font-weight:800}.public-cost .icon {width:13px;height:13px}
+.public-art,.public-art svg {width:100%;height:100%;min-height:0;display:block;pointer-events:none}
+.public-skill strong {font-size:clamp(11px,1.4vw,16px);white-space:nowrap}.public-skill strong i {font:800 .9em/1 sans-serif;color:#704476}
+.cpu-hand .public-skill.spent {border-style:dashed;background:#e6e3cf;box-shadow:none;color:#5c6153}.public-skill.spent b {font-size:13px;grid-row:2}
+.cpu-back,.public-skill {align-self:center}
+@media(max-width:640px) and (orientation:portrait) {
+  .solo-table .computer-seat {padding:3px 5px}
+  .solo-table {--cpu-height:clamp(46px,7.5dvh,66px)}
+  .solo-table .computer-seat .cpu-hand {gap:3px}
+  .solo-table .cpu-toolbar {min-height:18px;margin:2px 0}
+  .solo-table .cpu-toolbar .campaign-activity {max-width:75%;line-height:1.12}
+  .solo-table .cpu-turn {font-size:11px;padding:1px 5px}
+  .solo-table .computer-seat .unseen-hand small {display:none}
+}
+@media(orientation:landscape) and (max-height:590px) {
+  .solo-table {--cpu-height:clamp(46px,13dvh,65px)}
+  .solo-table .computer-seat .seat-inner {grid-template-columns:112px minmax(0,1fr) minmax(64px,13%);gap:3px}
+  .solo-table .computer-seat .cpu-hand {gap:3px}
+  .solo-table .cpu-toolbar {flex-direction:column;line-height:1.12}
+  .solo-table .cpu-toolbar .campaign-activity {font-size:10px}
+  .solo-table .public-skill {border-width:1px}.solo-table .public-cost {font-size:11px}.solo-table .public-cost .icon {width:11px;height:11px}
+}
+@media(max-width:640px) and (orientation:portrait) and (min-height:700px) {
+  .battle.tabletop.solo-table {--seat-card-h:clamp(84px,14dvh,124px);--lane-cell-h:clamp(78px,13.6dvh,115px);--cpu-height:clamp(60px,8dvh,80px);grid-template-rows:auto minmax(max-content,.45fr) auto minmax(max-content,1fr)}
+}
+@media(max-width:374px) and (orientation:portrait) {
+  .solo-table .computer-seat .roles {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 4px}
+  .solo-table .computer-seat .roles>.row:first-child {grid-area:1/1}
+  .solo-table .computer-seat .roles>.row:last-child {grid-area:1/2;justify-content:end}
+  .solo-table .computer-seat .pile-group {grid-area:2/1/3/3;justify-content:center}
+}
+@media(max-width:640px) {
+  .campaign-map {margin:10px 0 22px}
+  .campaign-layout {grid-template-columns:1fr;gap:15px}
+  .campaign-stages {grid-template-columns:1fr 1fr;gap:6px}
+  .campaign-stage {grid-template-columns:26px 1fr;padding:6px;gap:4px;min-height:56px}
+  .stage-number {grid-row:span 2;height:26px;font-size:15px}
+  .stage-name {font-size:15px}.stage-go,.stage-lock,.stage-lock svg {height:14px;width:14px;line-height:12px;font-size:17px}
+  .stage-go,.campaign-stage .campaign-stars,.stage-lock {grid-column:2;font-size:13px}
+  .campaign-album {width:100%;max-width:440px;margin:auto}
+  .solo-setup .home-actions {gap:7px}.solo-setup .home-actions>button {padding:8px 10px}
+}
+@media(max-height:480px) and (orientation:landscape) {
+  .campaign-map {margin:6px 0}.campaign-heading {margin-bottom:8px}.campaign-heading h1 {font-size:27px}
+  .campaign-layout {grid-template-columns:minmax(210px,.95fr) minmax(190px,1fr);gap:12px}
+  .campaign-stage {min-height:40px;padding-block:3px}.campaign-stages {gap:4px}
+  .campaign-album {padding:10px}.campaign-album h2 {font-size:20px}
+  .online-match-entry {margin-top:7px;min-height:35px}
+}
+
+</style>
+  <style>
+.puzzle-geometry {position:absolute;inset:0;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 20% 2%,#596854,#283b34 80%);border-radius:inherit}
+.puzzle-paint,.puzzle-seams {position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.puzzle-paint {background-image:var(--picture);background-size:100% 100%;background-repeat:no-repeat}
+.puzzle-seams path {fill:none;stroke-width:.85;stroke-linejoin:round;stroke:#fff0bc99}
+.puzzle-seams .unearned path {fill:#31423b;stroke:#d4d1a970}
+.puzzle-seams .unearned:nth-child(2n) path {fill:#394a41}
+.puzzle-seams text {fill:#efe4bd;text-anchor:middle;dominant-baseline:central;font:600 12px system-ui,sans-serif}
+.puzzle-seams .just-earned path {stroke:#fff2ab;stroke-width:2;animation:puzzle-piece-light 1.05s ease-out 2}
+@keyframes puzzle-piece-light {from{fill:#fff1b9b3}to{fill:transparent}}
+@media(prefers-reduced-motion:reduce){.puzzle-seams .just-earned path{animation:none}}
+
+</style>
+  <style>
 .chanson-tools { display:inline-flex; align-items:center; gap:6px }
 .chanson-toggle.round-btn { flex:0 0 auto; padding:0; inline-size:44px; block-size:44px; display:inline-grid; place-items:center }
 .chanson-toggle svg { display:block; width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round }
@@ -1182,15 +1324,78 @@ body:has(.mode-home) .transfer{display:block}
 </script>
   <script>
 (function (root, factory) {
-  if (typeof module === "object" && module.exports) module.exports = factory(require("./tuning.js"));
-  else root.Pollen = factory(root.PollenTuning);
-})(typeof window === "object" ? window : globalThis, function (tuning) {
+  if (typeof module === "object" && module.exports) module.exports = factory();
+  else root.PollenCampaignRules = factory();
+})(typeof window === "object" ? window : globalThis, function () {
+  "use strict";
+  // Remaining factions sorted by the player's default-deck wins in balance-result.json.
+  // 1,600 matches per pair, seed blocks 820000–820399.
+  const order = {
+    ant: ["bee", "spider", "beetle", "butterfly"],
+    bee: ["beetle", "butterfly", "spider", "ant"],
+    beetle: ["spider", "ant", "butterfly", "bee"],
+    spider: ["butterfly", "bee", "ant", "beetle"],
+    butterfly: ["ant", "beetle", "bee", "spider"],
+  };
+  // The two hardest rival skills for each player faction in campaign-skill-results.json.
+  // Partners and utility cards match on both sides, across five equally weighted recipes.
+  const counters = {
+    ant: ["spider", "beetle"], bee: ["ant", "spider"], beetle: ["ant", "butterfly"],
+    spider: ["ant", "beetle"], butterfly: ["ant", "spider"],
+  };
+  // First four counts correspond to the four partner costs.
+  const elite = {
+    ant:       { partners: [2, 3, 4, 3], hits: [2], supplies: 1 },
+    bee:       { partners: [3, 2, 4, 2], hits: [2], supplies: 1 },
+    beetle:    { partners: [2, 2, 4, 2], hits: [], supplies: 1 },
+    spider:    { partners: [2, 3, 2, 3], hits: [1,2], supplies: 1 },
+    butterfly: { partners: [2, 3, 4, 3], hits: [2], supplies: 1 },
+  };
+  // Finale lists retain the native enhanced card and make room for both foreign skills.
+  // extraCounter is an additional copy of the strongest foreign skill in the control.
+  const finale = {
+    ant:       { partners: [3,3,2,1], extraCounter: 0 },
+    bee:       { partners: [3,2,4,2], hits:[2], extraCounter: 0 },
+    beetle:    { partners: [2,2,2,4], hits:[2,3], extraCounter: 0 },
+    spider:    { partners: [4,3,2,2], hits:[1], extraCounter: 0 },
+    butterfly: { partners: [2,1,3,5], hits:[1], extraCounter: 0 },
+  };
+  function encounter(faction, stage, getDefault) {
+    if (!Object.hasOwn(order, faction) || !Number.isInteger(stage) || stage < 1 || stage > 6)
+      throw new RangeError("战役需要五族之一和第1至6关");
+    const opponent = stage < 5 ? order[faction][stage - 1] : faction;
+    if (stage < 5) {
+      const deck = getDefault(opponent);
+      return { faction, stage, opponent, deck, skills: [{ faction: opponent, enhanced: false, copies: deck.specials }] };
+    }
+    const preset = stage === 5 ? elite[faction] : finale[faction];
+    const partners = preset.partners.flatMap((copies, i) => Array(copies).fill(i + 1));
+    const hits = [...(preset.hits || [])], supplies = preset.supplies ?? 1;
+    const specials = 16 - partners.length - hits.length - supplies;
+    const deck = { partners, hits, supplies, specials };
+    const extra = stage === 6 ? finale[faction].extraCounter : 0;
+    const skills = [{ faction, enhanced: true, copies: stage === 6 ? specials - 2 - extra : specials }];
+    if (stage === 6) skills.push(...counters[faction].map((f,i) => ({ faction: f, enhanced: false, copies: 1 + (i === 0 ? extra : 0) })));
+    return { faction, stage, opponent, deck, skills };
+  }
+  // Weights give a public, hypothetical one-card counterplay a discount for an unknown hand.
+  const hornetTactics = { deployment:[0,0.76,0.65,0.53,0.42], hit:0.24, transfer:0.67, preparation:0.18, risk:0.95 };
+  return { encounter, hornetTactics };
+});
+
+</script>
+  <script>
+(function (root, factory) {
+  if (typeof module === "object" && module.exports) module.exports = factory(require("./tuning.js"), require("./campaign-rules.js"));
+  else root.Pollen = factory(root.PollenTuning, root.PollenCampaignRules);
+})(typeof window === "object" ? window : globalThis, function (tuning, campaigns) {
   "use strict";
 
   const lanes = [0, 1, 2, 3, 4];
   const deckLimit = 16;
   const adjacent = lanes.map(lane => [lane - 1, lane + 1].filter(i => i >= 0 && i < lanes.length));
   const facing = lanes.map(lane => [lane]);
+  const hornetDestinations = lanes.map(lane => [...adjacent[lane], lane]);
   const factions = Object.keys(tuning.factions);
   const partnerCosts = [1, 2, 3, 4];
   const hitImpacts = [1, 2, 3]; // Saved deck.hits values are strengths, including old recipes.
@@ -1199,14 +1404,43 @@ body:has(.mode-home) .transfer{display:block}
   const powerForCost = cost => [0, 1, 3, 5, 7][cost];
   const projectedPower = unit => unit?.power || 0;
   const scorePower = (unit, isWebbed) => isWebbed ? 0 : projectedPower(unit);
-  // With two surviving cocoons, the one placed first takes the single shared pile.
-  function feedingSide(brood0, brood1, first) {
-    if (brood0 && brood1) return first;
-    return brood0 ? 0 : brood1 ? 1 : null;
+  // Every surviving cocoon at a given flower gets an equal whole-number share.
+  // Compute all five flowers from one snapshot before changing any cocoon or pile.
+  function broodMeal(state, lane) {
+    if (state.result?.meals) return state.result.meals[lane];
+    const diners = [], counts = [0, 0], shares = [0, 0];
+    for (const side of [0, 1]) {
+      for (const home of lanes) {
+        const forage = state.broodForage[side][home];
+        if (!state.broods[side][home] || !(forage ? forage.includes(lane) : home === lane)) continue;
+        diners.push({ side, home, amount: 0 });
+        counts[side]++;
+      }
+    }
+    const pollen = state.pollen[lane];
+    const each = diners.length ? Math.floor(pollen / diners.length) : 0;
+    for (const diner of diners) { diner.amount = each; shares[diner.side] += each; }
+    return { counts, shares, remaining: pollen - each * diners.length, diners };
+  }
+  function projectedHatch(state, side, home) {
+    if (state.result) return state.result.hatches[side][home];
+    const base = state.broods[side][home];
+    if (!base) return 0;
+    const forage = state.broodForage[side][home];
+    let power = base;
+    for (const lane of (forage || [home])) {
+      const diner = broodMeal(state, lane).diners.find(d => d.side === side && d.home === home);
+      power += diner.amount;
+    }
+    return power;
   }
   function laneFeeder(state, lane) {
-    return state.result ? state.result.feeders[lane] :
-      feedingSide(state.broods[0][lane], state.broods[1][lane], state.broodFirst[lane]);
+    const [a, b] = broodMeal(state, lane).counts;
+    return a && !b ? 0 : b && !a ? 1 : null;
+  }
+  function webDuration(state, side, lane) {
+    const source = state.result || state;
+    return source.webs[side][lane] ? (source.lastingWebs[side][lane] ? 2 : 1) : 0;
   }
   function lanePower(state, side, lane) {
     const webs = state.result?.webs || state.webs;
@@ -1216,6 +1450,8 @@ body:has(.mode-home) .transfer{display:block}
   const emptyBoard = () => rows(null);
   const specialRules = faction => tuning.factions[faction];
   const specialCost = faction => specialRules(faction).cost;
+  const skillOf = (card, fallbackFaction) => card?.skill || fallbackFaction;
+  const campaignEncounter = (faction, stage) => campaigns.encounter(faction, stage, defaultDeck);
   function defaultDeck(faction = "ant") {
     const preset = (specialRules(faction) || specialRules("ant")).deck;
     return { partners: [...preset.partners], hits: [...preset.hits], specials: preset.specials, supplies: preset.supplies };
@@ -1302,11 +1538,11 @@ body:has(.mode-home) .transfer{display:block}
     return state[stream] / 4294967296;
   }
 
-  function pollenIndex(state, choices) {
+  function randomIndex(state, choices, stream) {
     // Equal-sized buckets; reject the few leftover values when 2^32 isn't divisible by choices.
     const size = Math.floor(4294967296 / choices);
     let value;
-    do { value = random(state, "pollenSeed") * 4294967296; } while (value >= size * choices);
+    do { value = random(state, stream) * 4294967296; } while (value >= size * choices);
     return Math.floor(value / size);
   }
 
@@ -1314,7 +1550,7 @@ body:has(.mode-home) .transfer{display:block}
     const weights = tuning.pollenWeights;
     const total = weights.reduce((a,b) => a + b, 0);
     const pollen = lanes.map(() => {
-      let roll = pollenIndex(state, total);
+      let roll = randomIndex(state, total, "pollenSeed");
       for (let value = 0; value < weights.length; value++) {
         if (roll < weights[value]) return value;
         roll -= weights[value];
@@ -1332,27 +1568,47 @@ body:has(.mode-home) .transfer{display:block}
     }
   }
 
-  function makePlayer(faction, deck, side, state) {
+  function makePlayer(faction, deck, side, state, skills) {
     if (!factions.includes(faction)) throw new Error("未知的虫队");
     if (!validateDeck(deck) && legacyRecipe(deck)) deck = migrateDeck(deck, faction);
     if (!validateDeck(deck)) throw new Error("每副牌共 16 张，其中至少要有 1 张伙伴");
     const draw = deck.partners.map((cost, i) => ({ id: side + "-partner-" + i, kind: "partner", cost }));
     draw.push(...deck.hits.map((impact, i) => ({ id: side + "-hit-" + i, kind: "hit", cost: hitCost(impact), impact })));
-    for (let i = 0; i < deck.specials; i++) {
-      draw.push({ id: side + "-special-" + i, kind: "special", cost: specialCost(faction) });
+    skills ??= [{ faction, enhanced: false, copies: deck.specials }];
+    let i = 0;
+    for (const spec of skills) {
+      for (let n = 0; n < spec.copies; n++, i++) {
+        draw.push({ id: side + "-special-" + i, kind: "special", skill: spec.faction, enhanced: spec.enhanced, cost: specialCost(spec.faction) });
+      }
     }
     for (let i = 0; i < deck.supplies; i++) {
       draw.push({ id: side + "-supply-" + i, kind: "supply", cost: supplyCost });
     }
     shuffle(draw, state);
     const deckOptions = { minPartner: Math.min(...deck.partners),
-      minHit: deck.hits.length ? Math.min(...deck.hits.map(hitCost)) : null, hasSpecial: deck.specials > 0 };
+      minHit: deck.hits.length ? Math.min(...deck.hits.map(hitCost)) : null, hasSpecial: deck.specials > 0, skills };
     return { faction, sun: 3, score: 0, passed: false, canCycle: true, deckOptions,
       hand: [], draw, discard: [] };
   }
 
   function drawEvent(type, side = null, cardId = null) {
     return { type, side, cardId, drawn: [[], []], reshuffles: [0, 0] };
+  }
+
+  function dealPublicSkill(state) {
+    if (state.campaign?.stage !== 6) return;
+    const skills = state.campaign.skills;
+    const spec = skills[randomIndex(state,skills.length,"publicSeed")];
+    const card = { id:"1-public-"+state.round, kind:"special", skill:spec.faction, enhanced:spec.enhanced,
+      cost:specialCost(spec.faction), public:true };
+    state.players[1].publicSkill = card;
+    state.lastEvent.revealedSkill = card;
+  }
+  const visibleSkill = (state, side) => state.players[side].publicSkill || null;
+  function cardForAction(state, side, action) {
+    const id = typeof action === "string" ? action : action?.card;
+    const card = visibleSkill(state,side);
+    return card && card.id === id ? card : state.players[side].hand.find(c => c.id === id) || null;
   }
 
   function drawOne(state, player, side) {
@@ -1385,52 +1641,67 @@ body:has(.mode-home) .transfer{display:block}
     const rng = options.rng || Math.random;
     const first = options.first ?? (rng() < 0.5 ? 0 : 1);
     if (![0, 1].includes(first)) throw new Error("先手须为 0 或 1");
-    const teams = options.factions || ["ant", "beetle"];
+    const campaign = options.campaign ? campaignEncounter(options.campaign.faction, options.campaign.stage) : null;
+    const teams = campaign ? [campaign.faction, campaign.opponent] : options.factions || ["ant", "beetle"];
     const decks = options.decks || [];
     const seed = Math.floor(rng() * 4294967296) >>> 0;
     const state = { round: 1, first, turn: first, phase: "play", winner: null, result: null,
-      board: emptyBoard(), webs: rows(false), broods: rows(0), broodFirst: lanes.map(() => null),
+      board: emptyBoard(), webs: rows(false), lastingWebs: rows(false), broods: rows(0), broodForage: rows(null),
       eaten: lanes.map(() => 0), players: [],
       lastEvent: drawEvent("deal"), seed, pollenSeed: (seed ^ 0x9e3779b9) >>> 0 };
+    if (campaign) state.campaign = { faction: campaign.faction, stage: campaign.stage, skills: campaign.skills };
+    if (campaign?.stage === 6) state.publicSeed = (seed ^ 0xa341316c) >>> 0;
     // The public flower layout is independent of shuffles and private draw history.
     state.pollen = freshPollen(state);
     for (const side of [0, 1]) {
-      const player = makePlayer(teams[side], decks[side] ?? defaultDeck(teams[side]), side, state);
+      const elite = side === 1 && campaign;
+      const player = makePlayer(teams[side], elite ? elite.deck : decks[side] ?? defaultDeck(teams[side]), side, state, elite ? elite.skills : undefined);
       refill(state, player, side);
       state.players.push(player);
     }
+    dealPublicSkill(state);
     return state;
   }
 
   // Context has only the acting player's cards and the shared board.
   function context(state, side) {
     const p = state.players[side];
-    return { side, own: state.board[side], enemy: state.board[1 - side], pollen: state.pollen, broodFirst: state.broodFirst,
+    return { side, own: state.board[side], enemy: state.board[1 - side], pollen: state.pollen,
+      ownForage: state.broodForage[side], enemyForage: state.broodForage[1 - side],
+      ownLasting: state.lastingWebs[side], enemyLasting: state.lastingWebs[1 - side],
       ownWeb: state.webs[side], enemyWeb: state.webs[1 - side],
       ownBrood: state.broods[side], enemyBrood: state.broods[1 - side],
-      faction: p.faction, sun: p.sun, hand: p.hand, canCycle: p.canCycle,
+      faction: p.faction, sun: p.sun, hand: p.hand, publicSkill:visibleSkill(state,side), canCycle: p.canCycle,
       available: availableDraws(p), deckOptions: p.deckOptions };
   }
 
-  function destinations(faction, from) { return (faction === "spider" || faction === "butterfly" ? facing : adjacent)[from]; }
-  function specialFits(c, from, to) {
-    switch (c.faction) {
-      case "ant": return c.own[from]?.power > 0 && Boolean(c.own[to]);
+  function destinations(faction, from, enhanced = false) {
+    if (enhanced && faction === "butterfly") return lanes;
+    if (enhanced && faction === "ant") return facing[from];
+    if (enhanced && faction === "bee") return hornetDestinations[from];
+    return (faction === "spider" || faction === "butterfly" ? facing : adjacent)[from];
+  }
+  function specialFits(c, from, to, faction = c.faction, enhanced = false) {
+    switch (faction) {
+      case "ant": return c.own[from]?.power > 0 && (enhanced ? adjacent[from].some(i => c.own[i]) : Boolean(c.own[to]));
       case "beetle": return Boolean(c.own[from] && c.enemy[from]);
-      case "bee": return c.pollen[from] > 0 && Boolean(c.own[to]);
+      case "bee": return Boolean(c.own[to]) && (enhanced && from === to ?
+        adjacent[to].length === 2 && adjacent[to].every(i => c.pollen[i] > 0) : c.pollen[from] > 0);
       case "spider": return !c.enemyWeb[to] || c.enemyBrood[to] > 0;
       case "butterfly": return Boolean(c.own[from]) && !c.ownBrood[from];
     }
   }
 
-  function moves(c, showEveryCard = false) {
+  function moves(c, showEveryCard = false, legacyDouble = false) {
     const list = [];
     const seen = new Set();
-    for (const card of c.hand) {
-      if (showEveryCard && c.canCycle && c.available > 0) list.push({ type: "cycle", card: card.id });
+    // Where effects match, the AI spends the expiring public card first.
+    for (const card of (c.publicSkill ? [c.publicSkill,...c.hand] : c.hand)) {
+      if (!card.public && showEveryCard && c.canCycle && c.available > 0) list.push({ type: "cycle", card: card.id });
       if (card.cost > c.sun) continue;
       // Public legal actions include every physical card. The AI can skip duplicate branches.
-      const key = card.kind + (card.impact ?? card.cost);
+      const skill = skillOf(card, c.faction);
+      const key = card.kind === "special" ? "special" + skill + card.enhanced : card.kind + (card.impact ?? card.cost);
       if (!showEveryCard && seen.has(key)) continue;
       seen.add(key);
       if (card.kind === "supply") {
@@ -1445,11 +1716,23 @@ body:has(.mode-home) .transfer{display:block}
         }
         continue;
       }
-      for (const from of lanes) {
-        for (const to of destinations(c.faction, from)) {
-          if (specialFits(c, from, to)) {
-            list.push({ type: "special", card: card.id, from, to });
+      if (skill === "bee" && card.enhanced) {
+        for (const to of lanes) {
+          if (!c.own[to]) continue;
+          const sources = adjacent[to].filter(lane => c.pollen[lane] > 0);
+          if (!legacyDouble || sources.length === 1) {
+            for (const from of sources) list.push({ type:"special", card:card.id, from, to });
           }
+          if (sources.length === 2) list.push({ type:"special", card:card.id, from:to, to });
+        }
+        continue;
+      }
+      for (const from of lanes) {
+        for (const to of destinations(skill, from, card.enhanced)) {
+          if (!specialFits(c, from, to, skill, card.enhanced)) continue;
+          if (skill === "butterfly" && card.enhanced) {
+            for (const also of lanes) if (to < also) list.push({ type: "special", card: card.id, from, to, also });
+          } else list.push({ type: "special", card: card.id, from, to });
         }
       }
     }
@@ -1462,30 +1745,43 @@ body:has(.mode-home) .transfer{display:block}
     return moves(context(state, side), true);
   }
 
+  const contextCard = (c,id) => c.publicSkill?.id === id ? c.publicSkill : c.hand.find(card => card.id === id);
   function applyToContext(c, act) {
-    const index = c.hand.findIndex(card => card.id === act.card);
-    const [card] = c.hand.splice(index, 1);
+    let card;
+    if (c.publicSkill?.id === act.card) {
+      card = c.publicSkill;
+      c.publicSkill = null;
+    } else {
+      const index = c.hand.findIndex(card => card.id === act.card);
+      [card] = c.hand.splice(index, 1);
+    }
     c.sun -= card.cost;
     if (act.type === "special") {
-      const rules = specialRules(c.faction);
-      if (c.faction === "ant") {
-        const unit = c.own[act.to];
-        c.own[act.to] = { ...unit, power: unit.power + c.own[act.from].power };
-      } else if (c.faction === "beetle") {
+      const skill = skillOf(card, c.faction), rules = specialRules(skill);
+      if (skill === "ant") {
+        for (const to of (card.enhanced ? adjacent[act.from] : [act.to])) {
+          const unit = c.own[to];
+          if (unit) c.own[to] = { ...unit, power: unit.power + c.own[act.from].power };
+        }
+      } else if (skill === "beetle") {
         const pushed = c.enemy[act.from];
         c.ownWeb[act.from] = false;
+        c.ownLasting[act.from] = false;
         c.enemy[act.from] = c.enemy[act.to];
-        c.enemy[act.to] = { ...pushed, power: Math.max(0, pushed.power - rules.pushLoss) };
-      } else if (c.faction === "bee") {
-        const amount = c.pollen[act.from];
-        c.pollen[act.from] = 0;
-        c.pollen[act.to] += amount;
-      } else if (c.faction === "spider") {
+        c.enemy[act.to] = { ...pushed, power: Math.max(0, pushed.power - (card.enhanced ? 4 : rules.pushLoss)) };
+      } else if (skill === "bee") {
+        for (const source of (card.enhanced && act.from === act.to ? adjacent[act.to] : [act.from])) {
+          c.pollen[act.to] += c.pollen[source];
+          c.pollen[source] = 0;
+        }
+      } else if (skill === "spider") {
         c.enemyWeb[act.from] = true;
+        if (card.enhanced) c.enemyLasting[act.from] = true;
         c.enemyBrood[act.from] = 0;
-      } else if (c.faction === "butterfly") {
-        if (!c.enemyBrood[act.from]) c.broodFirst[act.from] = c.side;
+        c.enemyForage[act.from] = null;
+      } else if (skill === "butterfly") {
         c.ownBrood[act.from] = rules.hatchPower;
+        c.ownForage[act.from] = card.enhanced ? [act.to, act.also] : null;
       }
     } else if (card.kind === "partner") {
       const base = powerForCost(card.cost);
@@ -1499,23 +1795,21 @@ body:has(.mode-home) .transfer{display:block}
 
   function finishRound(state) {
     const gain = [0, 0];
-    const feeders = lanes.map(lane => laneFeeder(state, lane));
+    const meals = lanes.map(lane => broodMeal(state, lane));
+    const feeders = meals.map(({ counts: [a, b] }) => a && !b ? 0 : b && !a ? 1 : null);
     const winners = lanes.map(lane => {
-      const feeder = feeders[lane];
-      if (feeder !== null) {
-        const meal = state.pollen[lane];
-        state.broods[feeder][lane] += meal;
-        state.eaten[lane] = meal;
-        state.pollen[lane] = 0;
-        return null;
-      }
+      const meal = meals[lane];
+      for (const diner of meal.diners) state.broods[diner.side][diner.home] += diner.amount;
+      state.eaten[lane] = state.pollen[lane] - meal.remaining;
+      state.pollen[lane] = meal.remaining;
+      if (meal.diners.length && !meal.remaining) return null;
       const a = scorePower(state.board[0][lane], state.webs[0][lane]);
       const b = scorePower(state.board[1][lane], state.webs[1][lane]);
       const winner = a === b ? null : a > b ? 0 : 1;
       if (winner !== null) gain[winner] += state.pollen[lane];
       return winner;
     });
-    state.result = { gain, winners, feeders, webs: state.webs };
+    state.result = { gain, winners, feeders, meals, hatches: state.broods.map(row => [...row]), webs: state.webs, lastingWebs: state.lastingWebs };
     state.webs = rows(false);
     state.players.forEach((player, i) => { player.score += gain[i]; });
     const [a, b] = state.players.map(player => player.score);
@@ -1532,7 +1826,7 @@ body:has(.mode-home) .transfer{display:block}
     if (!b || a.type !== b.type) return false;
     if (a.type === "pass") return true;
     if (a.type === "cycle" || a.type === "supply") return a.card === b.card;
-    if (a.type === "special") return a.card === b.card && a.from === b.from && a.to === b.to;
+    if (a.type === "special") return a.card === b.card && a.from === b.from && a.to === b.to && a.also === b.also;
     return a.card === b.card && a.lane === b.lane;
   }
 
@@ -1559,7 +1853,8 @@ body:has(.mode-home) .transfer{display:block}
       const used = applyToContext(c, act);
       // Hold the played supply out of the discard pile until its draws finish.
       if (act.type === "supply") refill(result, p, side);
-      p.discard.push(used);
+      if (used.public) p.publicSkill = null;
+      else p.discard.push(used);
       p.sun = c.sun;
     }
     if (result.players.every(player => player.passed)) finishRound(result);
@@ -1575,9 +1870,10 @@ body:has(.mode-home) .transfer{display:block}
     result.phase = "play";
     result.result = null;
     result.board = emptyBoard();
-    result.webs = rows(false);
+    result.webs = state.result.lastingWebs.map(row => [...row]);
+    result.lastingWebs = rows(false);
     result.broods = rows(0);
-    result.broodFirst = lanes.map(() => null);
+    result.broodForage = rows(null);
     result.eaten = lanes.map(() => 0);
     result.pollen = freshPollen(result);
     result.lastEvent = drawEvent("round");
@@ -1595,57 +1891,81 @@ body:has(.mode-home) .transfer{display:block}
       player.canCycle = true;
       refill(result, player, side);
     }
+    dealPublicSkill(result);
     return result;
   }
 
   function after(c, action) {
     const next = { ...c, hand: [...c.hand], own: [...c.own],
       enemy: [...c.enemy], pollen: [...c.pollen] };
-    if (action.type === "special" && c.faction === "spider") {
+    const skill = action.type === "special" && skillOf(contextCard(c,action.card), c.faction);
+    if (skill === "spider") {
       next.enemyWeb = [...c.enemyWeb];
       next.enemyBrood = [...c.enemyBrood];
+      next.enemyForage = [...c.enemyForage];
+      next.enemyLasting = [...c.enemyLasting];
     }
-    if (action.type === "special" && c.faction === "beetle") next.ownWeb = [...c.ownWeb];
-    if (action.type === "special" && c.faction === "butterfly") {
+    if (skill === "beetle") { next.ownWeb = [...c.ownWeb]; next.ownLasting = [...c.ownLasting]; }
+    if (skill === "butterfly") {
       next.ownBrood = [...c.ownBrood];
-      next.broodFirst = [...c.broodFirst];
+      next.ownForage = [...c.ownForage];
     }
     applyToContext(next, action);
     return next;
   }
 
+  function projectedMeals(c) {
+    if (c.ownForage.every(i => i === null) && c.enemyForage.every(i => i === null)) return null;
+    const remaining = [], hatch = [[...c.ownBrood], [...c.enemyBrood]];
+    const table = { broods: [c.ownBrood, c.enemyBrood], broodForage: [c.ownForage, c.enemyForage], pollen: c.pollen };
+    for (const lane of lanes) {
+      const meal = broodMeal(table, lane);
+      remaining[lane] = meal.remaining;
+      for (const diner of meal.diners) hatch[diner.side][diner.home] += diner.amount;
+    }
+    return { remaining, hatch };
+  }
+  function pollenLeft(c, lane, projected) {
+    if (projected) return projected.remaining[lane];
+    const diners = Number(c.ownBrood[lane] > 0) + Number(c.enemyBrood[lane] > 0);
+    return diners ? c.pollen[lane] % diners : c.pollen[lane];
+  }
   function evaluate(c, couldRespond, foeSun, myScore, foeScore) {
     let value = 0, future = 0;
     const largestPartner = powerForCost(Math.min(foeSun, 4));
+    const projected = projectedMeals(c);
     for (const lane of lanes) {
       if (c.ownBrood[lane] || c.enemyBrood[lane]) {
-        const feeder = feedingSide(c.ownBrood[lane], c.enemyBrood[lane], c.broodFirst[lane] === c.side ? 0 : 1);
-        const hatchLead = c.ownBrood[lane] - c.enemyBrood[lane] + (feeder === 0 ? c.pollen[lane] : -c.pollen[lane]);
+        const hatchLead = projected ? projected.hatch[0][lane] - projected.hatch[1][lane] :
+          c.ownBrood[lane] - c.enemyBrood[lane] + (Number(c.ownBrood[lane] > 0) - Number(c.enemyBrood[lane] > 0)) * c.pollen[lane];
         if (hatchLead) future += Math.sign(hatchLead) * (0.55 + 0.08 * Math.min(6, Math.abs(hatchLead)));
-        continue;
       }
+      if (c.enemyLasting[lane]) future += 0.62;
+      if (c.ownLasting[lane]) future -= 0.62;
+      const pollen = pollenLeft(c, lane, projected);
+      if (!pollen) continue;
       const a = scorePower(c.own[lane], c.ownWeb[lane]);
       const b = scorePower(c.enemy[lane], c.enemyWeb[lane]);
       const lead = a - b;
-      if (lead > 0) myScore += c.pollen[lane];
-      if (lead < 0) foeScore += c.pollen[lane];
+      if (lead > 0) myScore += pollen;
+      if (lead < 0) foeScore += pollen;
       // Once the other player passes, only actual points matter.
       const buffer = couldRespond ? Math.max(-3, Math.min(3, lead)) * 0.09 : 0;
-      value += c.pollen[lane] * (Math.sign(lead) + buffer);
+      value += pollen * (Math.sign(lead) + buffer);
       if (foeSun > 0 && c.enemyWeb[lane] && !c.enemy[lane]) {
         if (a > 0) {
-          value += c.pollen[lane] * (a <= largestPartner ? 0.72 : 0.15);
+          value += pollen * (a <= largestPartner ? 0.72 : 0.15);
         } else {
           // With no collector of our own, a pre-emptive net can only deny pollen.
           // An equally good open flower lets the opponent simply deploy elsewhere.
           let alternative = 0;
           for (const other of lanes) {
-            if (other !== lane && !c.enemy[other] && !c.enemyWeb[other] && !c.ownBrood[other] && !c.enemyBrood[other] &&
+            if (other !== lane && !c.enemy[other] && !c.enemyWeb[other] &&
                 scorePower(c.own[other], c.ownWeb[other]) <= largestPartner) {
-              alternative = Math.max(alternative, c.pollen[other]);
+              alternative = Math.max(alternative, pollenLeft(c, other, projected));
             }
           }
-          value += 0.65 * Math.max(0, c.pollen[lane] - alternative);
+          value += 0.65 * Math.max(0, pollen - alternative);
         }
       }
     }
@@ -1657,11 +1977,11 @@ body:has(.mode-home) .transfer{display:block}
   }
 
   function winsAtClose(c, mine, theirs) {
+    const projected = projectedMeals(c);
     for (const lane of lanes) {
-      if (c.ownBrood[lane] || c.enemyBrood[lane]) continue;
       const lead = scorePower(c.own[lane], c.ownWeb[lane]) - scorePower(c.enemy[lane], c.enemyWeb[lane]);
-      if (lead > 0) mine += c.pollen[lane];
-      if (lead < 0) theirs += c.pollen[lane];
+      if (lead > 0) mine += pollenLeft(c, lane, projected);
+      if (lead < 0) theirs += pollenLeft(c, lane, projected);
     }
     return mine >= 30 && mine > theirs;
   }
@@ -1671,7 +1991,7 @@ body:has(.mode-home) .transfer{display:block}
     const partners = c.hand.filter(card => card.kind === "partner").length;
     let chosen = null, highest = -Infinity;
     for (const card of c.hand) {
-      const copies = c.hand.filter(other => other.kind === card.kind && other.cost === card.cost && other.impact === card.impact).length;
+      const copies = c.hand.filter(other => other.kind === card.kind && other.cost === card.cost && other.impact === card.impact && other.skill === card.skill && other.enhanced === card.enhanced).length;
       let unwanted = copies * 0.4;
       if (card.kind === "partner") {
         unwanted += partners >= 4 ? 0.9 : -2;
@@ -1690,10 +2010,79 @@ body:has(.mode-home) .transfer{display:block}
     return { type: "cycle", card: chosen.id };
   }
 
-  function chooseAI(state, side = state.turn) {
+  // Estimate how much pollen one plausible reply could take back. Only public insects,
+  // available sun and announced abilities are used; no opponent card identity or draw.
+  function hornetPosition(c, opponent, weights) {
+    if (opponent.passed) return 0;
+    const meals = projectedMeals(c);
+    const potential = [], grades = [], remaining = [];
+    let worstReply = 0;
+    for (const lane of lanes) {
+      const mine = scorePower(c.own[lane], c.ownWeb[lane]);
+      const theirs = scorePower(c.enemy[lane], c.enemyWeb[lane]);
+      const grade = Math.sign(mine-theirs);
+      grades[lane] = grade;
+      remaining[lane] = pollenLeft(c,lane,meals);
+      let exposure = 0;
+      if (!c.enemy[lane] && !c.enemyWeb[lane]) {
+        for (let fee=1;fee<=Math.min(4,opponent.sun);fee++) {
+          const swing = grade-Math.sign(mine-powerForCost(fee));
+          exposure = Math.max(exposure,swing*weights.deployment[fee]);
+        }
+      }
+      if (mine > 0) {
+        const impact = Math.min(3,opponent.sun+1);
+        const hitSwing = grade-Math.sign(Math.max(0,mine-impact)-theirs);
+        exposure = Math.max(exposure,hitSwing*weights.hit);
+      }
+      potential[lane] = grade-exposure;
+      worstReply = Math.max(worstReply,exposure*remaining[lane]);
+    }
+    if (opponent.faction === "bee" && opponent.sun >= specialCost("bee")) {
+      for (const from of lanes) for (const to of adjacent[from]) {
+        if (c.enemy[to]) worstReply = Math.max(worstReply,weights.transfer*remaining[from]*(grades[from]-grades[to]));
+      }
+    }
+    // A strong body on an empty flower can prepare an actual transfer next action.
+    // Look at the reachable, exposed piles only when we really hold the requisite card.
+    let preparation = 0;
+    const ready = card => card?.skill === "bee" && card.enhanced && card.cost <= c.sun;
+    if (ready(c.publicSkill) || c.hand.some(ready)) {
+      for (const to of lanes) {
+        if (!c.own[to] || potential[to] <= 0 || c.ownWeb[to]) continue;
+        let reachable = 0;
+        for (const from of adjacent[to]) reachable += remaining[from]*Math.max(0,potential[to]-potential[from]);
+        preparation = Math.max(preparation,reachable);
+      }
+    }
+    return weights.preparation*preparation - weights.risk*worstReply;
+  }
+
+  function openReplyRisk(c, opponent, theirCard, myScore) {
+    if (!theirCard || opponent.passed || theirCard.cost > opponent.sun) return 0;
+    // The seventh card is face-up. Model only that known action, using the same
+    // legal moves and board effects as play(). The opponent's six cards stay hidden.
+    const reverse = { side:1-c.side, faction:opponent.faction, sun:opponent.sun, hand:[], publicSkill:theirCard,
+      pollen:c.pollen, own:c.enemy, enemy:c.own, ownWeb:c.enemyWeb, enemyWeb:c.ownWeb,
+      ownLasting:c.enemyLasting, enemyLasting:c.ownLasting, ownBrood:c.enemyBrood, enemyBrood:c.ownBrood,
+      ownForage:c.enemyForage, enemyForage:c.ownForage };
+    const current = evaluate(reverse,false,0,opponent.score,myScore);
+    let strongest = current;
+    for (const move of moves(reverse)) {
+      if (move.type !== "special") continue;
+      const response = after(reverse,move);
+      strongest = Math.max(strongest,evaluate(response,false,0,opponent.score,myScore));
+    }
+    return 0.6 * (strongest - current);
+  }
+
+  function chooseAI(state, side = state.turn, options = {}) {
     if (state.phase !== "play" || side !== state.turn || state.players[side].passed) return null;
     const c = context(state, side);
     const opponent = state.players[1 - side];
+    const legacyDouble = options.beePolicy === "legacy-double";
+    const useHornet = !legacyDouble && options.beePolicy !== "baseline" &&
+      c.deckOptions.skills.some(spec => spec.faction === "bee" && spec.enhanced && spec.copies > 0);
     // The face of an opponent's hand stays hidden. Check whether the projected board permits
     // their faction's free play, even if the opponent's last sun has already been spent.
     const couldRespond = board => {
@@ -1702,33 +2091,35 @@ body:has(.mode-home) .transfer{display:block}
       // A one-strength hit is free and can be drawn or exchanged into. We never
       // inspect the opponent's hand, draw pile, or selected deck to predict one.
       if (board.own.some(unit => projectedPower(unit) > 0)) return true;
-      if (specialCost(opponent.faction) !== 0) return false;
+      const skills = side === 0 && state.campaign ? state.campaign.skills : [{ faction: opponent.faction, enhanced: false }];
       const reverse = { faction: opponent.faction, own: board.enemy, enemy: board.own, pollen: board.pollen,
         enemyWeb: board.ownWeb, ownBrood: board.enemyBrood, enemyBrood: board.ownBrood };
-      return lanes.some(from => destinations(opponent.faction, from).some(to =>
-        specialFits(reverse, from, to)));
+      return skills.some(spec => specialCost(spec.faction) === 0 && lanes.some(from =>
+        destinations(spec.faction, from, spec.enhanced).some(to => specialFits(reverse, from, to, spec.faction, spec.enhanced))));
     };
     const foeSun = opponent.passed ? 0 : opponent.sun;
     const rate = board => evaluate(board, couldRespond(board), foeSun, state.players[side].score, opponent.score)
-      + board.sun * 0.005;
+      + board.sun * 0.005 + (useHornet ? hornetPosition(board, opponent, campaigns.hornetTactics) : 0);
     let best = { type: "pass" };
-    const holdValue = rate(c);
+    const threat = visibleSkill(state,1-side);
+    const openRisk = board => threat ? openReplyRisk(board,opponent,threat,state.players[side].score) : 0;
+    const holdValue = rate(c) - openRisk(c);
     let bestValue = holdValue;
     if (!couldRespond(c) && winsAtClose(c, state.players[side].score, opponent.score)) return best;
-    const noWebThreat = c.faction === "spider" && foeSun === 0;
-    for (const move of moves(c)) {
+    for (const move of moves(c,false,legacyDouble)) {
       if (move.type === "pass" || move.type === "supply") continue;
-      if (noWebThreat && move.type === "special" &&
+      const card = move.type === "special" && contextCard(c,move.card);
+      if (foeSun === 0 && card && !card.enhanced && skillOf(card, c.faction) === "spider" &&
           !c.enemyBrood[move.from] &&
           !(projectedPower(c.enemy[move.from]) > 0 && c.pollen[move.from] > 0)) continue;
       const now = after(c, move);
       const value = rate(now);
       let follow = value;
-      for (const reply of moves(now)) {
+      for (const reply of moves(now,false,legacyDouble)) {
         if (reply.type !== "pass" && reply.type !== "supply") follow = Math.max(follow, rate(after(now, reply)));
       }
       // Prefer an immediate capture to a speculative two-card combination.
-      const adjusted = value + (follow - value) * (couldRespond(now) ? 0.60 : 0.90);
+      const adjusted = value + (follow - value) * (couldRespond(now) ? 0.60 : 0.90) - openRisk(now);
       if (adjusted > bestValue + 0.00001) {
         bestValue = adjusted;
         best = move;
@@ -1742,8 +2133,8 @@ body:has(.mode-home) .transfer{display:block}
     const couldUseDraw = c.available > 0 && remainingSun >= 0 && (
       (opts.minPartner <= remainingSun && lanes.some(lane => !c.own[lane] && !c.ownWeb[lane])) ||
       (opts.minHit !== null && opts.minHit <= remainingSun && c.enemy.some(unit => projectedPower(unit) > 0)) ||
-      (opts.hasSpecial && specialCost(c.faction) <= remainingSun && lanes.some(from =>
-        destinations(c.faction, from).some(to => specialFits(c, from, to))))
+      (opts.hasSpecial && opts.skills.some(spec => specialCost(spec.faction) <= remainingSun && lanes.some(from =>
+        destinations(spec.faction, from, spec.enhanced).some(to => specialFits(c, from, to, spec.faction, spec.enhanced)))))
     );
     const supply = couldUseDraw && c.hand.find(card => card.kind === "supply" && card.cost <= c.sun);
     const draw = supply ? { type: "supply", card: supply.id } : null;
@@ -1753,7 +2144,7 @@ body:has(.mode-home) .transfer{display:block}
     return exchangeCandidate(c) || draw || best;
   }
 
-  return { newGame, actions, play, nextRound, chooseAI, defaultDeck, validateDeck, migrateDeck, powerForCost, projectedPower, scorePower, lanePower, laneFeeder, hitCost, supplyCost, supplyDrawCount, specialCost, specialCount, openingChance, specialRules, tuning, deckLimit };
+  return { newGame, actions, play, nextRound, chooseAI, defaultDeck, validateDeck, migrateDeck, powerForCost, projectedPower, scorePower, lanePower, laneFeeder, broodMeal, projectedHatch, webDuration, skillOf, visibleSkill, cardForAction, campaignEncounter, hitCost, supplyCost, supplyDrawCount, specialCost, specialCount, openingChance, specialRules, tuning, deckLimit };
 });
 
 </script>
@@ -1918,10 +2309,179 @@ body:has(.mode-home) .transfer{display:block}
 
 </script>
   <script>
+(() => {
+  'use strict';
+  // Adjacent pieces traverse the same Bézier edge in opposite directions.
+  function cut(nodes, rings, seams, labels) {
+    return rings.map((ring, i) => {
+      let d = 'M' + nodes[ring[0]];
+      for (let k = 0; k < ring.length; k++) {
+        const a = ring[k], b = ring[(k + 1) % ring.length];
+        const forward = seams[a + b], reverse = seams[b + a];
+        if (forward) d += 'C' + forward[0] + ' ' + forward[1] + ' ' + nodes[b];
+        else if (reverse) d += 'C' + reverse[1] + ' ' + reverse[0] + ' ' + nodes[b];
+        else d += 'L' + nodes[b];
+      }
+      return { d: d + 'Z', label: labels[i] };
+    });
+  }
+  const ant = cut({
+    A:[0,0], B:[83,0], C:[211,0], D:[300,0], E:[0,114], F:[111,89], G:[197,120],
+    H:[300,78], I:[0,200], J:[81,200], K:[214,200], L:[300,200]
+  }, ['ABFE','BCGF','CDHG','EFJI','FGKJ','GHLK'], {
+    BF:[[62,50],[153,56]], CG:[[240,29],[166,85]], EF:[[43,153],[76,50]], FG:[[155,71],[162,145]],
+    GH:[[239,151],[252,56]], FJ:[[137,153],[59,145]], GK:[[157,168],[253,155]]
+  }, [[45,55],[153,47],[255,44],[48,163],[145,154],[255,157]]);
+  // A cropped honeycomb: staggered chambers meet in three-way angles.
+  const bee = cut({
+    A:[0,0],B:[95,0],C:[199,0],D:[300,0],E:[0,111],F:[95,67],G:[144,112],H:[199,69],
+    I:[247,113],J:[300,87],K:[0,200],L:[144,200],M:[247,200],N:[300,200]
+  }, ['ABFE','BCHGF','CDJIH','EFGLK','GHIML','IJNM'], {},
+    [[45,45],[147,46],[249,46],[64,149],[194,148],[273,152]]);
+  const beetle = cut({
+    A:[0,0],B:[149,0],C:[300,0],D:[0,92],E:[153,48],F:[300,73],
+    G:[0,145],H:[163,150],I:[300,128],J:[0,200],K:[153,200],L:[300,200]
+  }, ['ABED','BCFE','DEHG','EFIH','GHKJ','HILK'], {
+    BE:[[147,14],[151,37]], EH:[[158,73],[166,111]], HK:[[164,166],[162,189]],
+    DE:[[60,94],[112,85]], EF:[[201,91],[250,84]], GH:[[62,173],[126,177]], HI:[[207,177],[270,158]]
+  }, [[64,41],[232,43],[69,124],[231,115],[80,185],[228,180]]);
+  const spider = cut({
+    A:[0,0],B:[68,0],C:[221,0],D:[300,0],E:[300,106],F:[300,200],G:[217,200],
+    H:[56,200],I:[0,200],J:[0,104],O:[131,88]
+  }, ['BCO','CDEO','EFGO','GHO','HIJO','JABO'], {
+    OB:[[111,51],[99,38]], OC:[[165,66],[193,26]], OE:[[193,104],[249,102]],
+    OG:[[164,132],[182,146]], OH:[[117,122],[73,165]], OJ:[[94,100],[44,98]]
+  }, [[133,33],[250,56],[255,153],[147,164],[51,152],[48,59]]);
+  const butterfly = cut({
+    A:[0,0],B:[150,0],C:[300,0],D:[0,45],E:[300,45],F:[0,154],G:[300,154],
+    H:[0,200],I:[150,200],J:[300,200],O:[150,107]
+  }, ['ABOD','BCEO','DOF','OEG','FOIH','OGJI'], {
+    BO:[[144,38],[146,79]], OI:[[147,130],[152,171]],
+    DO:[[81,40],[100,95]], OE:[[200,95],[219,40]],
+    FO:[[31,136],[131,151]], OG:[[169,151],[269,136]]
+  }, [[88,31],[212,31],[54,98],[246,98],[88,172],[212,172]]);
+  const sets = { ant, bee, beetle, spider, butterfly };
+  function render(faction, earned, options = {}) {
+    const pieces = sets[faction];
+    if (!pieces) return '';
+    const all = pieces.every((_, i) => Boolean(earned[i]));
+    if (all && !options.highlight) return '<div class="puzzle-geometry finished"><div class="puzzle-paint"></div></div>';
+    const outlines = pieces.map((p, i) => {
+      if (all && options.highlight !== i + 1) return '';
+      const lit = options.highlight === i + 1 && earned[i];
+      const cls = lit ? 'just-earned' : earned[i] ? 'earned' : 'unearned';
+      const label = earned[i] ? '' : '<text x="' + p.label[0] + '" y="' + p.label[1] + '">' + (i + 1) + '</text>';
+      return '<g class="' + cls + '" data-piece="' + (i + 1) + '"><path d="' + p.d + '"/>' + label + '</g>';
+    }).join('');
+    return '<div class="puzzle-geometry" aria-hidden="true"><div class="puzzle-paint"></div>'+
+      '<svg class="puzzle-seams" viewBox="0 0 300 200" preserveAspectRatio="none">' + outlines + '</svg></div>';
+  }
+  window.PollenPuzzle = { render };
+})();
+
+</script>
+  <script>
+(function (root) {
+  "use strict";
+  const E = root.Pollen;
+  const art = root.PollenArt;
+  const teams = { ant:"蚂蚁", bee:"蜜蜂", beetle:"甲虫", spider:"蜘蛛", butterfly:"蝴蝶" };
+  const collectible = { ant:"琥珀穹冠蚁", bee:"曦光琉璃蜂", beetle:"苍苔月角兜", spider:"星露织蛛", butterfly:"极昼霓裳蝶" };
+  const chiefs = { ant:"腥红蚂蚁", bee:"胡蜂", beetle:"长戟大兜虫", spider:"捕鸟蛛", butterfly:"鸟翼凤蝶" };
+  function encounter(faction,stage) {
+    const rules=E.campaignEncounter(faction,stage);
+    return {...rules,name:stage===6?collectible[faction]:stage===5?chiefs[faction]:teams[rules.opponent]+"队"};
+  }
+  const skillNames = { ant:"搭把手", bee:"搬花粉", beetle:"顶一顶", spider:"织网", butterfly:"守蛹" };
+  const stages = [1, 2, 3, 4, 5, 6];
+  const memory = new Map();
+  const key = (faction, stage) => "microgrove-campaign-v1-"+faction+"-"+stage;
+  function best(faction,stage) {
+    const id=key(faction,stage);
+    let value=memory.get(id)||0;
+    try {
+      const saved=Number(root.localStorage.getItem(id));
+      if(Number.isInteger(saved)&&saved>=1&&saved<=3)value=Math.max(value,saved);
+      for(let star=3;star>value;star--)if(root.localStorage.getItem(id+"-star-"+star)==="1"){value=star;break;}
+    } catch (_) {}
+    return value;
+  }
+  function unlocked(faction,stage) {
+    return Object.hasOwn(teams,faction)&&stages.includes(stage)&&(stage===1||best(faction,stage-1)>0);
+  }
+  function starsFor(score) {return score<15?3:score<23?2:1;}
+  function finish(faction,stage,game) {
+    if(game.phase!=="done"||!unlocked(faction,stage))return null;
+    const before=best(faction,stage);
+    const stars=game.winner===0?starsFor(game.players[1].score):0;
+    const record=Math.max(before,stars);
+    if(record>before){
+      const id=key(faction,stage);
+      memory.set(id,record);
+      // Separate star keys ensure simultaneous wins in two tabs can only add progress.
+      try{root.localStorage.setItem(id+"-star-"+record,"1");root.localStorage.setItem(id,String(record));}catch(_){}
+    }
+    return {stars,best:record,newPiece:stars>0&&before===0};
+  }
+  function count(faction){return stages.filter(stage=>best(faction,stage)>0).length;}
+  function starsMark(n) {
+    return '<span class="campaign-stars" aria-label="'+n+'颗星">'+[1,2,3].map(i=>'<span aria-hidden="true"'+(i<=n?' class="lit"':'')+'>'+(i<=n?'★':'☆')+'</span>').join("")+'</span>';
+  }
+  const lock='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3"/><rect x="5" y="10" width="14" height="11" rx="3"/><circle cx="12" cy="15" r="1"/></svg>';
+  function puzzle(faction,full=false,highlight) {
+    const complete=count(faction)===6;
+    return '<div class="campaign-puzzle '+(complete?'complete ':'')+(full?'large':'')+'" data-picture="'+faction+'" role="img" aria-label="'+collectible[faction]+'拼图，已得到'+count(faction)+'块，共6块">'+root.PollenPuzzle.render(faction,stages.map(n=>best(faction,n)),{highlight})+'</div>';
+  }
+  function skillInfo(faction,enhanced) {
+    const r=E.specialRules(faction),name=skillNames[faction];
+    const usual={
+      ant:"把自己的力量加给一只相邻伙伴。",
+      bee:"把一堆花粉搬到有己方伙伴的相邻花道。",
+      beetle:"把正对的敌虫顶到邻道或交换位置，令它减 "+(r.pushLoss??0)+" 力，也挣脱自己的网。",
+      spider:"网住一个敌位一轮。空网挡伙伴，网中虫不采粉，已有的蛹被摧毁。",
+      butterfly:"在己方伙伴旁留蛹，收粉时吃本道花粉，下轮孵出 "+(r.hatchPower??0)+" 加吃粉数的力量。"
+    };
+    const greater={
+      ant:"选一只己方伙伴，把它的力量同时加给左右相邻的伙伴。",
+      bee:"选一只己方蜂，把左边、右边或两边的整堆花粉搬到它脚下。",
+      beetle:"把正对的敌虫顶去邻道或交换位置，令它减 4 力，也挣脱自己的网。",
+      spider:"敌位结网两轮，立刻破蛹。空网挡伙伴，网中虫不采粉。",
+      butterfly:"在己方伙伴旁留蛹，任选两条不同的花道进食。它们都可以在蛹住的花道以外。"
+    };
+    return {name, text:(enhanced?greater:usual)[faction]};
+  }
+  function skillsList(encounter) {
+    return '<ul class="campaign-skills">'+encounter.skills.map(s=>{
+      const info=skillInfo(s.faction,s.enhanced);
+      return '<li><span class="campaign-skill-art" aria-hidden="true">'+art.skill(s.faction)+'</span><div><strong>'+info.name+'</strong><small class="boss-skill-cost" aria-label="'+E.specialCost(s.faction)+'点阳光">'+art.icon("sun")+E.specialCost(s.faction)+'</small>'+(s.enhanced?'<b class="skill-plus">强化</b>':'')+'<p>'+info.text+'</p></div></li>';
+    }).join("")+'</ul>';
+  }
+  function map(faction) {
+    const pieces=count(faction);
+    return '<section class="campaign-map"><header class="campaign-heading"><div><p>单人战役</p><h1>'+teams[faction]+'之路</h1></div><button type="button" class="plain" data-do="campaign-back">‹ 换队</button></header><div class="campaign-layout"><div class="campaign-stages" aria-label="六道关卡">'+stages.map(stage=>{
+      const boss=encounter(faction,stage),open=unlocked(faction,stage),stars=best(faction,stage);
+      return '<button type="button" data-do="campaign-stage" data-stage="'+stage+'" data-focus="campaign-stage-'+stage+'" class="campaign-stage '+(open?'':'locked ')+(open&&!stars?'next-stage':'')+'" aria-label="第'+stage+'关，'+boss.name+'，'+(stars?stars+'颗星':open?'可以挑战':'未解锁')+'" '+(open?'':'disabled')+'><span class="stage-number">'+stage+'</span><span class="stage-name">'+boss.name+'</span>'+(open?(stars?starsMark(stars):'<span class="stage-go" aria-hidden="true">›</span>'):'<span class="stage-lock">'+lock+'</span>')+'</button>';
+    }).join("")+'</div><aside class="campaign-album"><header><h2>'+collectible[faction]+'</h2><span>'+pieces+' / 6</span></header>'+puzzle(faction)+(pieces===6?'<button type="button" class="solid" data-do="campaign-picture">看完整大图</button>':'<p>每过一关，点亮一块拼图。</p>')+'</aside></div></section>';
+  }
+  function medalGuide(){return '<div class="medal-guide"><small>胜利时看对手的花粉数</small><span>★★★ <b>0–14</b></span><span>★★ <b>15–22</b></span><span>★ <b>23 以上</b></span></div>';}
+  function stageInfo(faction,stage) {
+    const foe=encounter(faction,stage);
+    const reveal=stage===6?'<p>六张暗牌之外，首领每轮还会从这三种专属里翻开一张明牌。</p>':'';
+    return '<div class="campaign-opponent">'+art.bug(foe.opponent)+'<div><small>第 '+stage+' 关 · '+(stage===6?'幻想首领':stage===5?'强化首领':'对手')+'</small><h3>'+foe.name+'</h3></div></div>'+reveal+skillsList(foe)+medalGuide()+'<div class="sheet-actions"><button class="solid" type="button" data-do="campaign-fight" data-stage="'+stage+'">开始挑战 ›</button></div>';
+  }
+  function result(faction,stage,reward,score) {
+    return '<div class="campaign-result" role="status">'+(reward.stars?puzzle(faction,false,stage):'')+'<div>'+(reward.stars?starsMark(reward.stars):'')+'<strong>'+(reward.stars?'第 '+stage+' 关通关':'再试一次')+'</strong><span>对手 '+score+' 枚花粉'+(reward.newPiece?' · 获得第 '+stage+' 块拼图':reward.best?' · 最佳 '+reward.best+' 星':'')+'</span></div></div>';
+  }
+  root.PollenCampaign={encounter,map,stageInfo,skillsList,skillInfo,puzzle,unlocked,finish,result,best,count,collectible,medalGuide};
+})(window);
+
+</script>
+  <script>
 (function () {
   "use strict";
   const E = window.Pollen;
   const art = window.PollenArt;
+  const C = window.PollenCampaign;
   const app = document.getElementById("app");
   const sheet = document.getElementById("sheet");
   const sheetBody = document.getElementById("sheet-body");
@@ -1932,7 +2492,7 @@ body:has(.mode-home) .transfer{display:block}
     beetle:{name:"顶一顶", row:"enemy", get text(){const n=E.specialRules("beetle").pushLoss;return "把正对甲虫的敌虫顶到邻道。"+(n?"它减 "+n+" 力，最低到 0。":"")+"若邻道有敌虫，两只交换位置。顶撞也能挣脱自己脚下的网。";}, ask:"点甲虫正对的敌虫", next:"点相邻敌方叶位"},
     bee:{name:"搬花粉", row:"pollen", text:"把一朵花的花粉全部搬走，堆到隔壁有自己蜜蜂的花上。新的一堆也能再整堆搬。", ask:"点要搬走的一堆花粉", next:"点旁边有蜂的花道"},
     spider:{name:"织网", row:"enemy", single:true, text:"点对手没结网或有蛹的叶子。空网挡新伙伴；网里的虫这轮不采粉；现有的蛹被摧毁，下轮不孵化。", ask:"点对面没网或有蛹的叶子"},
-    butterfly:{name:"守蛹", row:"own", single:true, get text(){return "点自己的蝴蝶留蛹。结算时蛹还在，就吃光本道剩余花粉，下轮孵出 "+E.specialRules("butterfly").hatchPower+"＋吃粉数 力的新蝶。织网破蛹，花粉留在道上。";}, ask:"点场上的蝴蝶守蛹"}
+    butterfly:{name:"守蛹", row:"own", single:true, get text(){return "点自己的蝴蝶留蛹。收粉时蛹吃本道花粉，多蛹平分，余粉仍可采。下轮孵出 "+E.specialRules("butterfly").hatchPower+"＋吃粉数 力的新蝶。"}, ask:"点场上的蝴蝶守蛹"}
   };
   const laneName = i => "第"+(i+1)+"花道";
   const phases = [
@@ -1948,8 +2508,7 @@ body:has(.mode-home) .transfer{display:block}
   }
   function currentSkillFee() {
     if(sel?.kind!=="special" || !game)return "";
-    const team=actorTeam();
-    return '<span class="current-fee">'+icon("sun")+E.specialCost(team)+'</span>';
+    return '<span class="current-fee">'+icon("sun")+selectedCard().cost+'</span>';
   }
   const TEAMS = Object.keys(names);
   const deckLimit=E.deckLimit;
@@ -1958,6 +2517,7 @@ body:has(.mode-home) .transfer{display:block}
   const soloChoiceKey = "microgrove-pollen-solo-choices-v5";
   let screen = "home", team = "ant", game = null, sel = null, pending = null;
   let mode = "solo";
+  let mission=null, reward=null, lastBossMove="";
   const seatBoxes = [{}, {}];
   const seatDrafts=[null,null];
   const restoredDrafts=new WeakSet();
@@ -1966,9 +2526,21 @@ body:has(.mode-home) .transfer{display:block}
   let draft = null, dialogMode = "", aiTimer = null, motionLane = null;
   const handViews = [0,1].map(()=>({slots:Array(6).fill(null)}));
   let tally=null;
-  const playerName = side => mode==="duo"?"玩家 "+(side+1):side===0?"你":"对手";
+  const playerName = side => mode==="duo"?"玩家 "+(side+1):side===0?"你":mission?.name||"对手";
   const actorSide = () => mode==="duo"&&game?game.turn:0;
   const actorTeam = () => game?.players[actorSide()].faction||team;
+  const selectedCard = () => game?.players[actorSide()].hand.find(c=>c.id===sel?.key);
+  function moveSkill(card,side=actorSide()) {
+    const family=E.skillOf(card,game.players[side].faction),base=skills[family],enhanced=Boolean(card?.enhanced);
+    const spec={...base,family,enhanced};
+    if(enhanced){
+      spec.text=C.skillInfo(family,true).text;
+      if(family==="ant"){spec.ask="点一只给左右伙伴加力的虫";spec.single=true;}
+      if(family==="bee"){spec.row="own";spec.ask="点一只收花粉的蜂";spec.single=false;}
+      if(family==="butterfly"){spec.single=false;spec.next=sel?.forage===undefined?"点第一条取食花道":"再点一条不同的取食花道";}
+    }else if(card?.skill&&family!==game.players[side].faction)spec.text=C.skillInfo(family,false).text;
+    return spec;
+  }
   const canAct = () => game?.phase==="play"&&game.turn===actorSide();
   let decks = {},migrationNotice=false;
   function savedRecord(currentKey) {
@@ -2047,7 +2619,7 @@ body:has(.mode-home) .transfer{display:block}
     if(t==="beetle")return "把对面的虫顶到邻道或交换位置"+(r.pushLoss?"，被顶的虫减 "+r.pushLoss+" 力":"")+"，甲虫自己也挣脱蛛网。";
     if(t==="bee")return "把一条道的全部花粉搬到相邻、有己方蜜蜂的花道。";
     if(t==="spider")return "点对面没网或有蛹的叶位：空位挡伙伴，有虫则本轮不采粉；现有的蛹被摧毁，下轮不孵化。";
-    return "在自己的蝴蝶旁留蛹。活到结算才吃光本道剩余花粉，下轮孵出 "+r.hatchPower+"＋吃粉数 力的新蝶。";
+    return "在自己的蝴蝶旁留蛹。收粉时吃本道花粉，多蛹平分。下轮孵出 "+r.hatchPower+"＋吃粉数 力的新蝶。";
   }
   function abilityPanel(t) {
     return '<div class="team-ability" aria-live="polite"><span class="ability-thumb" aria-hidden="true">'+art.skill(t)+'</span><div class="ability-copy"><div class="ability-title"><strong>'+skills[t].name+'</strong>'+specialPrice(t)+'</div><p>'+abilityBlurb(t)+'</p></div></div>';
@@ -2067,7 +2639,7 @@ body:has(.mode-home) .transfer{display:block}
   }
   function render(focusKey) {
     if (!focusKey) focusKey = document.activeElement?.dataset?.focus;
-    app.innerHTML = screen==="home"?home():screen==="solo"?soloSetup():screen==="duo"?duoSetup():screen==="deck"?deckScreen():battle();
+    app.innerHTML = screen==="home"?home():screen==="solo"?soloSetup():screen==="campaign"?'<div class="wrap campaign-wrap">'+head()+C.map(team)+'</div>':screen==="duo"?duoSetup():screen==="deck"?deckScreen():battle();
     if (focusKey) {
       const item=Array.from(app.querySelectorAll("[data-focus]")).find(el=>el.dataset.focus===focusKey && !el.disabled);
       if (item) item.focus({preventScroll:true});
@@ -2077,12 +2649,12 @@ body:has(.mode-home) .transfer{display:block}
     const notice=migrationNotice?'<p class="home-note" role="status">旧牌盒已按原比例整理为'+deckLimit+'张，可继续调整。</p>':"";
     migrationNotice=false;
     const choice=(id,title,note,images)=>'<button class="mode-choice '+id+'" data-do="mode-'+id+'" data-focus="mode-'+id+'"><span class="mode-symbol" aria-hidden="true">'+images+'</span><span class="mode-copy"><strong>'+title+'</strong><small>'+note+'</small></span></button>';
-    return '<div class="wrap mode-home">'+head()+'<section class="home"><div class="home-hero"><h1>花粉<span>擂台</span></h1><p>五条花道，先带回 <strong>30</strong> 枚花粉。</p></div><div class="mode-menu">'+choice("solo","单人挑战","和电脑对战",bug("ant")+icon("play"))+choice("duo","双人同桌","面对面，一人一队",bug("bee")+bug("beetle"))+'</div>'+notice+'</section></div>';
+    return '<div class="wrap mode-home">'+head()+'<section class="home"><div class="home-hero"><h1>花粉<span>擂台</span></h1><p>五条花道，先带回 <strong>30</strong> 枚花粉。</p></div><div class="mode-menu">'+choice("solo","单人挑战","六关战役 · 随机速战",bug("ant")+icon("play"))+choice("duo","双人同桌","面对面，一人一队",bug("bee")+bug("beetle"))+'</div><button type="button" class="online-match-entry" data-do="online-match">匹配对战</button>'+notice+'</section></div>';
   }
   function soloSetup() {
     const cards=TEAMS.map(t=>'<button type="button" data-do="team" data-team="'+t+'" data-focus="tribe-'+t+'" aria-pressed="'+(t===team)+'" aria-label="选择'+names[t]+'队" class="tribe '+t+(t===team?' chosen':'')+'"><span class="portrait">'+bug(t)+'</span><strong>'+names[t]+'队</strong></button>').join("");
     const choices=decks[team]?'<div class="deck-options solo-deck-options" aria-label="选择牌盒">'+[["preset","预组牌"],["box","我的牌盒"]].map(([v,label])=>'<button class="pill" data-do="solo-deck" data-source="'+v+'" aria-pressed="'+(activeSource(null,team)===v)+'">'+label+'</button>').join("")+'</div>':'';
-    return '<div class="wrap solo-lobby">'+head()+'<section class="home solo-setup"><div class="home-hero"><h1>选队</h1></div><div class="roster" aria-label="选择队伍">'+cards+'</div>'+abilityPanel(team)+choices+'<div class="home-actions">'+actionButton("modes","选模式","plain","back")+actionButton("build","配牌","edit-btn","leaf")+actionButton("start","开始对战","solid","play")+'</div></section></div>';
+    return '<div class="wrap solo-lobby">'+head()+'<section class="home solo-setup"><div class="home-hero"><h1>选队</h1></div><div class="roster" aria-label="选择队伍">'+cards+'</div>'+abilityPanel(team)+choices+'<div class="home-actions">'+actionButton("modes","选模式","plain","back")+actionButton("build","配牌","edit-btn","leaf")+actionButton("start","随机速战","plain","play")+actionButton("campaign-map","六关战役","solid","arrow")+'</div></section></div>';
   }
   function pickSeat(side) {
     const t=picks[side];
@@ -2217,8 +2789,8 @@ body:has(.mode-home) .transfer{display:block}
       ["sun","阳光","第一轮每人 3 点，以后每轮多 1 点，升到 10 点为止。每轮重新补满。上限 3～4 点叫初花，5～7 点叫盛花，8～10 点叫晚花。"],
       ["force","伙伴","点虫牌，再点自己这边的空位。脚印旁的数字是力量。"],
       ["bump","撞击","点撞击牌，再点对面的虫。减 1、2、3 力的牌，分别花 "+[1,2,3].map(E.hitCost).join("、")+" 点阳光。虫的力量最低到 0。"],
-      ["web","蛛网","织网会摧毁目标位置现有的蛹，花粉留在道上。空网挡手牌伙伴；网中虫保留力量和绝招，但本轮不采粉。甲虫顶撞能挣脱网。若两边都没有采粉力量，就都得 0。收完花粉清网。"],
-      ["cocoon","蛹","放蛹时花粉留在道上，蜜蜂可以搬进或搬走花粉。结算时，活着的蛹先吃光本道剩余花粉，下一轮原地孵化。双方在同一道留蛹时，先放的先吃，另一只按基础力量孵化。原蝶被顶走，蛹仍留在原道。"],
+      ["web","蛛网","织网会摧毁目标位置现有的蛹。空网挡手牌伙伴，网中虫保留力量和绝招，但不能采粉。顶撞能挣脱网。普通网持续本轮，强化网还会留到下一轮。网角标显示剩余轮数。"],
+      ["cocoon","蛹","蛹在收粉时进食，下一轮原地孵化。几只蛹在同一道进食时平分整数份，余下的花粉由有采粉力量的一方争夺。蜜蜂可搬动尚未吃掉的花粉。原蝶被顶走，蛹仍留在原道。"],
       ["supply","补给","花 "+E.supplyCost+" 点阳光打出补给，从自己的牌堆补满 6 张手牌。手里原有 3 张时，打掉补给剩 2 张，再摸 4 张。刚打出的补给等摸完才放进弃牌堆。"],
       ["drawStack","摸牌","绿色牌堆旁边是还没抽的张数，托盘旁边是弃牌数。牌堆空了又要摸牌时，弃牌洗回来。"],
       ["flower",skills[team].name,"花 "+E.specialCost(team)+" 点阳光。"+skills[team].text+deckLimit+" 张牌里至少留 1 张伙伴，本族专属可放 0 到 "+(deckLimit-1)+" 张。"],
@@ -2228,27 +2800,31 @@ body:has(.mode-home) .transfer{display:block}
       ["pollen","胜利","一轮结束时，得分达到 30 且领先的一方获胜。同分达到 30，就继续玩到分出高低。"]
     ];
     if(mode==="duo")rows.unshift(["leaf","同桌","玩家 1 坐下方，玩家 2 坐上方。双方手牌摊开，轮到谁，谁的手牌高亮可用；另一方手牌变灰，等待出牌。"]);
+    else if(screen==="battle")rows.unshift(["handBack","电脑席","上方是电脑的暗牌，一张牌背代表一张手牌。第六关首领还有一个明牌格，每轮从它的三种专属中抽一种。点明牌查看效果，首领打出时照常付费，用后等下轮再翻。"]);
     openSheet("怎么玩",'<ul class="help-list">'+rows.map(([ic,b,t])=>'<li>'+icon(ic)+'<span><strong>'+b+'　</strong>'+t+'</span></li>').join("")+'</ul>'+floweringOdds()+'<div class="sheet-actions">'+actionButton("close-sheet","知道啦","confirm","check")+'</div>',"help");
   }
   function stopAI() {if (aiTimer!==null) {clearTimeout(aiTimer);aiTimer=null;}}
   function clearChoice() {sel=null;pending=null;}
   function begin() {
     stopAI();stopFlights();clearTally();clearChoice();motionLane=null;
+    reward=null;lastBossMove="";
     for(const h of handViews)h.slots=Array(6).fill(null);
     const others=TEAMS.filter(t=>t!==team);
     const factions=mode==="duo"?[...picks]:[team,others[Math.floor(Math.random()*others.length)]];
     const boxes=mode==="duo"?picks.map((t,i)=>chosenDeck(i,t)):[chosenDeck(null,team),null];
-    game=E.newGame({factions,decks:boxes});
+    game=E.newGame(mission?{campaign:{faction:team,stage:mission.stage},decks:[chosenDeck(null,team)]}:{factions,decks:boxes});
     screen="battle";render();animateTransfers();say("第一轮。"+drawAnnouncement()+playerName(game.turn)+"先出牌。");queueAI();
   }
   const myMoves = ()=>canAct()?E.actions(game,actorSide()):[];
   function drawAnnouncement() {
     const event=game.lastEvent;
-    return [0,1].map(side=>{
+    const handDraws=[0,1].map(side=>{
       const n=event.drawn[side].length;
       if(!n)return "";
       return playerName(side)+(event.reshuffles[side]?"把弃牌洗回牌堆，":"")+"摸了"+n+"张。";
     }).join("");
+    const visible=event.revealedSkill;
+    return handDraws+(visible?"首领翻开明牌"+(visible.enhanced?"强化":"")+skills[visible.skill].name+"，"+visible.cost+"费。":"");
   }
   function hatchAnnouncement() {
     return game.lastEvent.hatched.map((lanes,side)=>lanes.length?
@@ -2278,7 +2854,7 @@ body:has(.mode-home) .transfer{display:block}
     const dx=to.left+to.width/2-x,dy=to.top+to.height/2-y;
     card.style.left=x+"px";card.style.top=y+"px";
     document.body.append(card);
-    const turn=mode==="duo"&&side===1?180:0;
+    const turn=side===1?180:0;
     const pose=(x,y,angle,size)=>"translate(-50%,-50%) translate("+x+"px,"+y+"px) rotate("+(turn+angle)+"deg) scale("+size+")";
     const arc=side===0?-18:18;
     const motion=card.animate([
@@ -2292,6 +2868,7 @@ body:has(.mode-home) .transfer{display:block}
   function animateTransfers(previous=null,outgoing=null) {
     if(document.hidden||matchMedia("(prefers-reduced-motion: reduce)").matches||!Element.prototype.animate)return;
     const event=game.lastEvent;
+    if(event.revealedSkill)app.querySelector(".public-skill.face-up")?.animate([{opacity:.35,transform:"perspective(300px) rotateY(74deg)"},{opacity:1,transform:"perspective(300px) rotateY(0deg)"}],{duration:460,easing:"ease-out"});
     for(const side of [0,1]) {
       const ids=event.drawn[side];
       if(!ids.length){
@@ -2328,7 +2905,7 @@ body:has(.mode-home) .transfer{display:block}
     }
     return h.slots.map(id=>byId.get(id)||null);
   }
-  function cardLabel(c,side=actorSide()) {const team=game.players[side].faction;return c.kind==="special"?skills[team].name+"，"+c.cost+"费，"+skills[team].text:c.kind==="supply"?"补给，"+c.cost+"费，这次摸"+supplyAmount(side)+"张，把手牌补满6张。":(c.kind==="partner"?"伙伴":"撞击")+"，"+c.cost+"费，"+(c.kind==="partner"?"力量"+E.powerForCost(c.cost):"减力"+c.impact);}
+  function cardLabel(c,side=actorSide()) {if(c.kind==="special"){const sk=moveSkill(c,side);return (sk.enhanced?"强化":"")+sk.name+"，"+c.cost+"费，"+sk.text;}return c.kind==="supply"?"补给，"+c.cost+"费，这次摸"+supplyAmount(side)+"张，把手牌补满6张。":(c.kind==="partner"?"伙伴":"撞击")+"，"+c.cost+"费，"+(c.kind==="partner"?"力量"+E.powerForCost(c.cost):"减力"+c.impact);}
   const frames = {
     partner: {
       outline:"M2 98 3 32Q4 11 26 8Q65 6 98 2L96 70Q95 93 73 95Q37 95 2 98Z",
@@ -2362,15 +2939,16 @@ body:has(.mode-home) .transfer{display:block}
   function humanCard(c,legal,side=actorSide()) {
     if(!c)return '<span class="card-empty" aria-hidden="true"></span>';
     const team=game.players[side].faction,supply=c.kind==="supply";
-    const special=c.kind==="special", cycling=side===actorSide()&&sel?.kind==="cycle", active=sel?.key===c.id||pending?.type==="cycle"&&pending.card===c.id;
+    const special=c.kind==="special", skill=special?moveSkill(c,side):null, cycling=side===actorSide()&&sel?.kind==="cycle", active=sel?.key===c.id||pending?.type==="cycle"&&pending.card===c.id;
     const can=legal.some(m=>m.card===c.id && (cycling?m.type==="cycle":m.type===c.kind));
     const isMyTurn=side===actorSide()&&canAct();
-    const middle=c.kind==="partner"?'<span class="card-bug">'+bug(team)+'</span>':special?'<span aria-hidden="true" class="card-action skill-art">'+art.skill(team)+'</span>':'<span class="card-action">'+icon(supply?"supply":"bump")+'</span>';
+    const middle=c.kind==="partner"?'<span class="card-bug">'+bug(team)+'</span>':special?'<span aria-hidden="true" class="card-action skill-art">'+art.skill(skill.family)+'</span>':'<span class="card-action">'+icon(supply?"supply":"bump")+'</span>';
     let skillStat="";
-    if(special&&team==="bee")skillStat='<small class="hatch-caption">搬走整堆</small>';
-    if(special&&team==="butterfly")skillStat='<small class="hatch-caption">下轮 '+E.specialRules(team).hatchPower+'＋'+icon("pollen")+'</small>';
-    const stat=special?'<span class="special-label">'+skills[team].name+skillStat+'</span>':supply?'<span class="card-stat">'+icon("handBack")+'+'+supplyAmount(side)+'</span>':'<span class="card-stat">'+icon("force")+(c.kind==="hit"?"−"+c.impact:E.powerForCost(c.cost))+'</span>';
-    const disabledReason=!isMyTurn?"等你的回合":c.cost>game.players[side].sun?"阳光不足":special?skills[team].text:supply?"没有可摸的牌":c.kind==="hit"?"等对面上场":blockedLeafNote(side);
+    if(skill?.family==="bee")skillStat='<small class="hatch-caption">搬走整堆</small>';
+    if(skill?.family==="butterfly")skillStat='<small class="hatch-caption">下轮 '+E.specialRules("butterfly").hatchPower+'＋'+icon("pollen")+'</small>';
+    if(skill?.enhanced)skillStat='<small class="skill-plus">强化</small>';
+    const stat=special?'<span class="special-label">'+skill.name+skillStat+'</span>':supply?'<span class="card-stat">'+icon("handBack")+'+'+supplyAmount(side)+'</span>':'<span class="card-stat">'+icon("force")+(c.kind==="hit"?"−"+c.impact:E.powerForCost(c.cost))+'</span>';
+    const disabledReason=!isMyTurn?"等你的回合":c.cost>game.players[side].sun?"阳光不足":special?skill.text:supply?"没有可摸的牌":c.kind==="hit"?"等对面上场":blockedLeafNote(side);
     return '<button type="button" class="card '+c.kind+(can?'':' off')+(active?' picked':'')+(cycling?' for-cycle':'')+'" data-do="card" data-id="'+c.id+'" data-focus="card-'+c.id+'" aria-pressed="'+Boolean(active)+'" aria-label="'+(cycling?'换走':'')+cardLabel(c,side)+(can?'':'。'+disabledReason)+'" '+(!isMyTurn?"disabled":"")+' title="'+cardLabel(c,side)+'">'+cardFrame(c.kind,c.id)+'<span class="cost '+(c.cost===0?'free':'')+'">'+icon("sun")+c.cost+'</span>'+middle+stat+'</button>';
   }
   function score(p,side) {
@@ -2380,7 +2958,7 @@ body:has(.mode-home) .transfer{display:block}
   function pileMeters(side) {
     const p=game.players[side],who=playerName(side);
     const meter=(key,glyph,label,n)=>'<span class="pile-meter '+key+'" data-pile="'+key+'-'+side+'" aria-label="'+who+label+'余'+n+'张" title="'+label+' · '+n+' 张">'+icon(glyph)+'<small>'+label+'</small><b>'+n+'</b></span>';
-    const aiHand=mode==="solo"&&side===1?'<span class="pile-meter unseen-hand" data-hand-anchor="1" aria-label="对手手里有'+p.hand.length+'张" title="对手的手牌">'+icon("handBack")+'<b>'+p.hand.length+'</b></span>':'';
+    const aiHand=mode==="solo"&&side===1?'<span class="pile-meter unseen-hand" data-hand-anchor="1" aria-label="电脑暗牌'+p.hand.length+'张" title="电脑暗牌">'+icon("handBack")+'<small>暗牌</small><b>'+p.hand.length+'</b></span>':'';
     return '<div class="pile-group">'+meter("draw","drawStack","牌堆",p.draw.length)+meter("discard","discardTray","弃牌",p.discard.length)+aiHand+'</div>';
   }
   function sideBar(side,view) {
@@ -2390,49 +2968,66 @@ body:has(.mode-home) .transfer{display:block}
     const passed=p.passed && game.phase==="play";
     const cap=Math.min(game.round+2,10);
     const first=side===game.first?'<small class="first-mark" role="img" aria-label="本轮先手" title="本轮先手">先</small>':"";
-    return '<div class="roles" data-role-seat="'+side+'"><div class="row"><span class="role-id">'+bug(p.faction)+first+'</span><span class="role-name">'+playerName(side)+" · "+names[p.faction]+'</span>'+score(p,side)+'</div>'+pileMeters(side)+'<div class="row">'+(passed?'<span class="op-pass">已收手</span>':'')+'<span class="token" aria-label="本轮阳光上限'+cap+'，还剩'+sun+'点">'+icon("sun")+(sun!==p.sun?'<s class="old-number">'+p.sun+'</s>':'')+sun+'<small>/'+cap+'</small></span></div></div>';
+    const rank=mission?.stage===6?"fantasy":mission?.stage===5?"chief":"";
+    const crown='<svg viewBox="0 0 22 20" fill="currentColor" aria-hidden="true"><path d="M2 4l5 4 4-7 4 7 5-4-3 12H5zM5 18h12v2H5z"/></svg>';
+    const label=mission&&side===1?'<button class="role-name campaign-rival '+rank+'" data-do="campaign-rival" aria-label="查看电脑对手'+mission.name+'的技能">'+(rank?crown:'')+mission.name+' <small>ⓘ</small></button>':'<span class="role-name">'+(mode==="solo"&&side===1?"电脑":playerName(side))+" · "+names[p.faction]+'</span>';
+    return '<div class="roles" data-role-seat="'+side+'"><div class="row"><span class="role-id">'+bug(p.faction)+first+'</span>'+label+score(p,side)+'</div>'+pileMeters(side)+'<div class="row">'+(passed?'<span class="op-pass">已收手</span>':'')+'<span class="token" aria-label="本轮阳光上限'+cap+'，还剩'+sun+'点">'+icon("sun")+(sun!==p.sun?'<s class="old-number">'+p.sun+'</s>':'')+sun+'<small>/'+cap+'</small></span></div></div>';
   }
   function selectedMoves(legal) {return !sel?[]:legal.filter(m=>m.type===sel.kind&&m.card===sel.key);}
+  function beePrompt(moves,home) {
+    return moves.some(m=>m.to===home&&m.from===home)?"点一堆花粉，或点「两边」":"点要搬走的花粉堆";
+  }
   function specialRow(team,me) {
-    const row=skills[team].row;
+    const row=sel?.kind==="special"?moveSkill(selectedCard(),me).row:skills[team].row;
     return row==="own"?me:row==="enemy"?1-me:2;
   }
   function hotZone(side,lane,moves) {
     if (!sel || pending || sel.kind==="cycle") return false;
-    const me=actorSide(),team=actorTeam();
+    const me=actorSide(),sk=moveSkill(selectedCard(),me),team=sk.family;
     if (sel.kind!=="special") return side===(sel.kind==="partner"?me:1-me)&&moves.some(m=>m.lane===lane);
     const correctSide=specialRow(team,me);
-    if(team==="bee" && sel.from!==undefined && side===me) return moves.some(m=>m.from===sel.from&&m.to===lane);
+    if(sk.enhanced&&team==="bee"){
+      if(sel.from===undefined)return side===me&&moves.some(m=>m.to===lane);
+      return side===(lane===sel.from?me:2)&&moves.some(m=>m.from===lane&&m.to===sel.from);
+    }
+    if(sk.enhanced&&team==="butterfly"&&sel.from!==undefined)return side===2&&lane!==sel.forage&&moves.some(m=>m.from===sel.from&&[m.to,m.also].includes(lane)&&(sel.forage===undefined||[m.to,m.also].includes(sel.forage)));
+    if(team==="bee" && !sk.enhanced && sel.from!==undefined && side===me) return moves.some(m=>m.from===sel.from&&m.to===lane);
     if (side!==correctSide) return false;
     return sel.from===undefined?moves.some(m=>m.from===lane):moves.some(m=>m.from===sel.from && m.to===lane);
   }
   function unitSlot(side,lane,view,moves) {
     const shown=view.board[side][lane], now=game.board[side][lane];
     const hot=hotZone(side,lane,moves);
-    const web=(view.result?.webs??view.webs)[side][lane],brood=view.broods[side][lane];
-    const hatchPower=brood+(!view.result&&E.laneFeeder(view,lane)===side?view.pollen[lane]:0);
+    const time=E.webDuration(view,side,lane),web=time>0,brood=view.broods[side][lane];
+    const hatchPower=E.projectedHatch(view,side,lane);
     const webPreview=web&&!(game.result?.webs??game.webs)[side][lane],broodPreview=brood&&!game.broods[side][lane];
-    const destroyedBrood=pending?.type==="special"&&actorTeam()==="spider"&&game.broods[side][lane]>0&&!brood;
-    const released=pending?.type==="special"&&actorTeam()==="beetle"&&side===actorSide()&&lane===pending.from&&game.webs[side][lane]&&!web;
+    const family=E.skillOf(selectedCard(),actorTeam());
+    const destroyedBrood=pending?.type==="special"&&family==="spider"&&game.broods[side][lane]>0&&!brood;
+    const released=pending?.type==="special"&&family==="beetle"&&side===actorSide()&&lane===pending.from&&game.webs[side][lane]&&!web;
     const diff=(shown?.power??-1)!==(now?.power??-1)||webPreview||broodPreview||destroyedBrood||released;
     const me=actorSide(),team=actorTeam(),skillSide=specialRow(team,me);
     const isFrom=sel?.kind==="special"&&sel.from===lane&&side===skillSide;
-    const destination=pending?.type==="special"&&side===skillSide&&pending.to===lane;
+    const remote=Array.isArray(view.broodForage[side][lane])?view.broodForage[side][lane]:null;
+    const destination=pending?.type==="special"&&side===skillSide&&(!selectedCard()?.enhanced||family!=="butterfly")&&pending.to===lane;
     const changed=shown&&now&&now.power!==shown.power;
     const unitClass=(web?" webbed-slot":"")+(web&&shown?" webbed-unit":"")+(webPreview?" web-preview":"")+
       (brood?" brood-slot":"")+(broodPreview?" brood-preview":"")+(shown?.hatched?" hatched":"");
     let artBody='<span aria-hidden="true" class="vacant"></span>';
-    if(shown)artBody=bug(game.players[side].faction)+'<span class="unit-power">'+icon("force")+(changed?'<s class="old-number">'+now.power+'</s>':'')+shown.power+'</span>';
-    const webMark=web?'<span class="web-marker" aria-hidden="true">'+art.icon("web")+'</span>':"";
+    if(shown)artBody=bug(shown.hatched?"butterfly":game.players[side].faction)+'<span class="unit-power">'+icon("force")+(changed?'<s class="old-number">'+now.power+'</s>':'')+shown.power+'</span>';
+    const webMark=web?'<span class="web-marker" aria-hidden="true">'+art.icon("web")+'</span><small class="web-clock" title="剩余'+time+'轮">'+time+'轮</small>':"";
     const harvestMark=web&&shown?'<small class="no-harvest" title="本轮不采粉" aria-hidden="true">'+art.icon("noHarvest")+'<span>不采粉</span></small>':"";
-    const broodMark=brood?'<span class="brood-marker" aria-hidden="true">'+art.cocoon()+'<small>'+(view.result?'下轮':'预计')+'</small><b>'+hatchPower+'</b></span>':destroyedBrood?'<span class="brood-marker brood-destroyed" aria-hidden="true">'+art.cocoon()+'<b>×</b><small>不孵化</small></span>':"";
-    const content=artBody+webMark+harvestMark+broodMark+routeMarker(side===skillSide,lane);
+    const broodMark=brood?'<span class="brood-marker" aria-hidden="true" title="'+(remote?'取食 '+remote.map(n=>n+1).join('、')+' 道':'本道取食')+'">'+art.cocoon()+'<small>'+(view.result?'下轮':'预计')+'</small><b>'+hatchPower+'</b></span>':destroyedBrood?'<span class="brood-marker brood-destroyed" aria-hidden="true">'+art.cocoon()+'<b>×</b><small>不孵化</small></span>':"";
+    const chooseBoth=hot&&family==="bee"&&selectedCard()?.enhanced&&sel.from===lane;
+    const both=chooseBoth?'<span class="bee-both">两边</span>':'';
+    const content=artBody+webMark+harvestMark+broodMark+both+routeMarker(family!=="bee"&&side===skillSide,lane);
     const label=playerName(side)+laneName(lane)+"，"+(shown?(shown.hatched?"新生蝴蝶，":"")+"力量"+shown.power:"空位")+
-      (web?(shown?"，网中虫保留力量和技能，本轮不采粉":"，有网，本轮不能从手牌放伙伴"):released?"，甲虫挣脱蛛网，恢复采粉":"")+(brood?"，留有蛹，预计下轮孵出"+hatchPower+"力蝴蝶":destroyedBrood?"，蛹被摧毁，下轮不孵化":"")+(hot?"，可选择":"");
+      (web?"，网还剩"+time+"轮"+(shown?"，网中虫保留力量和技能，本轮不采粉":"，本轮不能从手牌放伙伴"):released?"，甲虫挣脱蛛网，恢复采粉":"")+(brood?"，留有蛹"+(remote?"，从"+remote.map(laneName).join("和")+"取食":"")+"，预计下轮孵出"+hatchPower+"力蝴蝶":destroyedBrood?"，蛹被摧毁，下轮不孵化":"")+(chooseBoth?"，把左右两边的花粉一起搬来":hot?"，可选择":"");
     return '<button type="button" class="slot '+(hot?"legal ":"")+(diff||destination?"previewed ":"")+(isFrom?"selected":"")+unitClass+'" data-do="zone" data-side="'+side+'" data-lane="'+lane+'" data-focus="zone-'+side+lane+'" aria-label="'+label+'" '+(hot?'':'disabled')+'>'+content+'</button>';
   }
-  function routeMarker(onRow,lane) {
-    if(!onRow||pending?.type!=="special"||pending.from!==lane||pending.from===pending.to)return "";
+  function routeMarker(onRow,lane,beeSources) {
+    if(!onRow||pending?.type!=="special")return "";
+    if(beeSources){if(!beeSources.includes(lane))return "";}
+    else if(pending.from!==lane||pending.from===pending.to||selectedCard()?.enhanced&&E.skillOf(selectedCard(),actorTeam())==="butterfly")return "";
     const right=pending.to>lane;
     return '<span class="route-marker '+(right?'right':'left')+'" aria-hidden="true">'+(right?'→':'←')+'</span>';
   }
@@ -2479,24 +3074,26 @@ body:has(.mode-home) .transfer{display:block}
   }
   function awardMessage(lane) {
     const n=game.pollen[lane],winner=game.result.winners[lane];
-    const text=n===0?(game.eaten[lane]>0?playerName(game.result.feeders[lane])+"的蛹吃 "+game.eaten[lane]+" 枚，两边 +0 分":"空花，两边 +0"):
-      winner===null?"平手，两边 +0":playerName(winner)+"收 "+n+" 枚";
-    return laneName(lane)+" · "+text;
+    const meal=E.broodMeal(game,lane);
+    const feeding=meal.diners.filter(d=>d.amount).map(d=>playerName(d.side)+laneName(d.home)+"的蛹吃 "+d.amount+" 枚");
+    const text=n===0?(feeding.length?"双方 +0":"空花，双方 +0"):winner===null?"平手，双方 +0":playerName(winner)+"收 "+n+" 枚";
+    return laneName(lane)+" · "+[...feeding,text].join("，");
   }
   function awardBadge(lane) {
     const n=game.pollen[lane],side=game.result.winners[lane];
-    if(game.eaten[lane]>0)return '<span class="collection-result" data-award="feed" aria-hidden="true">'+art.cocoon()+'<b>×'+game.eaten[lane]+'</b></span>';
+    if(game.eaten[lane]>0)return '<span class="collection-result" data-award="feed" aria-hidden="true">'+art.cocoon()+'<b>×'+game.eaten[lane]+'</b>'+(n?'<small>'+(side===null?'＝':side===0?'↓':'↑')+(side===null?'0':n)+'</small>':'')+'</span>';
     const award=n===0?"empty":side===null?"tie":side;
     const symbol=award==="empty"?"空":award==="tie"?"＝":side===0?"↓":"↑";
     return '<span class="collection-result" data-award="'+award+'" aria-hidden="true"><span>'+symbol+'</span><b>+'+((award===0||award===1)?n:0)+'</b></span>';
   }
-  function sendPollen(lane,side,index) {
+  function sendPollen(lane,side,index,home=null,flower=null) {
     const start=app.querySelector('.pollen-node[data-lane="'+lane+'"]')?.getBoundingClientRect();
-    const target=game.eaten[lane]>0?'.slot[data-side="'+side+'"][data-lane="'+lane+'"]':'[data-score-side="'+side+'"] .icon';
+    const target=flower!==null?'.pollen-node[data-lane="'+flower+'"]':home!==null?'.slot[data-side="'+side+'"][data-lane="'+home+'"]':'[data-score-side="'+side+'"] .icon';
     const end=app.querySelector(target)?.getBoundingClientRect();
     if(!start||!end||!Element.prototype.animate)return;
     const mote=document.createElement("span");
     mote.className="pollen-flight";mote.dataset.side=String(side);mote.dataset.lane=String(lane);
+    if(flower!==null){mote.classList.add("bee-mote");mote.dataset.to=String(flower);}
     mote.setAttribute("aria-hidden","true");mote.innerHTML=art.icon("pollen");document.body.append(mote);
     const x=start.left+start.width/2,y=start.top+start.height/2;
     const dx=end.left+end.width/2-x,dy=end.top+end.height/2-y;
@@ -2508,7 +3105,7 @@ body:has(.mode-home) .transfer{display:block}
       {offset:.20,transform:transform(.13*dx+arc,.11*dy-9,1.17),opacity:1},
       {offset:.75,transform:transform(.73*dx+arc,.60*dy-16,1),opacity:1},
       {transform:transform(dx,dy,.65),opacity:0}
-    ],{duration:310,easing:"ease-in-out",fill:"both"});
+    ],{duration:flower===null?310:400,delay:flower===null?0:index*45,easing:"ease-in-out",fill:"both"});
     motion.onfinish=motion.oncancel=()=>mote.remove();
   }
   function unlockTallyNav(run) {
@@ -2535,16 +3132,18 @@ body:has(.mode-home) .transfer{display:block}
     if(!run.running){unlockTallyNav(run);return;}
     let at=120;
     for(let lane=0;lane<game.pollen.length;lane++){
-      const meal=game.eaten[lane],side=meal?game.result.feeders[lane]:game.result.winners[lane];
-      const count=meal||(side===null?0:game.pollen[lane]);
+      const meal=E.broodMeal(game,lane),winner=game.result.winners[lane];
+      const grants=meal.diners.flatMap(d=>Array(d.amount).fill(d));
+      if(winner!==null)for(let i=0;i<meal.remaining;i++)grants.push({side:winner,home:null});
+      const count=grants.length;
       later(run,at,()=>{
         run.lane=lane;run.phases[lane]="active";run.message=awardMessage(lane);
         syncTally(run);say(run.message);
       });
       for(let i=0;i<count;i++){
-        const launch=at+90+i*95;
-        later(run,launch,()=>sendPollen(lane,side,i));
-        if(!meal)later(run,launch+310,()=>{run.display[side]++;syncTally(run);});
+        const launch=at+90+i*95,{side,home}=grants[i];
+        later(run,launch,()=>sendPollen(lane,side,i,home));
+        if(home===null)later(run,launch+310,()=>{run.display[side]++;syncTally(run);});
       }
       at+=count?470+(count-1)*95:370;
       later(run,at,()=>{run.phases[lane]="complete";syncTally(run);});
@@ -2557,50 +3156,63 @@ body:has(.mode-home) .transfer{display:block}
   }
   function victorySheet() {
     const side=game.winner,p=game.players[side];
+    if(mission&&reward)return C.result(team,mission.stage,reward,game.players[1].score);
     return '<div class="victory-sheet '+(tally?.flourish?'victory-bloom':'')+'" data-winner="'+side+'" role="status">'+
       '<span class="victory-insect">'+bug(p.faction)+'</span><span class="victory-copy"><strong>'+playerName(side)+' · '+names[p.faction]+'赢啦！</strong>'+
       '<span>'+icon("pollen")+'<b>'+p.score+'</b><small>比</small><b>'+game.players[1-side].score+'</b></span></span>'+
       '<span class="victory-petals" aria-hidden="true">'+Array.from({length:8},(_,i)=>'<i style="--petal:'+i+'"></i>').join('')+'</span></div>';
   }
   function pollenSlot(lane,view,moves) {
-    const team=actorTeam();
+    const team=E.skillOf(selectedCard(),actorTeam());
     const hot=hotZone(2,lane,moves),final=game.phase!=="play";
     const n=view.pollen[lane]+(final?game.eaten[lane]:0);
-    const feeder=E.laneFeeder(view,lane);
+    const meal=E.broodMeal(view,lane),eaters=meal.diners.length;
     const w=laneWinner(view,lane), arrow=w===0?"↓":w===1?"↑":"＝";
     const diff=n!==game.pollen[lane],isFrom=team==="bee"&&sel?.from===lane;
     const drops=n?icon("pollen")+(n>1?'<b class="pollen-count">×'+n+'</b>':''):'<span class="pollen-empty" aria-hidden="true"></span><b class="pollen-count">0</b>';
     const showArrow=final||pending && !["cycle","supply"].includes(pending.type);
-    const direction=final?awardBadge(lane):feeder!==null&&n?'<span class="destination feed-destination" aria-hidden="true">'+art.cocoon()+'</span>':showArrow&&n?'<span class="destination proposed" aria-hidden="true">'+arrow+'</span>':'';
-    const eating=team==="butterfly"&&pending?.type==="special"&&pending.from===lane;
-    const label=final?awardMessage(lane):laneName(lane)+"，"+n+"枚花粉"+(feeder!==null?"，若现在结算，由"+playerName(feeder)+"的蛹进食":showArrow&&n?(w===null?"，平手":"，朝向"+playerName(w)):"")+(hot?"，可选择":"");
+    const direction=final?awardBadge(lane):eaters?'<span class="destination feed-destination" aria-hidden="true">'+art.cocoon()+(eaters>1?'<b>×'+eaters+'</b>':'')+(meal.remaining?'<small>'+arrow+meal.remaining+'</small>':'')+'</span>':showArrow&&n?'<span class="destination proposed" aria-hidden="true">'+arrow+'</span>':'';
+    const eating=team==="butterfly"&&(pending?.type==="special"&&(pending.also!==undefined?[pending.to,pending.also].includes(lane):pending.from===lane)||sel?.forage===lane);
+    const label=final?awardMessage(lane):laneName(lane)+"，"+n+"枚花粉"+(eaters?"，"+meal.diners.map(d=>playerName(d.side)+laneName(d.home)+"的蛹吃"+d.amount+"枚").join("，")+"，剩"+meal.remaining+"枚可采":showArrow&&n?(w===null?"，平手":"，朝向"+playerName(w)):"")+(hot?"，可选择":"");
     const rich=n>=3?" pollen-jackpot":n===2?" pollen-rich":"";
-    return '<button type="button" class="pollen-node '+(hot?"legal ":"")+(diff?"previewed ":"")+(isFrom?"selected ":"")+(eating?"eaten-preview":"")+rich+'" data-do="zone" data-side="2" data-pollen="'+n+'" data-lane="'+lane+'" data-focus="zone-2'+lane+'" aria-label="'+label+'" '+(hot?'':'disabled')+'>'+drops+direction+routeMarker(team==="bee",lane)+'</button>';
+    return '<button type="button" class="pollen-node '+(hot?"legal ":"")+(diff?"previewed ":"")+(isFrom?"selected ":"")+(eating?"eaten-preview":"")+rich+'" data-do="zone" data-side="2" data-pollen="'+n+'" data-lane="'+lane+'" data-focus="zone-2'+lane+'" aria-label="'+label+'" '+(hot?'':'disabled')+'>'+drops+direction+routeMarker(team==="bee",lane,team==="bee"?beeSources(game,view):null)+'</button>';
   }
   function board(view,legal) {
     const choices=selectedMoves(legal);
     return '<div class="table" aria-label="五条花道，上面是'+playerName(1)+'，下面是'+playerName(0)+'"><div class="lanes">'+view.pollen.map((_,lane)=>'<div class="lane '+(motionLane===lane?"ai-lane":"")+'" data-lane="'+lane+'"'+(tally?' data-tally="'+tally.phases[lane]+'"':'')+'>'+unitSlot(1,lane,view,choices)+pollenSlot(lane,view,choices)+unitSlot(0,lane,view,choices)+'</div>').join("")+'</div></div>';
   }
+  function beeSources(before,after) {
+    return before.pollen.map((n,lane)=>n>after.pollen[lane]?lane:-1).filter(lane=>lane!==-1);
+  }
   function specialHint(side,changed) {
-    const t=game.players[side].faction;
+    const spec=moveSkill(selectedCard(),side),t=spec.family;
     const lane=pending.to;
     if(t==="spider"){
       const enemy=changed.board[1-side][lane];
-      return (enemy?"对面 "+enemy.power+" 力 · 不采粉":"对面空叶结网")+(game.broods[1-side][lane]?" · 摧毁蛹，下轮不孵化":E.lanePower(changed,side,lane)?"":" · 暂时平手");
+      return (enemy?"对面 "+enemy.power+" 力 · 不采粉":"对面空叶结网")+" · "+E.webDuration(changed,1-side,lane)+" 轮"+(game.broods[1-side][lane]?" · 摧毁蛹，下轮不孵化":E.lanePower(changed,side,lane)?"":" · 暂时平手");
     }
-    if(t==="butterfly")return '<span class="guard-preview"><span>结算时吃 '+icon("pollen")+(E.laneFeeder(changed,lane)===side?changed.pollen[lane]:0)+'</span></span>';
-    if(t==="ant")return "隔壁伙伴 "+game.board[side][lane].power+" → "+changed.board[side][lane].power;
+    if(t==="butterfly"){const home=pending.from,power=E.projectedHatch(changed,side,home);return '<span class="guard-preview"><span>预计吃 '+icon("pollen")+(power-changed.broods[side][home])+'</span><span>下轮 '+icon("force")+power+'</span></span>';}
+    if(t==="ant")return changed.board[side].map((p,i)=>p&&p.power!==game.board[side][i].power?laneName(i)+" "+game.board[side][i].power+" → "+p.power:"").filter(Boolean).join("、");
     if(t==="bee"){
       const from=pending.from;
+      if(spec.enhanced){
+        const sources=beeSources(game,changed);
+        const note=sources.map(source=>(source<lane?"左":"右")+" "+game.pollen[source]+" → "+changed.pollen[source]).join("、");
+        return note+"，"+laneName(lane)+" "+game.pollen[lane]+" → "+changed.pollen[lane];
+      }
       return '<span class="guard-preview bee-transfer"><span>起 '+icon("pollen")+game.pollen[from]+' → '+changed.pollen[from]+'</span><span>到 '+icon("pollen")+game.pollen[lane]+' → '+changed.pollen[lane]+'</span></span>';
     }
-    return "顶去"+laneName(lane)+(game.webs[side][pending.from]&&!changed.webs[side][pending.from]?" · 自己挣脱网":"");
+    return "顶去"+laneName(lane)+" · "+game.board[1-side][pending.from].power+" → "+changed.board[1-side][lane].power+" 力"+(game.webs[side][pending.from]&&!changed.webs[side][pending.from]?" · 自己挣脱网":"");
   }
   function toolbar(legal,side,view) {
-    const team=actorTeam(),owner=playerName(side);
+    const owner=playerName(side);
     if(game.phase!=="play") {
       if(tally?.running)return '<div class="toolbar tally-toolbar"><span class="tally-message">'+tally.message+'</span>'+actionButton("skip-resolution","跳过","plain","pass")+'</div>';
       const g=game.result.gain, done=game.phase==="done";
+      if(done&&mission&&reward){
+        const onward=reward.stars>0&&mission.stage<6?tallyButton("campaign-next","下一关","confirm","arrow"):reward.stars>0?tallyButton("campaign-picture","看完整大图","confirm","flower"):"";
+        return '<div class="toolbar campaign-end">'+onward+tallyButton("again","再试本关",onward?"plain":"confirm","play")+tallyButton("new-team","选关","plain","back")+'</div>';
+      }
       const title=done?playerName(game.winner)+"赢啦！":game.players[0].score>=30&&game.players[0].score===game.players[1].score?"平分，再接一轮":"收花粉";
       return '<div class="toolbar"><span class="outcome">'+title+'<span class="token" aria-label="'+owner+'本轮收了'+g[side]+'枚花粉">'+icon("pollen")+'+'+g[side]+'</span></span>'+tallyButton(done?"again":"next",done?"再来一局":"下一轮","confirm",done?"play":"arrow")+(done?tallyButton("new-team","换队","plain","back"):"")+'</div>';
     }
@@ -2612,29 +3224,44 @@ body:has(.mode-home) .transfer{display:block}
       return '<div class="toolbar'+(isPass?' pass-confirm':'')+'">'+currentSkillFee()+'<span class="prompt">'+hint+'</span>'+actionButton("cancel","取消","cancel","back")+actionButton("confirm",isPass?"收手":cycle?"换牌":"出牌","confirm",isPass?"pass":cycle?"cycle":"check")+'</div>';
     }
     if(sel) {
-      const prompt=sel.kind==="cycle"?"点一张要换走的牌":sel.kind==="special"?(sel.from===undefined?skills[team].ask:skills[team].next):sel.kind==="hit"?"点对面的虫":"点空叶位";
+      const spec=moveSkill(selectedCard(),side);
+      const next=spec.enhanced&&spec.family==="bee"?beePrompt(selectedMoves(legal),sel.from):spec.next;
+      const prompt=sel.kind==="cycle"?"点一张要换走的牌":sel.kind==="special"?(sel.from===undefined?spec.ask:next):sel.kind==="hit"?"点对面的虫":"点空叶位";
       return '<div class="toolbar">'+currentSkillFee()+'<span class="prompt">'+prompt+'</span>'+actionButton("cancel","取消","cancel","back")+'</div>';
     }
     const cycleOk=legal.some(a=>a.type==="cycle");
     const cycle='<button type="button" class="pill cycle-control" data-do="cycle" data-focus="cycle" title="每轮免费换一张手牌" '+(cycleOk?'':'disabled')+'>'+icon("cycle")+'换牌</button>';
     return '<div class="toolbar"><span class="turn-badge">'+(legal.every(m=>m.type==="pass")?"可以收手了":mode==="duo"?owner+"出牌":"轮到你")+'</span>'+cycle+actionButton("pass","收手","pill","pass")+'</div>';
   }
+  function publicSlot() {
+    const card=E.visibleSkill(game,1);
+    if(!card)return '<span class="public-skill spent" role="img" aria-label="本轮明牌已用，下轮再翻"><small>明牌</small><b>已用</b></span>';
+    const skill=moveSkill(card,1);
+    return '<button type="button" class="public-skill face-up" data-do="public-skill-info" aria-label="查看首领明牌，'+cardLabel(card,1)+'"><small>明牌</small><span class="public-cost">'+icon("sun")+card.cost+'</span><span class="public-art" aria-hidden="true">'+art.skill(skill.family)+'</span><strong>'+(skill.enhanced?'<i>＋</i>':'')+skill.name+'</strong></button>';
+  }
+  function computerSeat(view,active,status) {
+    const count=game.players[1].hand.length,hasPublic=game.campaign?.stage===6;
+    const backs=Array.from({length:count},()=>'<span class="cpu-back" aria-hidden="true">'+icon("leaf")+'</span>').join("");
+    const turn=game.phase!=="play"?(game.phase==="done"?"对战结束":"收花粉"):active?"电脑出牌":game.players[1].passed?"电脑已收手":"等你出牌";
+    const activity=mission&&lastBossMove?'<span class="campaign-activity">'+lastBossMove+'</span>':'';
+    return '<section class="seat seat-top computer-seat '+status+'" data-seat="1" aria-label="电脑席"><div class="seat-inner">'+sideBar(1,view)+'<div class="hand-section"><div class="hand cpu-hand '+(hasPublic?'with-public':'')+'" data-hand="1" role="group" aria-label="电脑暗牌 '+count+' 张'+(hasPublic?'，另有一个明牌格':'')+'">'+backs+(hasPublic?publicSlot():'')+'</div><div class="toolbar cpu-toolbar"><span class="cpu-turn">'+turn+'</span>'+activity+'</div></div></div></section>';
+  }
   function seatPanel(side,view,legal) {
     const active=game.phase==="play"&&game.turn===side;
     const choice=active?legal:[];
-    const won=game.phase==="done"&&!tally?.running&&side===game.winner;
-    const hand=won?victorySheet():visibleHand(side).map(c=>humanCard(c,choice,side)).join("");
     const status=game.phase!=="play"?"finished-seat":active?"active-seat":"waiting-seat";
+    if(mode==="solo"&&side===1)return computerSeat(view,active,status);
+    const won=game.phase==="done"&&!tally?.running&&(mode==="solo"||side===game.winner);
+    const hand=won?victorySheet():visibleHand(side).map(c=>humanCard(c,choice,side)).join("");
     return '<section class="seat '+(side===1?'seat-top':'seat-bottom')+' '+status+'" data-seat="'+side+'" aria-label="'+playerName(side)+'的座位"><div class="seat-inner">'+sideBar(side,view)+'<div class="hand-section"><div class="hand '+(won?'victory-hand':'')+'" data-hand="'+side+'" aria-label="'+(won?'本局赢家':playerName(side)+'的手牌，'+(active?'可以出牌':'等待出牌'))+'">'+hand+'</div>'+toolbar(choice,side,view)+'</div></div></section>';
   }
   function battle() {
     const legal=myMoves(), view=pending&&!["cycle","supply","pass"].includes(pending.type)?E.play(game,pending):game;
     const ph=phaseAt(game.round);
-    const headBar='<header class="mast '+(mode==="duo"?'tt-head':'')+'"><div class="row"><button type="button" class="round-btn" data-do="exit-game" aria-label="返回选队" title="返回选队">‹</button><span class="word-mark">'+(mode==="duo"?'双人同桌':'花粉擂台')+'</span></div><div class="round-indicator"><span>第 '+game.round+' 轮</span><span class="phase-chip '+ph.id+'" aria-label="'+ph.name+'，本阶段每轮上限'+ph.cap+'点阳光">'+phaseIcon(ph)+ph.name+'</span></div>'+helpButton()+'</header>';
+    const back=mission?"返回选关":"返回选队";
+    const headBar='<header class="mast tt-head"><div class="row"><button type="button" class="round-btn" data-do="exit-game" aria-label="'+back+'" title="'+back+'">‹</button><span class="word-mark">'+(mode==="duo"?'双人同桌':mission?'第 '+mission.stage+' 关':'随机速战')+'</span></div><div class="round-indicator"><span>第 '+game.round+' 轮</span><span class="phase-chip '+ph.id+'" aria-label="'+ph.name+'，本阶段每轮上限'+ph.cap+'点阳光">'+phaseIcon(ph)+ph.name+'</span></div>'+helpButton()+'</header>';
     const stage=tally?(tally.running?"counting":"complete"):"play";
-    if(mode==="duo") return '<div class="battle wrap tabletop" data-resolution="'+stage+'" data-turn="'+game.turn+'">'+headBar+seatPanel(1,view,legal)+board(view,legal)+seatPanel(0,view,legal)+'</div>';
-    const celebrated=game.phase==="done"&&!tally?.running;
-    return '<div class="battle wrap" data-resolution="'+stage+'">'+headBar+sideBar(1,view)+board(view,legal)+sideBar(0,view)+'<section class="hand-section" aria-label="'+(celebrated?'本局赢家':'我的手牌')+'"><div class="hand '+(celebrated?'victory-hand':'')+'" data-hand="0">'+(celebrated?victorySheet():visibleHand(0).map(c=>humanCard(c,legal)).join(""))+'</div>'+toolbar(legal,0,view)+'</section></div>';
+    return '<div class="battle wrap tabletop '+(mode==="solo"?'solo-table':'duo-table')+'" data-resolution="'+stage+'" data-turn="'+game.turn+'">'+headBar+seatPanel(1,view,legal)+board(view,legal)+seatPanel(0,view,legal)+'</div>';
   }
   function supplyAmount(side) {return E.supplyDrawCount(game,side);}
   function supplyHint(side) {
@@ -2655,8 +3282,9 @@ body:has(.mode-home) .transfer{display:block}
     if(sel?.key===key) {clearChoice();render();return;}
     const moves=legal.filter(m=>m.type===card.kind && m.card===key);
     if(!moves.length) {
-      const why=game.players[side].sun<card.cost?"这一张需要 "+card.cost+" 点阳光。你还剩 "+game.players[side].sun+" 点。":card.kind==="special"?skills[team].text:card.kind==="hit"?"对面要有一只有力量的虫才能撞击。":card.kind==="supply"?"没有可摸的牌。":blockedLeafNote(side);
-      openSheet(card.kind==="special"?skills[team].name:card.kind==="hit"?"撞击":card.kind==="supply"?"补给":"伙伴",'<p>'+why+'</p><div class="sheet-actions">'+actionButton("close-sheet","知道啦","confirm","check")+'</div>',"reason");return;
+      const spec=moveSkill(card,side);
+      const why=game.players[side].sun<card.cost?"这一张需要 "+card.cost+" 点阳光。你还剩 "+game.players[side].sun+" 点。":card.kind==="special"?spec.text:card.kind==="hit"?"对面要有一只有力量的虫才能撞击。":card.kind==="supply"?"没有可摸的牌。":blockedLeafNote(side);
+      openSheet(card.kind==="special"?spec.name:card.kind==="hit"?"撞击":card.kind==="supply"?"补给":"伙伴",'<p>'+why+'</p><div class="sheet-actions">'+actionButton("close-sheet","知道啦","confirm","check")+'</div>',"reason");return;
     }
     sel={key,kind:card.kind};motionLane=null;
     if(card.kind==="supply") {
@@ -2667,16 +3295,21 @@ body:has(.mode-home) .transfer{display:block}
   }
   function chooseZone(side,lane) {
     if(!canAct())return;
-    const me=actorSide(),team=actorTeam();
+    const me=actorSide(),spec=moveSkill(selectedCard(),me),team=spec.family;
     const legal=myMoves(),opts=selectedMoves(legal);
     if(!hotZone(side,lane,opts))return;
     if(sel.kind==="special" && sel.from===undefined) {
       sel.from=lane;
-      if(!skills[team].single){render();say(skills[team].next);focusLegal();return;}
+      if(!spec.single){render();say(spec.enhanced&&team==="bee"?beePrompt(opts,lane):spec.next);focusLegal();return;}
     }
-    pending=sel.kind==="special"?opts.find(m=>m.from===sel.from && m.to===lane):opts.find(m=>m.lane===lane);
+    if(sel.kind==="special"&&spec.enhanced&&team==="butterfly"){
+      if(sel.forage===undefined){sel.forage=lane;render();say("再点一条不同的取食花道。");focusLegal();return;}
+      pending=opts.find(m=>m.from===sel.from&&m.to===Math.min(lane,sel.forage)&&m.also===Math.max(lane,sel.forage));
+    }else if(sel.kind==="special"&&spec.enhanced&&team==="bee")pending=opts.find(m=>m.to===sel.from&&m.from===lane);
+    else pending=sel.kind==="special"?opts.find(m=>m.from===sel.from && m.to===lane):opts.find(m=>m.lane===lane);
     render();const v=E.play(game,pending);
-    if(sel.kind==="special"&&team==="butterfly")say("预演留蛹。本道仍有"+v.pollen[lane]+"枚花粉，活到结算时才进食。");
+    if(sel.kind==="special"&&spec.enhanced)say("预演强化"+spec.name+"。"+specialHint(me,v).replace(/<[^>]*>/g,"")+"。确认后出牌。");
+    else if(sel.kind==="special"&&team==="butterfly")say("预演留蛹。预计下轮孵出"+E.projectedHatch(v,me,pending.from)+"力的伙伴，活到结算时才进食。");
     else if(sel.kind==="special"&&team==="bee")say("预演。从"+laneName(pending.from)+"搬走全部 "+game.pollen[pending.from]+" 枚，那里变成 "+v.pollen[pending.from]+" 枚。"+laneName(lane)+"从 "+game.pollen[lane]+" 枚变成 "+v.pollen[lane]+" 枚。确认后搬运。");
     else if(sel.kind==="special"&&team==="spider")say("预演，在对手"+laneName(lane)+"织网。"+(game.broods[1-me][lane]?"摧毁这里的蛹，下轮不孵化。":"")+(v.board[1-me][lane]?"网中虫保留 "+v.board[1-me][lane].power+" 力，这轮不采粉。":"空网不能派伙伴。")+"确认后织网。");
     else if(sel.kind==="special"&&team==="beetle"&&game.webs[me][pending.from]&&!v.webs[me][pending.from])say("预演。甲虫把对面的虫顶去"+laneName(lane)+"，挣脱自己脚下的网，恢复采粉。确认后顶撞。");
@@ -2689,28 +3322,44 @@ body:has(.mode-home) .transfer{display:block}
     if(a.type==="pass")return who+"收手了。";
     if(a.type==="cycle")return who+"换了一张牌。";
     if(a.type==="supply")return who+"用了补给。";
-    if(a.type==="special"&&game.players[side].faction==="butterfly")return who+"在"+laneName(a.from)+"留蛹，结算时进食。";
-    if(a.type==="special"&&game.players[side].faction==="spider")return who+"在对手的"+laneName(a.to)+"织了网。"+(game.broods[1-side][a.to]?"蛹被摧毁，下轮不孵化。":"");
-    if(a.type==="special"&&game.players[side].faction==="bee")return who+"把"+laneName(a.from)+"的全部 "+game.pollen[a.from]+" 枚花粉搬到"+laneName(a.to)+"，堆成 "+(game.pollen[a.from]+game.pollen[a.to])+" 枚。";
-    if(a.type==="special"&&game.players[side].faction==="beetle"&&game.webs[side][a.from])return who+"的甲虫把敌虫顶去"+laneName(a.to)+"，挣脱蛛网，可以采粉了。";
-    if(a.type==="special")return who+"用了"+skills[game.players[side].faction].name+"，"+laneName(a.from)+(a.from===a.to?"":"到"+laneName(a.to))+"。";
+    if(a.type==="special"){
+      const s=moveSkill(E.cardForAction(game,side,a),side),t=s.family,source=laneName(a.from),dest=laneName(a.to);
+      if(t==="butterfly")return who+"在"+source+"留蛹"+(s.enhanced?"，在"+dest+"和"+laneName(a.also)+"进食":"，结算时进食")+"。";
+      if(t==="spider")return who+"在"+dest+"织网 "+(s.enhanced?2:1)+" 轮。"+(game.broods[1-side][a.to]?"蛹被摧毁。":"");
+      if(t==="bee"){
+        if(s.enhanced&&a.from===a.to)return who+"把左右两堆共 "+(game.pollen[a.to-1]+game.pollen[a.to+1])+" 枚花粉搬到"+dest+"。";
+        return who+"把"+(s.enhanced?(a.from<a.to?"左边":"右边"):"")+source+"的 "+game.pollen[a.from]+" 枚花粉搬到"+dest+"。";
+      }
+      if(t==="beetle")return who+"把敌虫顶去"+dest+"，减 "+(s.enhanced?4:E.specialRules(t).pushLoss)+" 力"+(game.webs[side][a.from]?"，并挣脱网。":"。");
+      return who+"从"+source+"给"+(s.enhanced?"左右伙伴":dest)+"加 "+game.board[side][a.from].power+" 力。";
+    }
     return who+"在"+laneName(a.lane)+(a.type==="partner"?"派上伙伴":"用了撞击")+"。";
   }
   function enact(a) {
     const side=game.turn;
     const summary=actionSummary(a,side);
     const before=game;
+    const playedCard=a.type==="special"?E.cardForAction(before,side,a):null;
+    const beeMove=playedCard&&E.skillOf(playedCard,before.players[side].faction)==="bee";
     const outgoing=["cycle","supply"].includes(a.type)?handTarget(side,a.card)?.getBoundingClientRect():null;
     game=E.play(game,a);clearChoice();motionLane=mode==="duo"||side===1?(a.lane??a.to??null):null;
+    if(mission&&side===1&&a.type==="special")lastBossMove=(playedCard?.public?"打出明牌，":"")+summary.slice(playerName(1).length);
+    else if(side===0)lastBossMove="";
     if((mode==="duo"||side===0)&&a.type==="cycle") {
       const h=handViews[side], k=h.slots.indexOf(a.card);
       if(k!==-1)h.slots[k]=game.lastEvent.drawn[side][0];
     }
     const resolving=game.phase!=="play"&&before.phase==="play";
+    if(mission&&game.phase==="done")reward=C.finish(team,mission.stage,game);
     if(resolving)prepareTally();
     render();
     animateTransfers(before,outgoing);
-    say(summary+drawAnnouncement()+(game.phase==="play"?"轮到"+playerName(game.turn)+"。":"收花粉了。"));
+    if(beeMove&&!document.hidden&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
+      for(const source of beeSources(before,game)){
+        for(let i=0;i<Math.min(6,before.pollen[source]);i++)sendPollen(source,side,i,null,a.to);
+      }
+    }
+    say((playedCard?.public?"首领打出明牌。":"")+summary+drawAnnouncement()+(game.phase==="play"?"轮到"+playerName(game.turn)+"。":"收花粉了。"));
     if(resolving)startTallyClock();
     queueAI();
   }
@@ -2718,11 +3367,11 @@ body:has(.mode-home) .transfer{display:block}
     stopAI();if(mode!=="solo"||screen!=="battle"||!game||sheet.open||game.phase!=="play"||game.turn!==1)return;
     aiTimer=setTimeout(()=>{aiTimer=null;if(mode==="solo"&&screen==="battle"&&!sheet.open&&game?.phase==="play"&&game.turn===1)enact(E.chooseAI(game));},780);
   }
-  function homeFromMatch() {stopAI();stopFlights();clearTally();closeSheet();game=null;clearChoice();screen=mode==="duo"?"duo":"solo";render();}
+  function homeFromMatch() {stopAI();stopFlights();clearTally();closeSheet();game=null;clearChoice();screen=mode==="duo"?"duo":mission?"campaign":"solo";mission=null;reward=null;render();}
   function route(el) {
     const action=el.dataset.do,seat=el.closest(".seat");
     if(el.hasAttribute("data-after-tally")&&(tally?.running||tally?.locked))return;
-    if(mode==="duo"&&screen==="battle"&&seat&&["pass","card","cycle","cancel","confirm"].includes(action)&&(!canAct()||Number(seat.dataset.seat)!==actorSide()))return;
+    if(screen==="battle"&&seat&&["pass","card","cycle","cancel","confirm"].includes(action)&&(!canAct()||Number(seat.dataset.seat)!==actorSide()))return;
     switch(action) {
       case "modes":if(seatDrafts.some(Boolean))break;game=null;screen="home";render("mode-"+mode);break;
       case "mode-solo":mode="solo";screen="solo";render("tribe-"+team);break;
@@ -2735,10 +3384,22 @@ body:has(.mode-home) .transfer{display:block}
         if(el.dataset.source==="box" && !seatBoxes[side][t] && decks[t])seatBoxes[side][t]=copy(decks[t]);
         saveSeatChoices();refreshSeat(side);break;
       }
-      case "start-duo":if(seatDrafts.some(Boolean))break;mode="duo";begin();break;
+      case "start-duo":if(seatDrafts.some(Boolean))break;mode="duo";mission=null;begin();break;
       case "team":team=el.dataset.team;saveSoloChoices();render();break;
       case "solo-deck":soloSource[team]=el.dataset.source;saveSoloChoices();render();break;
-      case "start":begin();break;
+      case "start":mission=null;begin();break;
+      case "campaign-map":mission=null;screen="campaign";render("campaign-stage-"+Math.min(6,C.count(team)+1));break;
+      case "campaign-back":screen="solo";render("tribe-"+team);break;
+      case "campaign-stage":{const n=Number(el.dataset.stage);if(C.unlocked(team,n))openSheet("挑战关卡",C.stageInfo(team,n),"campaign-stage");break;}
+      case "campaign-fight":{const n=Number(el.dataset.stage);if(!C.unlocked(team,n))break;closeSheet();mission=C.encounter(team,n);begin();break;}
+      case "campaign-next":{if(game?.phase!=="done"||!reward?.stars||mission.stage>=6)break;const n=mission.stage+1;homeFromMatch();openSheet("挑战关卡",C.stageInfo(team,n),"campaign-stage");break;}
+      case "campaign-picture":if(C.count(team)===6)openSheet(C.collectible[team],C.puzzle(team,true),"campaign-picture");break;
+      case "campaign-rival":if(mission)openSheet(mission.name,C.skillsList(mission)+C.medalGuide(),"campaign-rival");break;
+      case "public-skill-info":{
+        const card=screen==="battle"&&mode==="solo"&&game.campaign?.stage===6&&E.visibleSkill(game,1);
+        if(card)openSheet("首领明牌",C.skillsList({skills:[{faction:E.skillOf(card,game.players[1].faction),enhanced:card.enhanced}]})+'<p>首领可以花 '+card.cost+' 点阳光打出这张牌。下轮再翻一张。</p><div class="sheet-actions">'+actionButton("close-sheet","知道啦","confirm","check")+'</div>',"public-skill");
+        break;
+      }
       case "again":if(game?.phase==="done"&&!tally?.running&&!tally?.locked)begin();break;
       case "build":editDeck();break;
       case "seat-build":editDeck(Number(el.dataset.seat));break;
@@ -2772,7 +3433,7 @@ body:has(.mode-home) .transfer{display:block}
       }
       case "help":openHelp();break;
       case "close-sheet":closeSheet();break;
-      case "exit-game":if(game.phase==="done"){homeFromMatch();break;}openSheet("回到选队？",'<p>离开后，这一局就结束了。</p><div class="sheet-actions">'+actionButton("close-sheet","继续玩","confirm","play")+actionButton("new-team","回到选队","plain","back")+'</div>',"exit");break;
+      case "exit-game":{if(game.phase==="done"){homeFromMatch();break;}const back=mission?"回到选关":"回到选队";openSheet(back+"？",'<p>离开后，这一局就结束了。</p><div class="sheet-actions">'+actionButton("close-sheet","继续玩","confirm","play")+actionButton("new-team",back,"plain","back")+'</div>',"exit");break;}
       case "new-team":homeFromMatch();break;
       case "card":chooseCard(el.dataset.id);break;
       case "cycle":if(myMoves().some(a=>a.type==="cycle")){sel={kind:"cycle"};pending=null;render();say("选一张要换走的手牌。");app.querySelector(".for-cycle")?.focus({preventScroll:true});}break;
@@ -2782,7 +3443,7 @@ body:has(.mode-home) .transfer{display:block}
       case "confirm":if(pending&&canAct())enact(pending);break;
       case "skip-resolution":if(tally?.running)finishTally(tally,true);break;
       case "next":
-        if(game.phase==="scored"&&!tally?.running&&!tally?.locked){const before=game;clearTally();game=E.nextRound(game);clearChoice();motionLane=null;render();animateTransfers(before);say("第"+game.round+"轮。"+hatchAnnouncement()+drawAnnouncement()+playerName(game.turn)+"先出牌。");queueAI();}break;
+        if(game.phase==="scored"&&!tally?.running&&!tally?.locked){const before=game;clearTally();game=E.nextRound(game);clearChoice();motionLane=null;lastBossMove="";render();animateTransfers(before);say("第"+game.round+"轮。"+hatchAnnouncement()+drawAnnouncement()+playerName(game.turn)+"先出牌。");queueAI();}break;
     }
   }
   // A browser may omit both clicks when two children tap opposite seats together.
@@ -2858,301 +3519,136 @@ body:has(.mode-home) .transfer{display:block}
 
 </script>
   <script>
-// “Petit pollen” — an original miniature chanson for reeds, guitar, bass and voice.
+(() => {
+  'use strict';
+  const sheet = document.getElementById('sheet');
+  const body = document.getElementById('sheet-body');
+  const endpoint = document.querySelector('meta[name="pollen-match-api"]')?.content;
+  const teams = { ant:'蚂蚁', bee:'蜜蜂', beetle:'甲虫', spider:'蜘蛛', butterfly:'蝴蝶' };
+  let active = null, timer = null;
+
+  function button(text, action, style = 'plain') {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = style; b.textContent = text;
+    b.addEventListener('click', action);
+    return b;
+  }
+  function view(title, message) {
+    const header = document.createElement('div'), h = document.createElement('h2');
+    header.className = 'sheet-top'; h.id = 'sheet-title'; h.textContent = title;
+    const close = button('×', () => sheet.close(), 'round-btn');
+    close.setAttribute('aria-label', '关闭'); header.append(h, close);
+    const text = document.createElement('p'); text.textContent = message;
+    text.setAttribute('role', 'status'); body.replaceChildren(header, text);
+  }
+  async function request(ticket, method, data) {
+    const res = await fetch(new URL('ticket', new URL(endpoint, location.href)), {
+      method, cache: 'no-store', headers: { Authorization: 'Bearer ' + ticket,
+        ...(data ? { 'Content-Type': 'application/json' } : {}) },
+      body: data ? JSON.stringify(data) : undefined
+    });
+    if (!res.ok) throw Error('匹配暂时不可用');
+    return res.json();
+  }
+  function stop() {
+    clearTimeout(timer);
+    const ticket = active; active = null;
+    if (ticket) request(ticket, 'DELETE').catch(() => {});
+  }
+  async function start(faction) {
+    stop();
+    const ticket = crypto.randomUUID(); active = ticket;
+    view('寻找对手', '正在等另一台设备加入…');
+    body.append(button('取消匹配', () => sheet.close()));
+    async function poll(method) {
+      try {
+        const reply = await request(ticket, method, method === 'POST' ? { faction } : undefined);
+        if (active !== ticket) {
+          if (method === 'POST') await request(ticket, 'DELETE').catch(() => {});
+          return;
+        }
+        if (reply.status === 'waiting') { timer = setTimeout(() => poll('GET'), 1700); return; }
+        if (reply.status === 'paired') {
+          view('匹配成功', teams[faction] + ' × ' + teams[reply.opponent] + '　房间 ' + reply.room.slice(0, 8));
+          const note = document.createElement('p'); note.textContent = '本次联测到配对为止。'; body.append(note);
+          // The other seat must be able to collect its pairing receipt even if this sheet is closed.
+          active = null;
+        } else { stop(); view('配对已结束', '重新打开匹配可以再试一次。'); }
+      } catch {
+        if (active !== ticket) return;
+        stop(); view('暂时连不上测试服', '请检查网络，然后重新加入。');
+        body.append(button('重试', () => start(faction)));
+      }
+    }
+    poll('POST');
+  }
+  document.addEventListener('click', event => {
+    if (!event.target.closest('[data-do="online-match"]')) return;
+    view('匹配对战', endpoint ? '选一族加入配对测试。' : '匹配测试尚未开放。');
+    if (endpoint) {
+      const choices = document.createElement('div'); choices.className = 'sheet-actions';
+      for (const [id, name] of Object.entries(teams)) choices.append(button(name, () => start(id)));
+      body.append(choices);
+    }
+    if (!sheet.open) sheet.showModal();
+  });
+  sheet.addEventListener('close', stop);
+  window.addEventListener('pagehide', stop);
+})();
+
+</script>
+  <script>
+// “Petit pollen” – an original instrumental musette with recorded acoustic instruments.
 (() => {
   "use strict";
-  const beat = 60 / 110;
-  const barTime = 3 * beat;
-  const noteHz = n => 440 * Math.pow(2, (n - 69) / 12);
-  // Guitar voicings are kept close together, as on the middle four strings.
-  const chords = {
-    Dm: [38, 53, 57, 62], Gm: [43, 55, 58, 62], A7: [45, 55, 61, 64],
-    Bb: [34, 53, 58, 62], F: [41, 53, 57, 60], C7: [36, 52, 58, 60],
-    Ed: [40, 55, 58, 62], D7: [38, 54, 57, 60], Gm6: [43, 52, 58, 62]
-  };
-  // Each bar contains one harmony followed by [pitch, beats, optional sung syllable].
-  // A zero pitch is a rest. The opening voice is the accordion; the refrain is sung.
-  const intro = [
-    ["Dm", [0, 1], [69, .5], [68, .5], [69, 1]],
-    ["Gm", [70, 1.5], [67, .5], [65, 1]],
-    ["Ed", [64, 1], [67, 1], [70, 1]],
-    ["A7", [69, 1.5], [0, .5], [64, .5], [61, .5]]
-  ];
-  const verse = [
-    ["Dm", [62, 1.5], [65, .5], [69, 1]],
-    ["Dm", [72, .75], [71, .25], [69, 1], [65, 1]],
-    ["Gm", [67, 1], [70, 1.5], [69, .5]],
-    ["A7", [64, 2], [61, .5], [64, .5]],
-    ["Dm", [65, 1.5], [67, .5], [69, 1]],
-    ["Bb", [70, 1], [74, .5], [72, .5], [70, 1]],
-    ["Ed", [67, 1], [64, 1], [65, .5], [67, .5]],
-    ["A7", [69, 2], [0, .5], [67, .5]]
-  ];
-  // Danse, danse, petit pollen, au soleil du matin.
-  // Vole, vole, petite reine, sur le bord du chemin.
-  const refrain = [
-    ["F", [69, 1, "danse"], [67, 1, "danse"], [65, .5, "pe"], [67, .5, "tit"]],
-    ["C7", [67, 1, "pol"], [64, 1.5, "len"], [0, .5]],
-    ["F", [65, .5, "au"], [67, .5, "so"], [69, 1, "leil"], [72, 1, "du"]],
-    ["D7", [69, 1, "ma"], [66, 1.5, "tin"], [0, .5]],
-    ["Gm", [70, 1, "vole"], [69, 1, "vole"], [67, .5, "pe"], [69, .5, "tite"]],
-    ["Dm", [65, 2.5, "reine"], [0, .5]],
-    ["Ed", [67, .5, "sur"], [65, .5, "le"], [64, 1, "bord"], [62, 1, "du"]],
-    ["A7", [64, 1, "che"], [61, 1.5, "min"], [0, .5]]
-  ];
-  const reply = [
-    ["Dm", [62, 1], [65, .5], [69, .5], [72, 1]],
-    ["F", [77, 1], [76, .5], [74, .5], [72, 1]],
-    ["Gm", [70, 1.5], [69, .5], [67, 1]],
-    ["A7", [64, 2], [61, .5], [64, .5]],
-    ["Dm", [65, .5], [69, .5], [72, 1], [74, 1]],
-    ["Bb", [74, 1.5], [72, .5], [70, 1]],
-    ["Gm6", [67, 1], [64, .5], [65, .5], [67, 1]],
-    ["A7", [69, 1.5], [0, .5], [64, .5], [67, .5]]
-  ];
-  const coda = [
-    ["Dm", [62, 1.5], [65, .5], [69, 1]],
-    ["Gm", [70, 1], [67, 1], [65, 1]],
-    ["A7", [64, 1], [61, .5], [64, .5], [67, 1]],
-    ["Dm", [65, 1], [62, 1.8], [0, .2]]
-  ];
-  const score = [...intro, ...refrain, ...verse, ...reply, ...refrain, ...coda];
-
-  // Approximate French vowel colours and consonant envelopes for the sung refrain.
-  const vowels = {
-    a:[780,1450,2700], an:[645,1040,2480], oe:[520,1500,2550],
-    i:[310,2380,3140], o:[475,860,2430], oh:[565,1050,2470],
-    e:[515,1920,2820], u:[335,1710,2450], in:[560,1680,2670]
-  };
-  const syllables = {
-    danse:["d","an","s"], pe:["p","oe"], tit:["t","i"], pol:["p","oh","l"],
-    len:["l","e","n"], au:["","o"], so:["s","o"], leil:["l","e","y"], du:["d","u"],
-    ma:["m","a"], tin:["t","in"], vole:["v","oh","l"], tite:["t","i","t"],
-    reine:["r","e","n"], sur:["s","u","r"], le:["l","oe"], bord:["b","oh","r"],
-    che:["sh","oe"], min:["m","in"]
-  };
+  const track = "petit-pollen.mp3";
   const muteKey = "pollen-table.music-muted.v1";
+  const audio = document.createElement("audio");
+  audio.loop = true;
+  audio.preload = "none";
+  audio.volume = .72;
+  audio.hidden = true;
+  document.body.append(audio);
   let muted = false;
+  let started = false;
+  let hidden = document.hidden;
+  let pending = false;
+  let revision = 0;
   try { muted = localStorage.getItem(muteKey) === "1"; } catch {}
-  const Audio = window.AudioContext || window.webkitAudioContext;
-  if (!Audio) return;
-
-  let ctx, mix, reedWave, glottis, breath, mutedByPage = false, userStarted = false;
-  let timer = 0, nextBar = 0, nextAt = 0, requestId = 0;
-  const strings = new Map();
-  let seed = 17011;
-  function random() {
-    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
-    return seed / 4294967296;
-  }
-  function wave(harmonics) {
-    return ctx.createPeriodicWave(new Float32Array(harmonics.length), Float32Array.from(harmonics));
-  }
-  function unplug(nodes) { nodes.forEach(node => node.disconnect()); }
-  function init() {
-    ctx = new Audio();
-    mix = ctx.createGain();
-    mix.gain.value = .57;
-    const limiter = ctx.createDynamicsCompressor();
-    limiter.threshold.value = -17;
-    limiter.knee.value = 12;
-    limiter.ratio.value = 3;
-    mix.connect(limiter).connect(ctx.destination);
-    const room = ctx.createDelay();
-    const reflected = ctx.createGain();
-    room.delayTime.value = .077;
-    reflected.gain.value = .11;
-    mix.connect(room).connect(reflected).connect(limiter);
-    reedWave = wave([0,1,.43,.26,.17,.19,.085,.065,.095,.04,.035,.045,.028,.021]);
-    glottis = wave(Array.from({length:42}, (_, i) => i ? Math.pow(i,-.99) : 0));
-    breath = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * .18), ctx.sampleRate);
-    const noise = breath.getChannelData(0);
-    for (let i=0; i<noise.length; i++) noise[i] = 2*random()-1;
-  }
-  function envelope(gain, at, length, attack, level, hold = .8) {
-    const p = gain.gain;
-    p.setValueAtTime(.0001, at);
-    p.exponentialRampToValueAtTime(level, at+attack);
-    p.linearRampToValueAtTime(level*hold, at+Math.max(attack,length-.08));
-    p.exponentialRampToValueAtTime(.0001, at+length);
-  }
-  function accordion(pitch, at, length, level) {
-    const amp = ctx.createGain();
-    const tone = ctx.createBiquadFilter();
-    tone.type = "lowpass";
-    tone.frequency.value = 2520;
-    tone.Q.value = .55;
-    tone.connect(amp).connect(mix);
-    envelope(amp,at,length,Math.min(.057,length/3),level);
-    const reeds = [-4.5,4.5].map(cents => {
-      const osc = ctx.createOscillator();
-      osc.setPeriodicWave(reedWave);
-      osc.frequency.value = noteHz(pitch);
-      osc.detune.value = cents;
-      osc.connect(tone);
-      osc.start(at);
-      osc.stop(at+length+.008);
-      return osc;
-    });
-    reeds[1].onended = () => unplug([...reeds,tone,amp]);
-  }
-  function guitar(pitch, at, level) {
-    if (!strings.has(pitch)) {
-      const rate = 22050;
-      const period = Math.max(2,Math.round(rate/noteHz(pitch)-.5));
-      const line = Float32Array.from({length:period}, () => 2*random()-1);
-      const buffer = ctx.createBuffer(1,rate,rate);
-      const data = buffer.getChannelData(0);
-      // Average adjacent samples on every trip around the virtual string.
-      for (let i=0; i<data.length; i++) {
-        const j = i%period;
-        data[i] = line[j];
-        line[j] = .496 * (line[j]+line[(j+1)%period]);
-      }
-      strings.set(pitch,{buffer,tune:noteHz(pitch)*(period+.5)/rate});
-    }
-    const sample = strings.get(pitch);
-    const src = ctx.createBufferSource();
-    const amp = ctx.createGain();
-    src.buffer = sample.buffer;
-    src.playbackRate.value = sample.tune;
-    envelope(amp,at,.51,.006,level,.38);
-    src.connect(amp).connect(mix);
-    src.start(at);
-    src.stop(at+.52);
-    src.onended = () => unplug([src,amp]);
-  }
-  function bass(pitch, at, length, level) {
-    const osc = ctx.createOscillator();
-    const amp = ctx.createGain();
-    const tone = ctx.createBiquadFilter();
-    osc.type = "triangle";
-    osc.frequency.setValueAtTime(noteHz(pitch)*1.012,at);
-    osc.frequency.exponentialRampToValueAtTime(noteHz(pitch),at+.04);
-    tone.frequency.value = 430;
-    tone.Q.value = .5;
-    envelope(amp,at,length,.015,level,.36);
-    osc.connect(tone).connect(amp).connect(mix);
-    osc.start(at);
-    osc.stop(at+length+.01);
-    osc.onended = () => unplug([osc,tone,amp]);
-  }
-  function consonant(sound, at, duration, level) {
-    if (!["s","sh","t","p","v","r","d","b"].includes(sound)) return;
-    const src = ctx.createBufferSource();
-    const filter = ctx.createBiquadFilter();
-    const amp = ctx.createGain();
-    src.buffer = breath;
-    filter.type = "bandpass";
-    filter.frequency.value = ({s:5700,sh:2700,t:4300,p:1300,v:1530,r:1100,d:1900,b:950})[sound];
-    filter.Q.value = .85;
-    envelope(amp,at,duration,.004,level,.42);
-    src.connect(filter).connect(amp).connect(mix);
-    src.start(at);
-    src.stop(at+duration+.001);
-    src.onended = () => unplug([src,filter,amp]);
-  }
-  function sing(pitch, at, length, text) {
-    const [initial, vowel, final] = syllables[text];
-    const hiss = initial === "s" || initial === "sh";
-    const attack = hiss ? .066 : initial ? .029 : .01;
-    consonant(initial,at,hiss ? .077 : .031,hiss ? .091 : .049);
-    if (final) consonant(final,at+length-.061,.058,.066);
-    const voice = ctx.createOscillator();
-    const amp = ctx.createGain();
-    const vib = ctx.createOscillator();
-    const depth = ctx.createGain();
-    voice.setPeriodicWave(glottis);
-    voice.frequency.setValueAtTime(noteHz(pitch)*.989,at);
-    voice.frequency.exponentialRampToValueAtTime(noteHz(pitch),at+.073);
-    vib.frequency.value = 5.1;
-    depth.gain.setValueAtTime(.1,at);
-    depth.gain.linearRampToValueAtTime(13,at+Math.min(.29,length*.8));
-    vib.connect(depth).connect(voice.detune);
-    amp.connect(mix);
-    envelope(amp,at+attack,length-attack,.036,.26,.89);
-    const nodes = [voice,amp,vib,depth];
-    const formants = vowels[vowel];
-    formants.forEach((hz,i) => {
-      const f = ctx.createBiquadFilter();
-      const partial = ctx.createGain();
-      f.type = "bandpass";
-      f.Q.value = [2.4,4.7,6.5][i];
-      const closed = ["m","b","p"].includes(initial);
-      f.frequency.setValueAtTime(closed && !i ? hz*.64 : hz,at);
-      f.frequency.linearRampToValueAtTime(hz,at+.08);
-      const endHz = final === "n" || final === "l" ? hz*(i===0?.70:.91) : final==="y" ? vowels.i[i] : hz;
-      f.frequency.setValueAtTime(hz,at+length*.7);
-      f.frequency.linearRampToValueAtTime(endHz,at+length);
-      partial.gain.value = [1.35,.94,.56][i];
-      voice.connect(f).connect(partial).connect(amp);
-      nodes.push(f,partial);
-    });
-    vib.start(at);
-    voice.start(at);
-    vib.stop(at+length+.005);
-    voice.stop(at+length+.01);
-    voice.onended = () => unplug(nodes);
-  }
-  function playBar(index, at) {
-    const [chord, ...melody] = score[index];
-    const isRefrain = melody.some(note => note[2]);
-    const [root, ...voicing] = chords[chord];
-    bass(root,at,beat*1.38,.31);
-    if (index%4===3 && index!==score.length-1) bass(root+7,at+2.48*beat,.40*beat,.17);
-    // A light down–up offbeat strum provides the three-step musette pulse.
-    for (let stroke=1; stroke<=2; stroke++) {
-      const order = stroke===1 ? voicing : [...voicing].reverse();
-      order.forEach((p,i) => guitar(p,at+stroke*beat+.014+i*.012,stroke===1?.27:.22));
-    }
-    let ticks = 0;
-    for (const [pitch, count, lyric] of melody) {
-      const start = at+ticks*beat;
-      const length = beat*count*(count<1?.92:.955);
-      if (lyric) sing(pitch,start,length,lyric);
-      else if (pitch) accordion(pitch,start,length,count<1?.097:.111);
-      // The reeds answer in the spaces between sung phrases.
-      if (!pitch && isRefrain && count===.5) {
-        accordion(voicing[1]+12,start,length,.062);
-      }
-      ticks += count;
-    }
-  }
-  function schedule() {
-    if (!ctx || ctx.state !== "running" || muted || mutedByPage) return;
-    const now = ctx.currentTime;
-    if (nextAt < now) nextAt = now+.04;
-    while (nextAt <= now+.28) {
-      playBar(nextBar, nextAt);
-      nextAt += barTime;
-      nextBar = (nextBar+1)%score.length;
-    }
-  }
-  function setTransport() {
-    const id = ++requestId;
-    clearInterval(timer);
-    if (muted || mutedByPage || !userStarted) {
-      if (ctx && ctx.state !== "suspended") ctx.suspend().catch(() => {});
-      return;
-    }
-    try { if (!ctx) init(); } catch { return; }
-    ctx.resume().then(() => {
-      if (id!==requestId || muted || mutedByPage || ctx.state!=="running") return;
-      schedule();
-      timer = setInterval(schedule,125);
-    }).catch(() => {});
-  }
 
   const app = document.getElementById("app");
   const button = document.createElement("button");
   button.type = "button";
   button.className = "round-btn chanson-toggle";
+  button.setAttribute("aria-label", "背景音乐");
   button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3z"/><g class="sound-waves"><path d="M15.5 8.7a5 5 0 0 1 0 6.6M18.3 5.9a8.8 8.8 0 0 1 0 12.2"/></g><path class="quiet-mark" d="m16 9 5 6m0-6-5 6"/></svg>';
   function updateButton() {
-    const playing = userStarted && !muted;
-    button.setAttribute("aria-pressed",String(playing));
-    button.setAttribute("aria-label","背景音乐");
-    button.title = playing ? "关闭音乐《Petit pollen》" : "播放音乐《Petit pollen》";
+    const active = !muted && !hidden && (pending || !audio.paused);
+    button.setAttribute("aria-pressed",String(active));
+    button.title = active ? "关闭音乐《Petit pollen》" : "播放音乐《Petit pollen》";
+  }
+  function transport() {
+    const ticket = ++revision;
+    if (!started || muted || hidden) {
+      pending = false;
+      audio.pause();
+      updateButton();
+      return;
+    }
+    if (!audio.hasAttribute("src")) audio.src = track;
+    if (audio.error) audio.load();
+    pending = true;
+    updateButton();
+    // play() is called synchronously inside the initiating tap for iOS.
+    const play = audio.play();
+    const settled = () => {
+      if (ticket === revision) {
+        pending = false;
+        updateButton();
+      }
+    };
+    if (play) play.then(settled, settled);
+    else settled();
   }
   function mountButton() {
     if (app.contains(button)) return;
@@ -3169,28 +3665,29 @@ body:has(.mode-home) .transfer{display:block}
   updateButton();
   mountButton();
   new MutationObserver(mountButton).observe(app,{childList:true});
+  audio.addEventListener("playing",updateButton);
+  audio.addEventListener("pause",updateButton);
+  audio.addEventListener("error",updateButton);
   button.addEventListener("click", () => {
-    muted = userStarted ? !muted : false;
-    userStarted = true;
+    muted = !muted && (pending || !audio.paused);
+    started = true;
     try { localStorage.setItem(muteKey,muted ? "1" : "0"); } catch {}
-    updateButton();
-    setTransport();
+    transport();
   });
   function unlock(event) {
     if (button.contains(event.target) || event.isComposing ||
-        (event.type==="keydown" && !["Enter"," "].includes(event.key))) return;
-    if (!userStarted || (!muted && ctx && ctx.state !== "running")) {
-      userStarted = true;
-      updateButton();
-      setTransport();
+        (event.type === "keydown" && !["Enter"," "].includes(event.key))) return;
+    if (!started || (!muted && !pending && audio.paused)) {
+      started = true;
+      transport();
     }
   }
   document.addEventListener("click",unlock,true);
   document.addEventListener("keydown",unlock,true);
-  function pageState(hidden) {
-    if (hidden===mutedByPage) return;
-    mutedByPage = hidden;
-    setTransport();
+  function pageState(isHidden) {
+    if (hidden === isHidden) return;
+    hidden = isHidden;
+    transport();
   }
   document.addEventListener("visibilitychange", () => pageState(document.hidden));
   window.addEventListener("pagehide", () => pageState(true));

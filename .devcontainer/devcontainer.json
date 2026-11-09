@@ -1,0 +1,9 @@
+{
+  "name": "Pollen Table playtest",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "forwardPorts": [4173],
+  "portsAttributes": {
+    "4173": { "label": "花粉擂台 · 匹配测试", "onAutoForward": "notify" }
+  },
+  "postStartCommand": "nohup node server/match.cjs >/tmp/pollen-table-match.log 2>&1 </dev/null &"
+}

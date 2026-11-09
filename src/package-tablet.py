@@ -24,13 +24,21 @@ game = offline.read_text(encoding="utf-8")
 download_js = (root / "tablet-download.js").read_text(encoding="utf-8")
 worker = (root / "tablet-sw.js").read_text(encoding="utf-8")
 hosted = game
-for name in ("meadow-cinema.webp", "cine-cast.webp"):
+images = ["meadow-cinema.webp", "cine-cast.webp", *[f"campaign-{tribe}.webp" for tribe in ("ant", "bee", "beetle", "spider", "butterfly")]]
+for name in images:
     image = (root / name).read_bytes()
     embedded = 'url("data:image/webp;base64,' + b64encode(image).decode("ascii") + '")'
     if hosted.count(embedded) != 1:
         raise ValueError(f"Rebuild the standalone game with exactly one CSS reference to {name}")
     hosted = hosted.replace(embedded, f'url("./{name}")', 1)
     (site / name).write_bytes(image)
+music_name = "petit-pollen.mp3"
+music = (root / music_name).read_bytes()
+music_url = "data:audio/mpeg;base64," + b64encode(music).decode("ascii")
+if hosted.count(music_url) != 1:
+    raise ValueError("Rebuild the offline game with its complete recorded soundtrack")
+hosted = hosted.replace(music_url, music_name, 1)
+(site / music_name).write_bytes(music)
 head = """<link rel="manifest" href="./manifest.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -65,7 +73,7 @@ for size in (180, 192, 512):
 
 # Hash every file the worker installs, including the original image bytes and app icons.
 digest = sha256((hosted + worker + guide_page).encode("utf-8"))
-for name in ("meadow-cinema.webp", "cine-cast.webp", "pollen-table-v5.zip", "manifest.webmanifest", "icon.svg",
+for name in (*images, music_name, "pollen-table-v5.zip", "manifest.webmanifest", "icon.svg",
              "icon-180.png", "icon-192.png", "icon-512.png"):
     digest.update((site / name).read_bytes())
 revision = digest.hexdigest()[:16]

@@ -1,10 +1,49 @@
 # 《花粉擂台》美术与配乐
 
+## 五族战役拼图
+
+每一幅藏品画都是独立的原创微距生物想象图，尺寸 1200 × 800。拼缝取自相应种族的蚁道、蜂房、鞘翅、蛛网和翅脉。六关解锁同一张图的六个互补区域。
+
+<details><summary>琥珀穹冠蚁</summary>
+
+[游戏原画](src/campaign-ant.webp)
+
+Create one original full-bleed 3:2 landscape art photograph for a six-piece children's collector puzzle. This is a single breathtaking still of an imagined wild animal in its habitat, photographed in a real French meadow. Photoreal natural-history macro cinematography, sophisticated light and shadow, the suggestive playful gravity of tiny creatures in Minuscule, anatomically legible, its strange specialized anatomy grown by nature, expressive and safe for ages 5 to 8. Beautifully art-directed cohesive habitat, jewel-like fine detail, soft film grain, atmospheric depth, real optical bokeh. Both face and most of its silhouette comfortably inside center 75 percent, sharp subject and distinct visual landmarks distributed across all of a 3 by 2 puzzle. Clear memorable color palette and simple silhouette legible at small scale. NO writing, NO puzzle grid, no border, no clothes, no armor or manufactured accessories, no logos. This image will be revealed by collecting six pieces. Amber Canopy Ant. A dignified copper-red forest ant standing on a mossy twig arch, six slender legs, waist, bent antennae and a translucent amber fan of natural crested chitin on the upper thorax shaped like miniature leaf veins. Backlit warm resin and red bracken, shaft of morning sun under fern canopy, fine golden flecks. Low profile three-quarter view from ground, quiet wonder; no wearable crown.
+</details>
+
+<details><summary>曦光琉璃蜂</summary>
+
+[游戏原画](src/campaign-bee.webp)
+
+Create one original full-bleed 3:2 landscape art photograph for a six-piece children's collector puzzle. This is a single breathtaking still of an imagined wild animal in its habitat, photographed in a real French meadow. Photoreal natural-history macro cinematography, sophisticated light and shadow, the suggestive playful gravity of tiny creatures in Minuscule, anatomically legible, its strange specialized anatomy grown by nature, expressive and safe for ages 5 to 8. Beautifully art-directed cohesive habitat, jewel-like fine detail, soft film grain, atmospheric depth, real optical bokeh. Both face and most of its silhouette comfortably inside center 75 percent, sharp subject and distinct visual landmarks distributed across all of a 3 by 2 puzzle. Clear memorable color palette and simple silhouette legible at small scale. NO writing, NO puzzle grid, no border, no clothes, no armor or manufactured accessories, no logos. This image will be revealed by collecting six pieces. Dawn Prism Bee. A charismatic plump wild bee balancing on the sloping rim of a small wildflower with a pollen basket on her hind leg, honey-colored russet fur lit by early sun, two pairs of delicate folded clear wings with naturally faceted interference film scattering her shadow into flecks of turquoise, lavender and apricot, biology not literal glass. Dewy water mint, distant meadow at daybreak. Her dark eyes sharp and entire beautiful silhouette readable.
+</details>
+
+<details><summary>苍苔月角兜</summary>
+
+[游戏原画](src/campaign-beetle.webp)
+
+Create one original full-bleed 3:2 landscape art photograph for a six-piece children's collector puzzle. This is a single breathtaking still of an imagined wild animal in its habitat, photographed in a real French meadow. Photoreal natural-history macro cinematography, sophisticated light and shadow, the suggestive playful gravity of tiny creatures in Minuscule, anatomically legible, its strange specialized anatomy grown by nature, expressive and safe for ages 5 to 8. Beautifully art-directed cohesive habitat, jewel-like fine detail, soft film grain, atmospheric depth, real optical bokeh. Both face and most of its silhouette comfortably inside center 75 percent, sharp subject and distinct visual landmarks distributed across all of a 3 by 2 puzzle. Clear memorable color palette and simple silhouette legible at small scale. NO writing, NO puzzle grid, no border, no clothes, no armor or manufactured accessories, no logos. This image will be revealed by collecting six pieces. Moss Moonhorn Beetle. A majestic but endearing large rhinoceros beetle, moss-green elytra with luminous bronze patina and fine lichen-like natural texture, a great forward sweeping crescent horn rising gracefully in silhouette. All six legs contact aged beech bark. A cool blue moon still visible through fern fronds at the end of night, warm rim light on the curved horn. Centered low three-quarter view, jewel enamel and moss textures beautiful.
+</details>
+
+<details><summary>星露织蛛</summary>
+
+[游戏原画](src/campaign-spider.webp)
+
+Create one original full-bleed 3:2 landscape art photograph for a six-piece children's collector puzzle. This is a single breathtaking still of an imagined wild animal in its habitat, photographed in a real French meadow. Photoreal natural-history macro cinematography, sophisticated light and shadow, the suggestive playful gravity of tiny creatures in Minuscule, anatomically legible, its strange specialized anatomy grown by nature, expressive and safe for ages 5 to 8. Beautifully art-directed cohesive habitat, jewel-like fine detail, soft film grain, atmospheric depth, real optical bokeh. Both face and most of its silhouette comfortably inside center 75 percent, sharp subject and distinct visual landmarks distributed across all of a 3 by 2 puzzle. Clear memorable color palette and simple silhouette legible at small scale. NO writing, NO puzzle grid, no border, no clothes, no armor or manufactured accessories, no logos. This image will be revealed by collecting six pieces. Stardew Weaver. A gentle eight-legged silver-gray and deep indigo garden orb-weaver pausing between two fine silk cables, velvet legs with pearl-like natural markings and precise friendly dark eyes. Her spiraling nearly invisible web stretches across a heath and carries cold silvery drops like a subtle constellation. Twilight indigo and soft cyan in the sky, a few muted golden highlights in dew. True-to-life eight legs, physically plausible body, no neon, elegant intriguing rather than scary.
+</details>
+
+<details><summary>极昼霓裳蝶</summary>
+
+[游戏原画](src/campaign-butterfly.webp)
+
+Create one original full-bleed 3:2 landscape art photograph for a six-piece children's collector puzzle. This is a single breathtaking still of an imagined wild animal in its habitat, photographed in a real French meadow. Photoreal natural-history macro cinematography, sophisticated light and shadow, the suggestive playful gravity of tiny creatures in Minuscule, anatomically legible, its strange specialized anatomy grown by nature, expressive and safe for ages 5 to 8. Beautifully art-directed cohesive habitat, jewel-like fine detail, soft film grain, atmospheric depth, real optical bokeh. Both face and most of its silhouette comfortably inside center 75 percent, sharp subject and distinct visual landmarks distributed across all of a 3 by 2 puzzle. Clear memorable color palette and simple silhouette legible at small scale. NO writing, NO puzzle grid, no border, no clothes, no armor or manufactured accessories, no logos. This image will be revealed by collecting six pieces. Aurora Silkwing. Graceful broad-winged butterfly settled on a wild grass seedhead with both wings spread and mostly frontal. Natural overlapping scales shimmer across pale apricot, luminous teal and muted violet blending into a pale pearl wingtip; the patterns look like the northern lights and feathers but are entirely delicate living butterfly wing scales with dark vein tracery, no artificial shapes. Gentle midsummer polar-day sky and heather meadow, soft radiant backlight, visible eyes antennae and tiny feet. Rich ravishing fine-art photographic color.
+</details>
+
 画面从昆虫视角看清晨的法式草甸。背景和五个角色是为游戏生成的新图，没有使用电影画面、角色模型或录音。首页和牌桌共用场景，卡面和选队共用同一套角色；费用、力量和花粉仍有独立的图形和数字。
 
 - [草地场景](src/meadow-cinema.webp)：1536 × 1024。
 - [五族透明角色图集](src/cine-cast.webp)：960 × 640；上排从左到右为蚂蚁、蜜蜂、甲虫，下排为蜘蛛、蝴蝶。
-- [《Petit pollen》乐谱和演奏程序](src/chanson.js)：原创三拍子法语小曲，手风琴、木吉他、低音和合成人声。使用 Web Audio 本地演奏，无音频服务依赖。
+- 《Petit pollen》是使用真实乐器录音采样编配的三拍子器乐曲。可查阅[乐谱、制作方法与采样来源](src/music/SOURCES.md)。
 
 原画通过内置 ImageGen 生成。以下为两幅原画的最终提示词；交付时转换为 WebP 并将角色排列到等宽的透明格中。
 

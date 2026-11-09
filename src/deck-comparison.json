@@ -1,6 +1,6 @@
 {
   "games": 2000,
-  "standardWins": 931,
+  "standardWins": 963,
   "firstBlock": 850000,
   "blocks": 100,
   "byFaction": {
@@ -10,7 +10,7 @@
       "specialWins": 236,
       "hitPlays": 2236,
       "supplyPlays": 1379,
-      "rulesDigest": "a0b4db799a8ea027b44bedf2d391903d4905e3e2fff35f8b40c96475dead356f"
+      "rulesDigest": "1600f1d9b2c5e3b2bb01d568ea9fd78e43e7be3744edfae9d206a12478d6e1b8"
     },
     "bee": {
       "games": 400,
@@ -18,7 +18,7 @@
       "specialWins": 221,
       "hitPlays": 1227,
       "supplyPlays": 445,
-      "rulesDigest": "a0b4db799a8ea027b44bedf2d391903d4905e3e2fff35f8b40c96475dead356f"
+      "rulesDigest": "1600f1d9b2c5e3b2bb01d568ea9fd78e43e7be3744edfae9d206a12478d6e1b8"
     },
     "beetle": {
       "games": 400,
@@ -26,7 +26,7 @@
       "specialWins": 197,
       "hitPlays": 1525,
       "supplyPlays": 360,
-      "rulesDigest": "a0b4db799a8ea027b44bedf2d391903d4905e3e2fff35f8b40c96475dead356f"
+      "rulesDigest": "1600f1d9b2c5e3b2bb01d568ea9fd78e43e7be3744edfae9d206a12478d6e1b8"
     },
     "spider": {
       "games": 400,
@@ -34,16 +34,16 @@
       "specialWins": 180,
       "hitPlays": 2648,
       "supplyPlays": 1517,
-      "rulesDigest": "a0b4db799a8ea027b44bedf2d391903d4905e3e2fff35f8b40c96475dead356f"
+      "rulesDigest": "1600f1d9b2c5e3b2bb01d568ea9fd78e43e7be3744edfae9d206a12478d6e1b8"
     },
     "butterfly": {
       "games": 400,
-      "standardWins": 165,
-      "specialWins": 235,
-      "hitPlays": 2514,
-      "supplyPlays": 1127,
-      "rulesDigest": "a0b4db799a8ea027b44bedf2d391903d4905e3e2fff35f8b40c96475dead356f"
+      "standardWins": 197,
+      "specialWins": 203,
+      "hitPlays": 2374,
+      "supplyPlays": 954,
+      "rulesDigest": "1600f1d9b2c5e3b2bb01d568ea9fd78e43e7be3744edfae9d206a12478d6e1b8"
     }
   },
-  "rulesDigest": "a0b4db799a8ea027b44bedf2d391903d4905e3e2fff35f8b40c96475dead356f"
+  "rulesDigest": "1600f1d9b2c5e3b2bb01d568ea9fd78e43e7be3744edfae9d206a12478d6e1b8"
 }
